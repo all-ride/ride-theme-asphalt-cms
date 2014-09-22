@@ -3,10 +3,14 @@ function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
     // implement the expand/collapse function of the node tree
     $tree.find(".node a.toggle").each(function(i) {
         $(this).click(function() {
-            var parent = $(this).parent();
-            var nodeId = parent.attr('id').replace('node-', '');
+            var $that = $(this),
+                $parent  = $that.parent(),
+                $icon = $that.find('.icon');
 
-            parent.toggleClass('closed');
+            var nodeId = $parent.attr('id').replace('node-', '');
+
+            $parent.toggleClass('closed');
+            $icon.toggleClass('icon--plus-square-o').toggleClass('icon--minus-square-o');
 
             $.post(nodeToggleAction.replace('%25node%25', nodeId));
 

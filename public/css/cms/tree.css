@@ -6,11 +6,36 @@
 }
 #node-tree li {
   padding: 4px 0;
+  position: relative;
 }
 #node-tree ul {
   list-style: none;
   padding: 0;
-  margin-left: 10px;
+  margin-left: 20px;
+  position: relative;
+}
+#node-tree ul:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 4px;
+  width: 0;
+  border-left: 1px dotted #484848;
+}
+#node-tree ul li:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  width: 6px;
+  border-top: 1px dotted #484848;
+}
+#node-tree ul li:last-child:before {
+  bottom: 0;
+  background: #fff;
 }
 
 #node-tree.disabled {
@@ -27,67 +52,62 @@
   display: inline-block;
 }
 
+#node-tree .dropdown__menu {
+  position: absolute;
+  margin-left: 0;
+  padding: 5px 0;
+}
+#node-tree .dropdown__menu:before,
+#node-tree .dropdown__menu li:before {
+  display: none;
+}
+#node-tree .dropdown__menu li {
+  padding: 0;
+}
 
+.node a {
+  color: #494949;
+  text-decoration: none;
+}
 
 /* Toggle */
 .node .toggle {
   width: 16px;
   height: 16px;
   position: relative;
-  top: 1px;
+  top: 3px;
+  left: -4px;
   margin-right: 3px;
 }
 .node .dropdown-toggle {
-  background: url(../../img/cms/arrow.down.blue.png) no-repeat center center;
-  padding: 0 0 0px 9px;
   display: inline-block;
   border: 1px solid #FFF;
-  margin-left: 1px;
+  margin-left: 5px;
 }
 .node .dropdown-toggle:hover {
   border: 1px solid rgba(0, 55, 80, 0.3);
   text-decoration: none;
 }
-.node a.toggle {
-  background: url(../../img/cms/toggle.minus.png) no-repeat;
+.node .toggle .icon {
+  line-height: 16px;
 }
+.node a.toggle {
+  background: #fff;
+  text-align: center;
+}
+/*
 .node .closed a.toggle {
   background: url(../../img/cms/toggle.plus.png) no-repeat;
-}
+}*/
 
 /* Handle */
 .node .handle {
   background-repeat: no-repeat;
   cursor: move;
-  margin: 0 3px 0 0;
+  margin: 0 5px 0 0;
 }
-.node .icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-}
-.site .icon {
-  background: url(../../img/cms/site.png) no-repeat;
-}
-.page .icon {
-  background: url(../../img/cms/page.png) no-repeat;
-}
-.page-hidden .icon {
-  background: url(../../img/cms/page.hidden.png) no-repeat;
-}
-.redirect-default .icon,
-.page-default .icon {
-  background: url(../../img/cms/page.default.png) no-repeat;
-}
-.folder .icon {
-  background: url(../../img/cms/folder.png) no-repeat;
-}
-.redirect .icon {
-  background: url(../../img/cms/redirect.png) no-repeat;
-}
-.entry .icon {
-  background: url(../../img/cms/entry.png) no-repeat;
-}
+
+/*TODO: Replace with font awesome icon*/
 .entry-hidden .icon {
   background: url(../../img/cms/entry.hidden.png) no-repeat;
 }

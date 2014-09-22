@@ -123,36 +123,48 @@ class AsphaltNodeTreeGenerator implements NodeTreeGenerator {
 
         $html = '<li class="' . $nodeClass . '" id="node-' . $id . '">';
 
+        $nodeIconTypeMap = array(
+            'site' => 'globe',
+            'page' => 'file-o',
+            'folder' => 'folder-open-o',
+            'entry' => 'hdd-o',
+            'redirect' => 'share-square-o',
+        );
+
         // add icon state classes
         if ($nodeType->getFrontendCallback()) {
-            $nodeClass = $type;
+            $nodeClass = $nodeIconTypeMap[$type];
 
             if ($node->getRoute($this->locale) == '/') {
-                $nodeClass .= '-default';
+                $nodeClass = 'home';
             }
 
             if (!$node->isPublished()) {
-                $nodeClass .= '-hidden';
+                $nodeClass = 'eye-slash';
             }
         } else {
-            $nodeClass = $type;
+            $nodeClass = $nodeIconTypeMap[$type];
         }
 
         $children = $node->getChildren();
         if ($children) {
-            $html .= '<a href="#" class="toggle"></a>';
+            if (isset($this->toggledNodes[$id])) {
+                $html .= '<a href="#" class="toggle"><i class="icon icon--plus-square-o"></i></a>';
+            } else {
+                $html .= '<a href="#" class="toggle"><i class="icon icon--minus-square-o"></i></a>';
+            }
         } else {
             $html .= '<span class="toggle"></span>';
         }
 
-        $html .= '<div class="handle ' . $nodeClass . '"><span class="icon"></span></div>';
+        $html .= '<div class="handle"><i class="icon icon--' . $nodeClass . '"></i></div>';
         $html .= '<div class="dropdown">';
 
         $truncatedName = StringHelper::truncate($name, $truncateSize, '...', true, true);
 
         $html .= $this->getAnchorHtml($this->web->getUrl('cms.node.default', $urlVars) . $this->referer, $truncatedName, false, 'name', null, $name);
         //         $html .= $this->getAnchorHtml('#', ' ', false, 'action-menu-node', 'node-actions-' . $id);
-        $html .= $this->getAnchorHtml('#', '&nbsp;', false, 'dropdown-toggle', 'node-actions-' . $id);
+        $html .= $this->getAnchorHtml('#', '<i class="icon icon--angle-down"></i>', false, 'dropdown-toggle', 'node-actions-' . $id);
         $html .= '<ul class="dropdown__menu" id="node-actions-' . $id . '-menu" role="menu">';
 
         foreach ($this->actions as $actionName => $action) {
