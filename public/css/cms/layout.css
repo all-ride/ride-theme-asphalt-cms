@@ -1,0 +1,92 @@
+#region .droppable {
+    border: 1px solid #CCC;
+    min-height: 200px;
+    width: 90%;
+    padding: 5px 4px 1px 5px;
+}
+
+#region .inherited {
+    background-color: #ffffee;
+}
+
+#region .droppable .widget {
+	padding: 0;
+    margin: 0 0 4px 0;
+}
+
+.widget {
+	background: transparent url(../../img/cms/widget.background.png) repeat-y;
+	list-style: none;
+    border: 1px solid #CCC;
+    padding: 7px 7px;
+}
+
+#region .droppable .widget-actions {
+	width: 25px;
+	float: left;
+}
+
+#region .droppable .widget-actions .icon,
+#region .droppable .widget-actions .handle {
+	text-align: center;
+	padding: 3px 0 3px 0;
+}
+
+#region .droppable .widget-actions .icon li {
+	text-align: left;
+}
+
+#region .droppable .widget-actions .icon {
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 5px;
+	background: #E1E1E1 url(../../img/cms/arrow.down.grey.png) no-repeat scroll center bottom;
+}
+
+#region .droppable .widget-info {
+	padding: 5px 0 5px 9px;
+	width: 85%;
+	float: left;
+}
+
+#region .inherited .widget-info {
+	background: transparent url(../../img/cms/widget.inherited.png) no-repeat scroll right 7px;
+}
+
+#region .widget-info ul {
+	padding: 0 0 0 15px;
+}
+
+#region .widget-info ul {
+	overflow: hidden;
+}
+
+#region .droppable .widget-info .name {
+	display: block;
+	margin-bottom: 7px;
+}
+
+#region .droppable img.handle {
+	cursor: move;
+}
+
+#region .droppable .preview {
+	display: inline;
+	margin-top: 5px;
+	color: #666;
+	line-height: 120%;
+}
+
+#widgets .widget {
+    width: 175px;
+    margin-left: 0;
+    cursor: move;
+    padding: 7px 7px 7px 30px;
+    margin: 0 4px 4px 0;
+    float: left;
+    position: relative;
+}
+
+#widgets .widget img {
+	position: absolute;
+  left: 4px;
+}

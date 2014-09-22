@@ -1,0 +1,35 @@
+@import url(tree.css);
+@import url(layout.css);
+
+form .row-layout .radio {
+	float: left;
+	width: 100px;
+	height: 90px;
+}
+
+form .row-layout .radio input {
+    position: relative;
+	top: 55px;
+	left: 43px;
+}
+
+form .row-layout .radio img {
+	float: left;
+}
+
+form .row-layout ul,
+form .row-layout .help-block {
+	clear: both;
+}
+
+#form-content-properties-order-field,
+#form-content-properties-order-direction,
+#form-region-select-region {
+	display: inline;
+	width: auto;
+}
+
+#form-text .row-existing,
+#form-text .row-text {
+	margin-bottom: 12px;
+}
