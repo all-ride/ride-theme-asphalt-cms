@@ -69,6 +69,10 @@
   padding: 0;
 }
 
+.node-site > .dropdown > .name {
+  font-weight: bold;
+}
+
 .node a {
   color: #494949;
   text-decoration: none;
