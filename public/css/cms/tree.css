@@ -51,6 +51,10 @@
 #node-tree .dropdown {
   display: inline-block;
 }
+#node-tree .dropdown-toggle {
+  /*display: none;*/
+}
+
 
 #node-tree .dropdown__menu {
   position: absolute;
@@ -83,10 +87,12 @@
   display: inline-block;
   border: 1px solid #FFF;
   margin-left: 5px;
+  line-height: 1;
+  color: #ccc;
 }
 .node .dropdown-toggle:hover {
-  border: 1px solid rgba(0, 55, 80, 0.3);
-  text-decoration: none;
+  display: inline-block;
+  color: #484848;
 }
 .node .toggle .icon {
   line-height: 16px;
