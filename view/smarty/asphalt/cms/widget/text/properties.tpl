@@ -12,10 +12,10 @@
 
         <div class="tab">
             <div class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tabText" data-toggle="tab">{translate key="title.text"}</a></li>
-                    <li><a href="#tabCta" data-toggle="tab">{translate key="title.cta"}</a></li>
-                    <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+                <ul class="tabs">
+                    <li class="tabs__tab active"><a href="#tabText" data-toggle="tab">{translate key="title.text"}</a></li>
+                    <li class="tabs__tab"><a href="#tabCta" data-toggle="tab">{translate key="title.cta"}</a></li>
+                    <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 </ul>
             </div>
 
@@ -55,7 +55,7 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input id="btn-submit" type="submit" name="action" class="btn btn-default" value="{translate key="button.save"}" />
+                <input id="btn-submit" type="submit" name="action" class="btn btn--default" value="{translate key="button.save"}" />
                 <a id="btn-cancel" class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
             </div>
         </div>

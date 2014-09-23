@@ -4,9 +4,9 @@
     <div class="form__group">
         <div class="tab">
             <div class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.contact"}</a></li>
-                    <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+                <ul class="tabs">
+                    <li class="tabs__tab active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.contact"}</a></li>
+                    <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 </ul>
             </div>
 
@@ -27,8 +27,8 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" name="action" class="btn btn-default" value="{translate key="button.save"}" />
-                <a class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                <input type="submit" name="action" class="btn btn--default" value="{translate key="button.save"}" />
+                <a class="btn btn--link" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
             </div>
         </div>
     </fieldset>

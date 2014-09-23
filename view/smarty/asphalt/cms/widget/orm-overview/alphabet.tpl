@@ -50,12 +50,12 @@
         {/if}
     {/foreach}
 
-    <ul class="nav nav-tabs abc">
+    <ul class="tabs abc">
     {foreach $chars as $char => $charState}
         {if $charState}
-        <li><a href="#{$char}">{$char}</a></li>
+            <li class="tabs__tab"><a href="#{$char}">{$char}</a></li>
         {else}
-        <li><a href="#" class="disabled text-muted">{$char}</a></li>
+            <li class="tabs__tab"><a href="#" class="disabled text-muted">{$char}</a></li>
         {/if}
     {/foreach}
     </ul>

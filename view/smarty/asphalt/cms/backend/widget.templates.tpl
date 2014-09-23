@@ -19,9 +19,9 @@
 <form class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
     <div class="form__group">
     <div class="tabbable">
-        <ul class="nav nav-tabs">
+        <ul class="tabs">
         {foreach $templates as $file => $content}
-            <li{if $content@first} class="active"{/if}><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
+            <li class="tabs__tab {if $content@first} active{/if}"><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
         {/foreach}
         </ul>
 
@@ -43,7 +43,7 @@
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
 				{else}
-                    <a class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                    <a class="btn btn--link" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
                 {/if}
             </div>
         </div>

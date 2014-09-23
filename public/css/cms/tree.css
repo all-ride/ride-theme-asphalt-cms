@@ -83,16 +83,15 @@
   width: 16px;
   height: 16px;
   position: relative;
-  top: 3px;
+  top: 2px;
   left: -4px;
   margin-right: 3px;
   color: #999;
 }
 .node .dropdown-toggle {
   display: inline-block;
-  border: 1px solid #FFF;
   margin-left: 5px;
-  line-height: 1;
+  line-height: 20px;
   color: #ccc;
 }
 .node .dropdown-toggle:hover {
@@ -118,6 +117,10 @@
   margin: 0 5px 0 0;
   color: #666;
 }
+.handle .icon {
+  font-size: 13px;
+  line-height: 20px;
+}
 
 /*TODO: Replace with font awesome icon*/
 .entry-hidden .icon {
@@ -132,6 +135,9 @@
 }
 li.selected .name {
   font-weight: bold;
+}
+.node li .dropdown:hover > .name {
+  color: #888;
 }
 li.selected li .name {
   font-weight: normal;

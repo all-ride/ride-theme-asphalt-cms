@@ -18,7 +18,7 @@
 
         <div class="form__group">
             <input type="submit" class="btn btn--default" value="{translate key="button.`$type`"}" />
-            <a class="btn" href="{$referer}">{translate key="button.cancel"}</a>
+            <a class="btn btn--link" href="{$referer}">{translate key="button.cancel"}</a>
         </div>
     </form>
 {/block}

@@ -3,10 +3,10 @@
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
 <div class="form__group">
     <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
-            <li><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
-            <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+        <ul class="tabs">
+            <li class="tabs__tab active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
+            <li class="tabs__tab"><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
+            <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
         </ul>
 
         <div class="tabs__content">
@@ -37,7 +37,7 @@
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
+            <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
             <input type="submit" name="cancel" class="btn btn-link" value="{translate key="button.cancel"}" />
         </div>
     </div>

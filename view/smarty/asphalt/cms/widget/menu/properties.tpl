@@ -4,9 +4,9 @@
     <div class="form__group">
         <div class="tab">
             <div class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.menu"}</a></li>
-                    <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+                <ul class="tabs">
+                    <li class="tabs__tab active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.menu"}</a></li>
+                    <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 </ul>
             </div>
 
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
+                <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
                 <input type="submit" name="cancel" class="btn btn-link" value="{translate key="button.cancel"}" />
             </div>
         </div>
