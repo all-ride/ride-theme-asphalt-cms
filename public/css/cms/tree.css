@@ -133,15 +133,15 @@
 .unlocalized .localized a.name {
   color: #373C8F;
 }
-li.selected .name {
+li.selected > .dropdown > .name {
   font-weight: bold;
 }
 .node li .dropdown:hover > .name {
   color: #888;
 }
-li.selected li .name {
+/*li.selected li .name {
   font-weight: normal;
-}
+}*/
 
 
 .placeholder {

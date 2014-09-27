@@ -17,8 +17,19 @@
     <p>{translate key="label.node.action.visibility.intro"}</p>
     {include file="base/form.prototype"}
 
-    <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form">
-        <div class="form__group">
+    <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" class="form grid">
+        <div class="form__group grid--bp-med__10">
+            {call formRow form=$form row="published"}
+
+            <div class="grid">
+                <div class="grid--bp-med__6">
+                    {call formRow form=$form row="publishStart"}
+                </div>
+                <div class="grid--bp-med__6">
+                    {call formRow form=$form row="publishStop"}
+                </div>
+            </div>
+
             {call formRows form=$form}
 
             {call formActions referer=$referer}

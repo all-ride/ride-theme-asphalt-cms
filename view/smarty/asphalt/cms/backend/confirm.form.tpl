@@ -16,7 +16,7 @@
             <p>{translate key="label.confirm.node.`$type`" node=$node->getName($locale)}</p>
         </div>
 
-        <div class="form__group">
+        <div class="form__actions">
             <input type="submit" class="btn btn--default" value="{translate key="button.`$type`"}" />
             <a class="btn btn--link" href="{$referer}">{translate key="button.cancel"}</a>
         </div>
