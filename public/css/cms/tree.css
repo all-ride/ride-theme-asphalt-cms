@@ -149,7 +149,12 @@ li.selected > .dropdown > .name {
   border: 1px dotted #666;
   background-color: #efefef;
   height: 20px;
+  margin-left: 15px;
 }
+#node-tree .placeholder:before {
+  display: none;
+}
+
 #node-tree .empty {
   display: none;
 }
