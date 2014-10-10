@@ -1,30 +1,28 @@
-console.log('btn-text-reuse');
-
 function handleTitleUse(isChecked) {
     if (isChecked) {
-        $('.row-title').removeClass('hide');
-        $('.row-subtitle').removeClass('hide');
+        $('.form__item--title').removeClass('superhidden');
+        $('.form__item--subtitle').removeClass('superhidden');
     } else {
-        $('.row-title').addClass('hide');
-        $('.row-subtitle').addClass('hide');
+        $('.form__item--title').addClass('superhidden');
+        $('.form__item--subtitle').addClass('superhidden');
     }
 }
 
 function handleImageUse(isChecked) {
     if (isChecked) {
-        $('.row-image-src').removeClass('hide');
-        $('.row-image-align').removeClass('hide');
+        $('.form__item--image-src').removeClass('superhidden');
+        $('.form__item--image-align').removeClass('superhidden');
     } else {
-        $('.row-image-src').addClass('hide');
-        $('.row-image-align').addClass('hide');
+        $('.form__item--image-src').addClass('superhidden');
+        $('.form__item--image-align').addClass('superhidden');
     }
 }
 
 function handleTextReuse(isChecked) {
     if (isChecked) {
-        $('.alert-warning').addClass('hide');
+        $('.alert-warning').addClass('superhidden');
     } else {
-        $('.alert-warning').removeClass('hide');
+        $('.alert-warning').removeClass('superhidden');
     }
 }
 
@@ -33,32 +31,32 @@ $('#form-text-existing-new').change(function() {
 
     return false;
 });
-$('.row-title-use input').change(function() {
+$('.form__item--title-use input').change(function() {
     handleTitleUse($(this).is(':checked'));
 
     return false;
 });
-$('.row-image-use input').change(function() {
+$('.form__item--image-use input').change(function() {
     handleImageUse($(this).is(':checked'));
 
     return false;
 });
 
 handleTextReuse($('#form-text-existing-new').is(':checked'));
-handleTitleUse($('.row-title-use input').is(':checked'));
-handleImageUse($('.row-image-use input').is(':checked'));
-$('.row-existing').addClass('hide');
+handleTitleUse($('.form__item--title-use input').is(':checked'));
+handleImageUse($('.form__item--image-use input').is(':checked'));
+$('.form__item--existing').addClass('superhidden');
 
 $('#btn-text-reuse').click(function(e) {
     e.preventDefault();
-    $('.tab').addClass('hide');
-    $('.row-existing').removeClass('hide').data('id', $('.row-existing select').val());
+    $('.tab').addClass('superhidden');
+    $('.form__item--existing').removeClass('superhidden').data('id', $('.form__item--existing select').val());
 
     $('#btn-cancel').click(function() {
-        $('.row-existing select').val($('.row-existing').data('id'));
+        $('.form__item--existing select').val($('.form__item--existing').data('id'));
 
-        $('.tab').removeClass('hide');
-        $('.row-existing').addClass('hide');
+        $('.tab').removeClass('superhidden');
+        $('.form__item--existing').addClass('superhidden');
 
         $('#btn-cancel').unbind();
         $('#btn-submit').unbind();
@@ -67,8 +65,8 @@ $('#btn-text-reuse').click(function(e) {
     });
 
     $('#btn-submit').click(function() {
-        var oldTextId = $('.row-existing').data('id');
-        var textId = $('.row-existing select').val();
+        var oldTextId = $('.form__item--existing').data('id');
+        var textId = $('.form__item--existing select').val();
         if (textId && textId != oldTextId) {
             var form = $('#form-text');
 
