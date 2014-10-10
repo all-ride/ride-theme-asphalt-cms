@@ -6,7 +6,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
 		activeClass: 'ui-state-hover',
 		connectToSortable: '.droppable'
 	});
-	
+
 	// handle the context menu of the widget actions
 	$("#region .dropdown-toggle").dropdown();
 	$("#region .dropdown-menu a").each(function () {
@@ -23,29 +23,29 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
 				      var droppable = $('.droppable');
 
 				      $('.ui-draggable', droppable).remove();
-				      
+
 				      droppable.append(data);
-				      
+
 				      $('.widget:last-child .dropdown-toggle', droppable).dropdown();
 				      $(".widget:last-child .dropdown-menu a", droppable).each(function () {
 				    	  joppaInitializeWidgetContextMenu(this, widgetDeleteMessage)
 				      });
-				      
+
 				      $('#region .droppable').sortable('destroy');
 				      joppaInitializeWidgetOrder(baseUrl);
-				});				
+				});
 			}
 		}
 	});
-	
+
 	// create a sortable from the set widgets
 	joppaInitializeWidgetOrder(baseUrl);
 }
 
 function joppaInitializeWidgetContextMenu(a, widgetDeleteMessage) {
 	var href = $(a).attr('href');
-	
-	if (href.indexOf('/delete') != -1) {			
+
+	if (href.indexOf('/delete') != -1) {
 		$(a).click(function() {
 			if (confirm(widgetDeleteMessage)) {
 				var action = $(a).attr('href');
@@ -55,29 +55,29 @@ function joppaInitializeWidgetContextMenu(a, widgetDeleteMessage) {
 					container.remove();
 				});
 			}
-			
+
 			return false;
 		});
-	}	
+	}
 }
 
 function joppaInitializeWidgetOrder(baseUrl) {
 	$('#region .droppable').sortable({
-		containment: 'parent',
-		handle: 'img.handle',
+		// containment: 'parent',
+		handle: '.handle',
 		update: function (event, ui) {
 			id = ui.item.context.id;
 			id = id.split('-');
 			if (id[0] != 'page' && id[1] != 'widget') {
 				return;
 			}
-			
+
 			var order = '';
 			$('#region .droppable > .widget').each(function(i) {
 				order += this.id.replace('page-widget-', '') + ',';
 			});
-			
+
 			$.post(baseUrl + '/order?widgets=' + escape(order));
-	    } 			
-	});	
+	    }
+	});
 }
