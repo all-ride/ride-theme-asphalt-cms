@@ -19,9 +19,9 @@
 <form class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
     <div class="form__group">
     <div class="tabbable">
-        <ul class="nav nav-tabs">
+        <ul class="tabs">
         {foreach $templates as $file => $content}
-            <li{if $content@first} class="active"{/if}><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
+            <li class="tabs__tab{if $content@first} active{/if}"><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
         {/foreach}
         </ul>
 
@@ -37,14 +37,7 @@
         {/foreach}
         </div>
 
-        <div class="form__group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
-                {if $referer}
-                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                {/if}
-            </div>
-        </div>
+        {call formActions referer=$referer}
     </div>
 </form>
 

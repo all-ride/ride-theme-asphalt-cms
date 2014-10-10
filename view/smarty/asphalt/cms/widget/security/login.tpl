@@ -16,14 +16,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-lg-12">
-                <input type="submit" class="btn btn-default" value="{translate key="button.login"}" />
-                {if $referer}
-                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                {/if}
-            </div>
-        </div>
+        {call formActions referer=$referer}
     </fieldset>
 </form>
 

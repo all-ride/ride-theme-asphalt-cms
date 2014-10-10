@@ -23,12 +23,7 @@
                 {call formWidget form=$form row="properties"}
             </div>
 
-            <div class="form__group">
-                <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
-                {if $referer}
-                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                {/if}
-            </div>
+            {call formActions referer=$referer}
         </div>
     </form>
 

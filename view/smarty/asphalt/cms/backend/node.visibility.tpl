@@ -17,18 +17,22 @@
     <p>{translate key="label.node.action.visibility.intro"}</p>
     {include file="base/form.prototype"}
 
-    <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form">
-        <div class="form__group">
-            {call formRows form=$form}
+    <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" class="form grid">
+        <div class="form__group grid--bp-med__10">
+            {call formRow form=$form row="published"}
 
-            <div class="form__group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
-                    {if $referer}
-                        <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                    {/if}
+            <div class="grid">
+                <div class="grid--bp-med__6">
+                    {call formRow form=$form row="publishStart"}
+                </div>
+                <div class="grid--bp-med__6">
+                    {call formRow form=$form row="publishStop"}
                 </div>
             </div>
+
+            {call formRows form=$form}
+
+            {call formActions referer=$referer}
         </div>
     </form>
 {/block}
