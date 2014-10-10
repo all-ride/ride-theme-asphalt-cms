@@ -121,6 +121,9 @@
   font-size: 13px;
   line-height: 20px;
 }
+.icon--globe {
+  color: #3c76ab;
+}
 
 /*TODO: Replace with font awesome icon*/
 .entry-hidden .icon {
