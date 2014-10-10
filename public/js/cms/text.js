@@ -1,3 +1,5 @@
+console.log('btn-text-reuse');
+
 function handleTitleUse(isChecked) {
     if (isChecked) {
         $('.row-title').removeClass('hide');
@@ -47,7 +49,8 @@ handleTitleUse($('.row-title-use input').is(':checked'));
 handleImageUse($('.row-image-use input').is(':checked'));
 $('.row-existing').addClass('hide');
 
-$('#btn-text-reuse').click(function() {
+$('#btn-text-reuse').click(function(e) {
+    e.preventDefault();
     $('.tab').addClass('hide');
     $('.row-existing').removeClass('hide').data('id', $('.row-existing select').val());
 
