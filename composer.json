@@ -2,7 +2,7 @@
     "name": "ride/theme-asphalt-cms",
     "description": "Asphalt theme for the CMS application of the Ride framework",
     "license": "MIT",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "authors": [
         {
             "name": "Bart Verbruggen",
