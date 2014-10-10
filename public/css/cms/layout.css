@@ -30,6 +30,7 @@
 #region .droppable .widget-actions .handle {
 	text-align: center;
 	padding: 3px 0 3px 0;
+  display: block;
 }
 
 #region .droppable .widget-actions .icon li {
@@ -65,7 +66,8 @@
 	margin-bottom: 7px;
 }
 
-#region .droppable img.handle {
+#region .droppable .handle img {
+  padding-top: 4px;
 	cursor: move;
 }
 
