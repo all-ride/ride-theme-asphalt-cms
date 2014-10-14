@@ -9,7 +9,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
 
 	// handle the context menu of the widget actions
 	$("#region .dropdown-toggle").dropdown();
-	$("#region .dropdown-menu a").each(function () {
+	$("#region .dropdown__menu a").each(function () {
 		joppaInitializeWidgetContextMenu(this, widgetDeleteMessage)
 	});
 
@@ -27,7 +27,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
 				      droppable.append(data);
 
 				      $('.widget:last-child .dropdown-toggle', droppable).dropdown();
-				      $(".widget:last-child .dropdown-menu a", droppable).each(function () {
+				      $(".widget:last-child .dropdown__menu a", droppable).each(function () {
 				    	  joppaInitializeWidgetContextMenu(this, widgetDeleteMessage)
 				      });
 
@@ -50,7 +50,6 @@ function joppaInitializeWidgetContextMenu(a, widgetDeleteMessage) {
 			if (confirm(widgetDeleteMessage)) {
 				var action = $(a).attr('href');
 				var container = $(a).parent().parent().parent().parent().parent();
-
 				$.post(action, function(data) {
 					container.remove();
 				});
