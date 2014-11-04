@@ -47,7 +47,7 @@
 
             {foreach $availableWidgets as $name => $widget}
             <div class="widget" data-widget="{$name}">
-                <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
+                <img src="{image src=$widget->getIcon() default="asphalt/img/widget.png"}" class="handle" />
                 {translate key="widget.`$name`"}
             </div>
            {/foreach}
@@ -56,7 +56,7 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/js/cms/layout.js"></script>
+    <script src="{$app.url.base}/asphalt/js/cms/layout.js"></script>
     <script type="text/javascript">
         $(function() {
             $('select[name=region]').change(function() {
