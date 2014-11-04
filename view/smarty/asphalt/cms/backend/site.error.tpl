@@ -3,7 +3,14 @@
 {block name="head_title" prepend}{translate key="title.site.error"} - {$site->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
-    {url id="cms.site.error" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $site->getId()] var="url"}
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+
+        {url id="cms.site.error" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $site->getId()] var="url"}
+        {call taskbarPanelPublish url=$url revision=$node->getRevision() revisions=$site->getRevisions()}
+    {/if}
+
+    {url id="cms.site.error" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $site->getRevision(), "node" => $site->getId()] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 

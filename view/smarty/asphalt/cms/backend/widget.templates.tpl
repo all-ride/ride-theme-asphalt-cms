@@ -3,7 +3,14 @@
 {block name="head_title" prepend}{translate key="title.widget.templates" widget=$widgetName} - {$node->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
-    {url id="cms.widget.templates" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId(), "region" => $region, "widget" => $widgetId] var="url"}
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+
+        {url id="cms.widget.templates" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId(), "region" => $region, "widget" => $widgetId] var="url"}
+        {call taskbarPanelPublish url=$url revision=$node->getRevision() revisions=$site->getRevisions()}
+    {/if}
+
+    {url id="cms.widget.templates" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region, "widget" => $widgetId] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -43,7 +50,7 @@
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
 				{else}
-                    <a class="btn btn--link" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                    <a class="btn btn--link" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
                 {/if}
             </div>
         </div>
