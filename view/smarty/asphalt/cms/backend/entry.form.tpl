@@ -4,11 +4,20 @@
 
 {block name="taskbar_panels" append}
     {if $node->getId()}
-        {url id="cms.entry.edit" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId()] var="url"}
+        {url id="cms.entry.edit" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId()] var="urlPublish"}
+        {url id="cms.entry.edit" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()] var="urlLocales"}
     {else}
-        {url id="cms.entry.add" parameters=["locale" => "%locale%", "site" => $site->getId()] var="url"}
+        {url id="cms.entry.add" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%"] var="urlPublish"}
+        {url id="cms.entry.add" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $site->getRevision()] var="urlLocales"}
     {/if}
-    {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
+
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+
+        {call taskbarPanelPublish url=$urlPublish revision=$node->getRevision() revisions=$site->getRevisions()}
+    {/if}
+
+    {call taskbarPanelLocales url=$urlLocales locale=$locale locales=$locales}
 {/block}
 
 {block name="content_title" append}

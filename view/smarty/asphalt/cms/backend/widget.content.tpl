@@ -8,7 +8,7 @@
             {$actionsAvailable = false}
             {foreach $actions as $actionName => $action}
                 {if $action->isAvailableForWidget($node, $widget)}
-                    {url var="actionUrl" id=$action->getRoute() parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
+                    {url var="actionUrl" id=$action->getRoute() parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
                     {isGranted url=$actionUrl}
                         {$actionsAvailable = true}
                         <li>
@@ -20,7 +20,7 @@
                 {/if}
             {/foreach}
 
-            {url var="actionUrl" id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
+            {url var="actionUrl" id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
             {isGranted url=$actionUrl}
                 {if $actionsAvailable}
                     <li class="dropdown__divider"></li>
@@ -30,8 +30,8 @@
                             {translate key="button.delete"}
                         </a>
                     </li>
-                </ul>
             {/isGranted}
+                </ul>
         </div>
 
         <div class="handle">
@@ -41,7 +41,7 @@
     <div class="widget-info clearfix">
     {$name = $widget->getName()}
     {if $widget->getPropertiesCallback()}
-        <a class="name" href="{url id="cms.widget.properties" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
+        <a class="name" href="{url id="cms.widget.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
             {translate key="widget.`$name`"}
         </a>
     {else}
