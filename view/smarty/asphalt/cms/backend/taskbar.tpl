@@ -13,7 +13,7 @@
         </ul>
     </li>
     <li>
-        <form action="{url id="cms.node.publish" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => $site->getId()]}">
+        <form class="navbar__form" action="{url id="cms.node.publish" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => $site->getId()]}">
             <button class="btn btn-primary navbar-btn">{translate key="button.publish"}</button>
         </form>
     </li>
