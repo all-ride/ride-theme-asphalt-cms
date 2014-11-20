@@ -11,7 +11,7 @@
 {block name="sidebar" append}
     {url var="actionUrl" id="cms.site.add" parameters=["locale" => $locale]}
     {isGranted url=$actionUrl}
-    <div class="btn--group">
+    <div class="btn--group dropdown">
       <button type="button" class="btn btn--default dropdown-toggle" data-toggle="dropdown">
         {translate key="button.create"} <i class="icon icon--angle-down"></i>
       </button>
