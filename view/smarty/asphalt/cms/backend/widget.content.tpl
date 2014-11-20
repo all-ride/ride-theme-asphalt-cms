@@ -2,7 +2,7 @@
     <div class="widget-actions">
         <div class="icon dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="{image src="asphalt/`$widget->getIcon()`" default="asphalt/img/widget.png"}" />
+                <img src="{image src=$widget->getIcon() default="asphalt/img/widget.png"}" />
             </a>
             <ul class="dropdown__menu">
             {$actionsAvailable = false}
