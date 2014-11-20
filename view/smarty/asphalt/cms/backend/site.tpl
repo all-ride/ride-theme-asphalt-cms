@@ -25,7 +25,7 @@
 {block name="content_body" append}
     <ul>
     {foreach $sites as $site}
-        <li><a href="{url id="cms.site.detail" parameters=["site" => $site->getId()]}">{$site->getName($locale)}</a></li>
+        <li><a href="{url id="cms.site.detail" parameters=["site" => $site->getId(), "revision" => $site->getRevision()]}">{$site->getName($locale)}</a></li>
     {/foreach}
     </ul>
 {/block}
