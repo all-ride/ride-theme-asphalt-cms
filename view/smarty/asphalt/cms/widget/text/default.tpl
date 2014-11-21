@@ -1,3 +1,5 @@
+{* widget: text; action: index; translation: widget.text *}
+
 <div class="widget widget-text text {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
     {if $title}
         <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}" id="{$title|safe}">{$title}</h2>

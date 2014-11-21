@@ -1,3 +1,5 @@
+{* widget: orm.overview action: index; translation: template.orm.overview.cloud *}
+
 <div class="widget widget-content-overview widget-content-overview-cloud {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
     <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h2>
