@@ -1,3 +1,5 @@
+{* widget: menu; action: index; translation: widget.menu *}
+
 {*
     Renders the items of a menu
 *}

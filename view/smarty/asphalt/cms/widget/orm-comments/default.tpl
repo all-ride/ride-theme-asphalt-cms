@@ -1,3 +1,5 @@
+{* widget: orm.comments; action: index; translation: widget.orm.comments *}
+
 <div class="widget widget-comments {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
     <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h2>
@@ -21,12 +23,10 @@
         <div class="form__group">
             {call formRows form=$form}
 
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn--default" value="{translate key="button.comment"}" />
-                </div>
+            <div class="form__actions">
+                <button type="submit" class="btn btn--default">{translate key="button.comment"}</button>
             </div>
-        </fieldset>
+        </div>
     </form>
 {else}
     <p>{translate key="label.comments.authenticated"}</p>

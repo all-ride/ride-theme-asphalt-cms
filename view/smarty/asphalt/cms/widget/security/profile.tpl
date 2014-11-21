@@ -1,3 +1,5 @@
+{* widget: profile; action: index; translation: widget.profile *}
+
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" enctype="multipart/form-data" role="form">
@@ -26,5 +28,5 @@
             </div>
         {/if}
         </div>
-    </fieldset>
+    </div>
 </form>

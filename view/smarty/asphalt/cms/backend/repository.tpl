@@ -10,7 +10,7 @@
 
 {block name="content_body" append}
     <form action="{$app.url.request}" method="POST" role="form">
-        <p class="lead"><input type="submit" class="btn btn--default" value="{translate key="button.update.repository"}" /></p>
+        <p class="lead"><button type="submit" class="btn btn--default">{translate key="button.update.repository"}</button></p>
     </form>
 
     {foreach $commits as $commit}

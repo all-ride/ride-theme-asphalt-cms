@@ -23,11 +23,9 @@
 
         {call formRows form=$form}
 
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" name="action" class="btn btn--default" value="{translate key="button.save"}" />
-                <a class="btn btn--link" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
-            </div>
+        <div class="form__actions">
+            <button type="submit" name="action" class="btn btn--default">{translate key="button.save"}</button>
+            <a class="btn btn--link" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
         </div>
-    </fieldset>
+    </div>
 </form>

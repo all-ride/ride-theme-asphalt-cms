@@ -17,7 +17,7 @@
         </div>
 
         <div class="form__actions">
-            <input type="submit" class="btn btn--default" value="{translate key="button.`$type`"}" />
+            <button type="submit" class="btn btn--default">{translate key="button.`$type`"}</button>
             <a class="btn btn--link" href="{$referer}">{translate key="button.cancel"}</a>
         </div>
     </form>

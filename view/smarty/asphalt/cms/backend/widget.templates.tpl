@@ -46,7 +46,7 @@
 
         <div class="form__group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
+                <button type="submit" class="btn btn--default">{translate key="button.save"}</button>
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
 				{else}
