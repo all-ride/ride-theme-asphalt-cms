@@ -50,7 +50,8 @@
                 {call formRow form=$form row="name-breadcrumb"}
             </div>
 
-
+            {call formRow form=$form row="route"}
+            {call formRow form=$form row="theme"}
             {call formRow form=$form row="layout"}
 
             {call formRows form=$form}
