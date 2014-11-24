@@ -43,11 +43,15 @@
                 </div>
             </div>
 
+
             <div class="alternate-names">
                 {call formRow form=$form row="name-title"}
                 {call formRow form=$form row="name-menu"}
                 {call formRow form=$form row="name-breadcrumb"}
             </div>
+
+
+            {call formRow form=$form row="layout"}
 
             {call formRows form=$form}
 
