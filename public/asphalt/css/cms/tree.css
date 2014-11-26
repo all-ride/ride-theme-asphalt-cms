@@ -9,6 +9,7 @@
   position: relative;
 }
 #node-tree ul {
+  clear: left;
   list-style: none;
   padding: 0;
   margin-left: 20px;
@@ -47,9 +48,13 @@
 
 
 #node-tree .toggle,
-#node-tree .handle,
+#node-tree .handle {
+  /*display: inline-block;*/
+  display: block;
+  float: left;
+}
 #node-tree .dropdown {
-  display: inline-block;
+
 }
 #node-tree .dropdown-toggle {
   /*display: none;*/
@@ -77,6 +82,14 @@
   color: #494949;
   text-decoration: none;
 }
+
+/*.node a.name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 80%;
+  display: inline-block;
+  float: left;
+}*/
 
 /* Toggle */
 .node .toggle {
@@ -172,7 +185,6 @@ li.selected > .dropdown > .name {
 #node-tree li.node div.menu {
     display: inline;
 }
-
 
 /* Dropdown menu */
 #node-tree .dropdown-menu li {
