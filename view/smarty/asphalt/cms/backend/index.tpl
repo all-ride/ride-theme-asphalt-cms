@@ -50,7 +50,7 @@
 
                 <div class="handle"><span class="icon icon--{$iconClass}"></span></div>
                 <div class="dropdown">
-                    <a href="{$treeNode->getUrl()}" class="name">{$node->getName($locale)|truncate:20}</a>
+                    <a href="{$treeNode->getUrl()}" class="name">{$node->getName($locale)|truncate:15}</a>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon icon--angle-down"></i></a>
                     <ul class="dropdown__menu" role="menu">
                     {$hasDivider = false}
