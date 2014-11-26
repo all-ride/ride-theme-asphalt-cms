@@ -35,7 +35,7 @@
 
             <li class="node node-{$nodeType}{if !$treeNode->isLocalized($locale)} unlocalized{/if}{if $treeNode->isSelected()} selected{/if}" id="node-{$node->getId()}">
                 {if $children}
-                <a href="#" class="toggle"><i class="icon icon--{if $treeNode->isCollapsed()}minus{else}plus{/if}-square-o"></i></a>
+                <a href="#" class="toggle"><i class="icon icon--{if $treeNode->isCollapsed()}plus{else}minus{/if}-square-o"></i></a>
                 {else}
                 <span class="toggle"></span>
                 {/if}
