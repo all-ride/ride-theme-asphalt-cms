@@ -22,6 +22,10 @@
             <p>{translate key="label.confirm.node.delete" node=$node->getName($locale)}</p>
         </div>
 
+        {formWidget form=$form row="recursive"}
+
+        {formRows form=$form}
+
         <div class="form__actions">
             <button type="submit" class="btn btn--default">{translate key="button.delete"}</button>
             <a class="btn btn--link" href="{$referer}">{translate key="button.cancel"}</a>
