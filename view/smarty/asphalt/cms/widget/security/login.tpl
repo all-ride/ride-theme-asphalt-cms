@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        {call formActions referer=$referer}
+        {call formActions referer=$referer submit="button.login"}
     </div>
 </form>
 
