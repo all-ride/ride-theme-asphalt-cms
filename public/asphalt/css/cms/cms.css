@@ -1,5 +1,6 @@
 @import url(tree.css);
 @import url(layout.css);
+@import url(modal.css);
 
 form .row-layout .radio {
 	float: left;
