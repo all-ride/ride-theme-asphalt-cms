@@ -57,10 +57,13 @@
 }
 
 .widget {
-	background: transparent url(../../img/cms/widget.background.png) repeat-y;
+	/*background: transparent url(../../img/cms/widget.background.png) repeat-y;*/
 	list-style: none;
     border: 1px solid #CCC;
     padding: 7px 7px;
+}
+.widget ~ .widget {
+  margin-top: 10px;
 }
 
 #region .droppable .widget-actions {
