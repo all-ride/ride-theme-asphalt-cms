@@ -1,3 +1,45 @@
+.section {
+  margin-bottom: 20px;
+}
+
+.section__content {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+}
+.section__content .grid {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+.section__content [data-block] {
+  padding: 10px;
+  border: 1px solid #e3e3e3;
+}
+
+
+.panel-heading {
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  padding: 10px;
+}
+.section__handle,
+.section__layouts {
+  float: left;
+  margin-right: 10px;
+}
+.section__layouts a {
+  text-decoration: none;
+}
+.section__layouts img {
+  vertical-align: middle;
+}
+.section__actions {
+  float: right;
+}
+
 #region .droppable {
     border: 1px solid #CCC;
     min-height: 200px;
