@@ -6,11 +6,11 @@
     {if !$site->isAutoPublish()}
         {include file="cms/backend/taskbar"}
 
-        {url id="cms.widget.properties" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId(), "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId] var="url"}
+        {url id="cms.node.content.widget.properties" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId(), "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId] var="url"}
         {call taskbarPanelPublish url=$url revision=$node->getRevision() revisions=$site->getRevisions()}
     {/if}
 
-    {url id="cms.widget.properties" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId] var="url"}
+    {url id="cms.node.content.widget.properties" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
