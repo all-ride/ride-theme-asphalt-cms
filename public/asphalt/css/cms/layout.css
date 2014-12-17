@@ -30,14 +30,25 @@
   float: left;
   margin-right: 10px;
 }
+.section__handle {
+  cursor: move;
+  padding-top: 2px;
+}
 .section__layouts a {
   text-decoration: none;
+  display: inline-block;
+  border: 1px solid transparent;
+}
+.section__layouts a.layout-active {
+  border-color: #76B5ED;
 }
 .section__layouts img {
   vertical-align: middle;
+  background: #fff;
 }
 .section__actions {
   float: right;
+  padding-top: 2px;
 }
 
 #region .droppable {
@@ -57,13 +68,41 @@
 }
 
 .widget {
-	/*background: transparent url(../../img/cms/widget.background.png) repeat-y;*/
-	list-style: none;
-    border: 1px solid #CCC;
-    padding: 7px 7px;
+  background: transparent url(../../img/cms/widget.background.png) repeat-y;
+  list-style: none;
+  border: 1px solid #CCC;
+  padding: 7px 7px;
 }
 .widget ~ .widget {
   margin-top: 10px;
+}
+.widget__header {
+  margin-bottom: 5px;
+}
+.widget__handle {
+  float: left;
+  cursor: move;
+}
+.widget__actions {
+  float: right;
+}
+.widget__actions a {
+  color: #999;
+}
+.widget__actions a:hover {
+  color: #666;
+}
+.widget__title {
+  margin: 0 30px;
+  font-weight: bold;
+}
+.widget__title img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.widget__content {
+  margin-left: 30px;
 }
 
 #region .droppable .widget-actions {
