@@ -2,6 +2,7 @@
 <div class="grid">
 {$block = '1'}
     <div class="grid--bp-med__9 block droppable" id="block-{$section}-{$block}" data-section="{$section}" data-block="{$block}">
+
 {if isset($widgets[$block])}
     {foreach $widgets[$block] as $widgetId => $widget}
         {call widgetPanel site=$site node=$node widget=$widget widgetId=$widgetId inheritedWidgets=$inheritedWidgets[$block] actions=$actions}

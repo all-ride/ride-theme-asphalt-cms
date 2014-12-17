@@ -53,21 +53,9 @@
         <div class="widget__handle">
             <div class="handle"><i class="icon icon--arrows"></i></div>
         </div>
-        <div class="widget__title text-left">
-            <img src="{image src=$widget->getIcon() default="bootstrap/img/widget.png"}" />
-            {$name = $widget->getName()}
-            {if $widget->getPropertiesCallback()}
-                <a class="name" href="{url id="cms.node.content.widget.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}">
-                    {translate key="widget.`$name`"}
-                </a>
-            {else}
-                <span class="name">{translate key="widget.`$name`"}</span>
-            {/if}
-        </div>
-
         <div class="widget__actions text-right dropdown">
             <a href="#" class="dropdown" data-toggle="dropdown"><i class="icon icon--cog"></i></a>
-            <ul class="dropdown__menu dropdown__menu-right">
+            <ul class="dropdown__menu dropdown__menu--right">
                 {$actionsAvailable = false}
                 {foreach $actions as $actionName => $action}
                     {if $action->isAvailableForWidget($node, $widget)}
@@ -96,6 +84,17 @@
                     </ul>
                 {/isGranted}
             </ul>
+        </div>
+        <div class="widget__title text-left">
+            <img src="{image src=$widget->getIcon() default="bootstrap/img/widget.png"}" />
+            {$name = $widget->getName()}
+            {if $widget->getPropertiesCallback()}
+                <a class="name" href="{url id="cms.node.content.widget.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}">
+                    {translate key="widget.`$name`"}
+                </a>
+            {else}
+                <span class="name">{translate key="widget.`$name`"}</span>
+            {/if}
         </div>
     </div>
     <div class="widget__content">
