@@ -3,7 +3,7 @@
     <div class="container">
         <div class="grid">
         {$block = '1'}
-            <div class="grid--bp-med__6 block" id="block-{$section}-{$block}" data-section="{$section}" data-block="{$block}">
+            <div class="grid--bp-med__6" id="block-{$section}-{$block}">
         {if isset($widgets[$block])}
             {foreach $widgets[$block] as $widget}
                 {$widget}
@@ -11,7 +11,7 @@
         {/if}
             </div>
         {$block = '2'}
-            <div class="grid--bp-med__6 block" id="block-{$section}-{$block}" data-section="{$section}" data-block="{$block}">
+            <div class="grid--bp-med__6" id="block-{$section}-{$block}">
         {if isset($widgets[$block])}
             {foreach $widgets[$block] as $widget}
                 {$widget}
