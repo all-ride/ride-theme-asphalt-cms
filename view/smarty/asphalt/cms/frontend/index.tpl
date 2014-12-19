@@ -1,14 +1,18 @@
 {extends file="base/index"}
 
-{block name="head_title"}{$app.cms.context.title.node} - {$app.cms.context.title.site}{/block}
+{if isset($app.cms.context)}
+    {block name="head_title"}{$app.cms.context.title.node} - {$app.cms.context.title.site}{/block}
+{/if}
 
 {block name="head" append}
+{if isset($app.cms.node)}
     {$meta = $app.cms.node->getMeta($app.locale)}
     {if $meta}
         {foreach $meta as $metaName => $metaValue}
     <meta property="{$metaName}" content="{$metaValue}" />
         {/foreach}
     {/if}
+{/if}
 {/block}
 
 {block name="styles" append}
