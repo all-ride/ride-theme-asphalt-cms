@@ -24,31 +24,20 @@ function updateEntryOptions(action) {
 	select.val('');
 }
 
-function joppaContentInitializeDetailProperties(selectFieldsAction, uniqueFieldsAction) {
+function joppaContentInitializeDetailProperties(uniqueFieldsAction) {
 	$("#form-content-properties-model").change(function() {
-		joppaContentUpdateFields(selectFieldsAction);
 		joppaContentUpdateIdFields(uniqueFieldsAction);
 	});
-
-	if ($('#form-content-properties-fields option').length == 0) {
-		joppaContentUpdateFields(selectFieldsAction);
-		joppaContentUpdateIdFields(uniqueFieldsAction);
-	}
 }
 
-function joppaContentInitializeOverviewProperties(fieldsAction, orderFieldsAction, filterFieldsAction) {
+function joppaContentInitializeOverviewProperties(orderFieldsAction, filterFieldsAction) {
 	$("#form-content-properties-model").change(function() {
-		joppaContentUpdateFields(fieldsAction);
 		joppaContentUpdateOrderFields(orderFieldsAction);
 		joppaContentUpdateFilterFields(filterFieldsAction);
 
 		$("#form-content-properties-condition-expression").val('');
 		$("#form-content-properties-order-expression").val('');
 		$('.row-filters .collection-control').remove();
-	});
-
-	$("#form-content-properties-recursive-depth").change(function() {
-		joppaContentUpdateOrderFields(orderFieldsAction);
 	});
 
 	$('.row-filters .prototype-add').click(function() {
@@ -175,26 +164,10 @@ function joppaContentInitializeOverviewProperties(fieldsAction, orderFieldsActio
 	}
 }
 
-function joppaContentUpdateFields(action) {
-	var model = $("#form-content-properties-model").val();
-
-	$.getJSON(action.replace('%25model%25', model), function(data) {
-		var select = $("#form-content-properties-fields");
-		select.empty();
-		for (var key in data.fields) {
-			if (data.fields.hasOwnProperty(key)) {
-				select.append('<option value="' + key + '">' + data.fields[key] + '</option>');
-			}
-		}
-		select.val('');
-	});
-}
-
 function joppaContentUpdateOrderFields(action) {
 	var model = $("#form-content-properties-model").val();
-	var recursiveDepth = $("#form-content-properties-recursive-depth").val();
 
-	$.getJSON(action.replace('%25model%25', model).replace('%25recursiveDepth%25', recursiveDepth), function(data) {
+	$.getJSON(action.replace('%25model%25', model).replace('%25recursiveDepth%25', 1), function(data) {
 		var select = $("#form-content-properties-order-field");
 		select.empty();
 		select.append('<option value="">---</option>');
@@ -227,6 +200,6 @@ function joppaContentUpdateIdFields(action) {
 				select.append('<option value="' + key + '">' + data.fields[key] + '</option>');
 			}
 		}
-		select.val('');
+		$('option', select).first().prop('selected', true);
 	});
 }
