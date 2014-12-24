@@ -86,7 +86,7 @@
             </ul>
         </div>
         <div class="widget__title text-left">
-            <img src="{image src=$widget->getIcon() default="bootstrap/img/widget.png"}" />
+            <img src="{image src=$widget->getIcon() default="bootstrap/img/cms/widget.png"}" />
             {$name = $widget->getName()}
             {if $widget->getPropertiesCallback()}
                 <a class="name" href="{url id="cms.node.content.widget.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}">

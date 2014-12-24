@@ -5,6 +5,7 @@
 .section__content {
   padding: 10px 20px;
   border: 1px solid #ccc;
+  border-top: 0;
 }
 .section__content .grid {
   display: -webkit-flex;
@@ -20,10 +21,9 @@
 
 
 .panel-heading {
-  background: #f3f3f3;
-  border: 1px solid #ccc;
-  border-bottom: 0;
-  padding: 10px;
+  background: #D5D7D8;
+  border: 1px solid #aaa;
+  padding: 3px 10px;
 }
 .section__handle,
 .section__layouts {
@@ -103,6 +103,7 @@
 
 .widget__content {
   margin-left: 30px;
+  overflow: hidden;
 }
 
 #region .droppable .widget-actions {
