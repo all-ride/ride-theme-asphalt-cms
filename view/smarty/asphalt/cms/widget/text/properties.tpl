@@ -1,6 +1,6 @@
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
+<form id="{$form->getId()}" class="form-horizontal" action="{$action}" method="POST" role="form" enctype="multipart/form-data">
     <div class="form__group">
         {if $form->hasRow("existing")}
         <div class="form__item--existing clearfix superhidden" data-url-text="{url id="api.orm.detail" parameters=["model" => "Text", "id" => "%id%"]}">
