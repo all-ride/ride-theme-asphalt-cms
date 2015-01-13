@@ -11,5 +11,5 @@
             s.parentNode.insertBefore(gcse, s);
         })();
     </script>
-    <gcse:searchresults-only></gcse:searchresults-only>
+    <gcse:searchresults-only lr="lang_{$app.locale}"></gcse:searchresults-only>
 </div>
