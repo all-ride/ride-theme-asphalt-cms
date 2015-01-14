@@ -1,28 +1,35 @@
 function handleTitleUse(isChecked) {
+    var $title = $('.form__item--title'),
+        $subtitle = $('.form__item--subtitle');
+
     if (isChecked) {
-        $('.form__item--title').removeClass('superhidden');
-        $('.form__item--subtitle').removeClass('superhidden');
+        $title.removeClass('superhidden');
+        $subtitle.removeClass('superhidden');
     } else {
-        $('.form__item--title').addClass('superhidden');
-        $('.form__item--subtitle').addClass('superhidden');
+        $title.addClass('superhidden');
+        $subtitle.addClass('superhidden');
     }
 }
 
 function handleImageUse(isChecked) {
+    var $imagSrc = $('.form__item--image-src'),
+        $imageAlign = $('.form__item--image-align');
+
     if (isChecked) {
-        $('.form__item--image-src').removeClass('superhidden');
-        $('.form__item--image-align').removeClass('superhidden');
+        $imagSrc.removeClass('superhidden');
+        $imageAlign.removeClass('superhidden');
     } else {
-        $('.form__item--image-src').addClass('superhidden');
-        $('.form__item--image-align').addClass('superhidden');
+        $imagSrc.addClass('superhidden');
+        $imageAlign.addClass('superhidden');
     }
 }
 
 function handleTextReuse(isChecked) {
+    var $alert = $('.alert-warning');
     if (isChecked) {
-        $('.alert-warning').addClass('superhidden');
+        $alert.addClass('superhidden');
     } else {
-        $('.alert-warning').removeClass('superhidden');
+        $alert.removeClass('superhidden');
     }
 }
 
