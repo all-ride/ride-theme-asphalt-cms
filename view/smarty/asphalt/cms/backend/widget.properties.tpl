@@ -14,7 +14,7 @@
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
-{block name="content_title"}
+{block name="content_title" append}
     <div class="page-header">
         <h1>{$node->getName($locale)} <small>{translate key="title.widget.properties" widget=$widgetName} ({$region})</small></h1>
     </div>

@@ -12,6 +12,7 @@
             </div>
             <div class="form__item">
                 {call formWidget form=$form row="existing-new"}
+                <div class="preview"></div>
             </div>
         </div>
         {/if}

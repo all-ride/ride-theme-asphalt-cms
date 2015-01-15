@@ -1,29 +1,3 @@
-function handleTitleUse(isChecked) {
-    var $title = $('.form__item--title'),
-        $subtitle = $('.form__item--subtitle');
-
-    if (isChecked) {
-        $title.removeClass('superhidden');
-        $subtitle.removeClass('superhidden');
-    } else {
-        $title.addClass('superhidden');
-        $subtitle.addClass('superhidden');
-    }
-}
-
-function handleImageUse(isChecked) {
-    var $imagSrc = $('.form__item--image-src'),
-        $imageAlign = $('.form__item--image-align');
-
-    if (isChecked) {
-        $imagSrc.removeClass('superhidden');
-        $imageAlign.removeClass('superhidden');
-    } else {
-        $imagSrc.addClass('superhidden');
-        $imageAlign.addClass('superhidden');
-    }
-}
-
 function handleTextReuse(isChecked) {
     var $alert = $('.alert-warning');
     if (isChecked) {
@@ -34,25 +8,36 @@ function handleTextReuse(isChecked) {
 }
 
 $('#form-text-existing-new').change(function() {
-    handleTextReuse($(this).is(':checked'));
-
+    handleTextReuse(this.checked);
     return false;
 });
-$('.form__item--title-use input').change(function() {
-    handleTitleUse($(this).is(':checked'));
-
-    return false;
-});
-$('.form__item--image-use input').change(function() {
-    handleImageUse($(this).is(':checked'));
-
-    return false;
-});
-
 handleTextReuse($('#form-text-existing-new').is(':checked'));
-handleTitleUse($('.form__item--title-use input').is(':checked'));
-handleImageUse($('.form__item--image-use input').is(':checked'));
-$('.form__item--existing').addClass('superhidden');
+
+var $existing = $('.form__item--existing');
+$existing
+    .addClass('superhidden')
+    .on('change', '.form__select', function() {
+        var $this = $(this);
+
+        var url = $existing.data('url-text');
+        url = url.replace('%25id%25', $this.val());
+
+        $.get(url, function(data) {
+            var preview = '';
+            if (data.title) {
+                preview += '<h3>' + data.title + '</h3>';
+            }
+            if (data.subtitle) {
+                preview += '<h4>' + data.subtitle + '</h4>';
+            }
+            if (data.body) {
+                preview += data.body;
+            }
+
+            $('.preview', $existing).html(preview);
+        });
+    });
+
 
 $('#btn-text-reuse').click(function(e) {
     e.preventDefault();
