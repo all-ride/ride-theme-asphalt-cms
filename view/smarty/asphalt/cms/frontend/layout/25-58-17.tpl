@@ -1,4 +1,4 @@
-{function name="layout_25_50_25" section=null widgets=null}
+{function name="layout_25_58_17" section=null widgets=null}
 <div class="section {$style}">
     <div class="container">
         <div class="grid">
