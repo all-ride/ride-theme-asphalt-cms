@@ -27,7 +27,7 @@
     </div>
     <div class="section__actions text-right dropdown">
         <a href="#" class="dropdown" data-toggle="dropdown"><i class="icon icon--cog"></i></a>
-        <ul class="dropdown__menu dropdown__menu-right">
+        <ul class="dropdown__menu dropdown__menu--right">
             <li><a href="#" class="widget-add">{translate key="button.widget.add"}</a></li>
             <li>
                 <a href="{url id="cms.node.content.section.style" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section]}?referer={$app.url.request|urlencode}">

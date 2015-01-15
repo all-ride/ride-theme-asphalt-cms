@@ -131,7 +131,11 @@
     </div>
 
     {if $pagination}
-        {pagination href=$pagination->getHref() pages=$pagination->getPages() page=$pagination->getPage()}
+        {if $pagination->getPages() > $pagination->getPage()}
+            <div class="pagination">
+                {pagination href=$pagination->getHref() pages=$pagination->getPages() page=$pagination->getPage()}
+            </div>
+        {/if}
     {/if}
 
     {if $moreUrl}
