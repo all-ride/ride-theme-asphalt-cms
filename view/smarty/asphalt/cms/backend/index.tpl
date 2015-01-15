@@ -4,6 +4,18 @@
     <link href="{$app.url.base}/asphalt/css/cms/cms.css" rel="stylesheet" media="screen">
 {/block}
 
+{block name="content_title" append}
+    <ol class="breadcrumb">
+    {foreach $breadcrumbs as $url => $name}
+        {if $name@last}
+            <li class="active">{$name}</li>
+        {else}
+            <li><a href="{$url}">{$name}</a></li>
+        {/if}
+    {/foreach}
+    </ol>
+{/block}
+
 {block name="sidebar"}
     {if isset($nodeCreateActions)}
     <div class="btn--group dropdown">
@@ -16,71 +28,9 @@
     </div>
     {/if}
 
-
-    {if isset($siteTreeNode)}
-        {$treeIcons = [
-            'site' => 'globe',
-            'page' => 'file-o',
-            'folder' => 'folder-open-o',
-            'entry' => 'hdd-o',
-            'redirect' => 'share-square-o'
-        ]}
-
-        {function name="renderTreeNode" treeNode=null treeIcons=null}
-            {$node = $treeNode->getNode()}
-            {$nodeId = $node->getId()}
-            {$nodeType = $node->getType()}
-            {$children = $treeNode->getChildren()}
-            {$actions = $treeNode->getActions()}
-
-            <li class="node node-{$nodeType}{if !$treeNode->isLocalized($locale)} unlocalized{/if}{if $treeNode->isSelected()} selected{/if}{if $treeNode->isCollapsed()} closed{/if}" id="node-{$node->getId()}">
-                {if $children}
-                <a href="#" class="toggle"><i class="icon icon--{if $treeNode->isCollapsed()}plus{else}minus{/if}-square-o"></i></a>
-                {else}
-                <span class="toggle"></span>
-                {/if}
-
-                {if $treeNode->isHomePage()}
-                    {$iconClass = 'home'}
-                {else if $treeNode->isHidden()}
-                    {$iconClass = 'eye-slash'}
-                {else}
-                    {$iconClass = $treeIcons.$nodeType}
-                {/if}
-                {$nodeName = $node->getName($locale)}
-
-                <div class="handle"><span class="icon icon--{$iconClass}"></span></div>
-                <div class="dropdown">
-                    <a href="{$treeNode->getUrl()}" class="name" title="{$nodeName|escape}">{$nodeName|truncate:15}</a>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon icon--angle-down"></i></a>
-                    <ul class="dropdown__menu" role="menu">
-                    {$hasDivider = false}
-                    {foreach $actions as $actionName => $actionUrl}
-                        {if !$hasDivider && ($actionName == 'edit' || $actionName == 'clone' || $actionName == 'delete')}
-                            {$hasDivider = true}
-
-                            <li class="dropdown__divider"></li>
-                        {/if}
-
-                        <li><a href="{$actionUrl}" class="action action-{$actionName}">{translate key="label.node.action.`$actionName`"}</a></li>
-                    {/foreach}
-                    </ul>
-                </div>
-
-                {if $children}
-                <ul class="children">
-                    {foreach $children as $child}
-                        {call renderTreeNode treeNode=$child treeIcons=$treeIcons}
-                    {/foreach}
-                </ul>
-                {/if}
-            </li>
-        {/function}
-
-        <ul id="node-tree">
-           {call renderTreeNode treeNode=$siteTreeNode treeIcons=$treeIcons}
-        </ul>
-    {/if}
+    <div class="site-tree">
+        <div class="loading"></div>
+    </div>
 {/block}
 
 {block name="scripts" append}
@@ -90,8 +40,14 @@
     {if isset($site)}
     <script type="text/javascript">
         $(function() {
-            joppaInitializeNodeTree('{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}', '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}');
-            });
+            joppaInitializeNodeTree(
+                '{url id="cms.site.tree" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
+                '{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}',
+                '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
+                {$collapsedNodes},
+                {if isset($node)}'{$node->getId()}'{else}null{/if}
+            );
+        });
     </script>
     {/if}
 {/block}

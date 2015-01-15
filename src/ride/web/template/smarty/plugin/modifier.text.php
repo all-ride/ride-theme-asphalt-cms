@@ -25,7 +25,6 @@ if (!function_exists('smarty_modifier_text')) {
             $textParser = $dependencyInjector->get('ride\\library\\cms\\content\\text\\TextParser', 'chain');
             $textParser->setNode($app['cms']['node']);
             $textParser->setLocale($locale);
-            $textParser->setBaseUrl($app['url']['base']);
         }
 
         return $textParser->parseText($string);

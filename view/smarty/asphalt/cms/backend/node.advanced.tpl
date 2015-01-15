@@ -17,6 +17,7 @@
 {block name="content_title" append}
     <div class="page-header">
         <h1>{$node->getName($locale)} <small>{translate key="title.node.advanced"}</small></h1>
+        <a href="{$node->getUrl($locale, $app.url.script)}">{$app.url.script}{$node->getRoute($locale)}</a>
     </div>
 {/block}
 
