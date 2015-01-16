@@ -1,4 +1,5 @@
 {
+    "button.close": "Sluiten",
     "button.comment": "Verzenden",
     "button.names.alternate": "Alternatieve namen",
     "button.search.results.more": "Toon de andere %total% resultaten",
@@ -6,8 +7,8 @@
     "label.comments.authenticated": "Je dient ingelogd te zijn alvorens je een commentaar kan posten.",
     "label.comments.none": "Er is nog geen commentaar.",
     "label.query.search": "Zoekterm",
-    "label.search.query.provide": "Gelieve een zoekterm in te geven.",
     "label.search.query.none": "Uw zoekopdracht voor <em>'%query%'</em> leverde geen resultaten op.",
+    "label.search.query.provide": "Gelieve een zoekterm in te geven.",
     "label.search.query.result": "Uw zoekopdracht voor <em>'%query%'</em> leverde 1 resultaat op.",
     "label.search.query.results": "Uw zoekopdracht voor <em>'%query%'</em> leverde %total% resultaten op.",
     "label.show.less": "toon minder",

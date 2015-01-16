@@ -33,7 +33,7 @@
     </form>
     {/if}
 
-    <p><button class="btn btn--default section-add"><i class="glyphicon glyphicon-plus"></i> {translate key="button.section.add"}</button></p>
+    <p><button class="btn btn--default section-add" data-method="prepend"><i class="icon icon--plus"></i> {translate key="button.section.add"}</button></p>
 
     <div class="sections">
     {foreach $sections as $section => $layout}
@@ -41,13 +41,13 @@
     {/foreach}
     </div>
 
-    <p><button class="btn btn--default section-add"><i class="glyphicon glyphicon-plus"></i> {translate key="button.section.add"}</button></p>
+    <p><button class="btn btn--default section-add" data-method="append"><i class="icon icon--plus"></i> {translate key="button.section.add"}</button></p>
 
     <div class="modal modal-widget-add fade" id="modalWidgetAdd" tabindex="-1" role="dialog" aria-labelledby="modalWidgetAddLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{translate key="button.close"}</span></button>
+                    <button type="button" class="close btn btn--default" data-dismiss="modal"><i class="icon icon--times" aria-hidden="true"></i> <span class="sr-only">{translate key="button.close"}</span></button>
                     <h4 class="modal-title" id="modalWidgetAddLabel">{translate key="button.widget.add"}</h4>
                 </div>
                 <div class="modal-body">
@@ -57,19 +57,21 @@
 
                         <p>{translate key="label.widgets.available.description"}</p>
 
-                        <div class="grid">
+                        <div class="grid widget-row">
                         {foreach $availableWidgets as $name => $widget}
-                        <div class="grid--bp-med__6 widget" data-widget="{$name}">
-                            <div class="radio">
-                                <label>
-                                    <input name="widget" value="{$name}" type="radio">
-                                    <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
-                                    {translate key="widget.`$name`"}
-                                </label>
+                        <div class="grid--bp-med__6" data-widget="{$name}">
+                            <div class="widget">
+                                <div class="radio">
+                                    <label>
+                                        <input name="widget" value="{$name}" type="radio">
+                                        <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
+                                        {translate key="widget.`$name`"}
+                                    </label>
+                                </div>
                             </div>
                         </div>
                             {if $widget@iteration is div by 2}
-                        </div><div class="row">
+                        </div><div class="grid widget-row">
                             {/if}
                        {/foreach}
                         </div>

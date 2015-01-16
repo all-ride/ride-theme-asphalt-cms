@@ -71,6 +71,7 @@
 }
 .modal-header .close {
   margin-top: -2px;
+  float: right;
 }
 .modal-title {
   margin: 0;
