@@ -34,3 +34,13 @@ form .row-layout .help-block {
 #form-text .row-text {
 	margin-bottom: 12px;
 }
+
+.breadcrumb {
+	margin: 0;
+	padding: 0 0 5px;
+	border-bottom: 1px solid  #ccc;
+}
+
+.widget-row + .widget-row {
+	margin-top: 10px;
+}

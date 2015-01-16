@@ -76,6 +76,20 @@
 .widget ~ .widget {
   margin-top: 10px;
 }
+.grid .widget {
+  margin-top: 0;
+}
+
+.widget .radio {
+  position: relative;
+  padding-left: 25px;
+}
+.widget .radio input {
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+
 .widget__header {
   margin-bottom: 5px;
 }

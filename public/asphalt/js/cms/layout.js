@@ -440,8 +440,17 @@ function initializeContent(baseUrl) {
     // add a new section
     $document.on('click', '.section-add', function(e) {
         e.preventDefault();
+        var method = $(this).data('method');
+
         $.post(baseUrl + '/sections', function(html) {
-            $sections.append(html);
+            switch(method) {
+              case 'prepend':
+                $sections.prepend(html);
+                break;
+              case 'append':
+                $sections.append(html);
+                break;
+            }
 
             initWidgetOrder(baseUrl, true);
 

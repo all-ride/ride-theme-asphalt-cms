@@ -5,26 +5,32 @@
 {/block}
 
 {block name="content_title" append}
-    <ol class="breadcrumb">
-    {foreach $breadcrumbs as $url => $name}
-        {if $name@last}
-            <li class="active">{$name}</li>
-        {else}
-            <li><a href="{$url}">{$name}</a></li>
-        {/if}
-    {/foreach}
-    </ol>
+    <div class="breadcrumb">
+        {foreach $breadcrumbs as $url => $label}
+            <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb__item{if $label@last} breadcrumb__item--active{/if}">
+              <a href="{$url}" itemprop="url">
+                <span itemprop="title">{$label}</span>
+              </a>{if !$label@last} &rsaquo;{/if}
+            </span>
+        {/foreach}
+    </div>
 {/block}
 
 {block name="sidebar"}
     {if isset($nodeCreateActions)}
-    <div class="btn--group dropdown">
-      <button type="button" class="btn btn--default" data-toggle="dropdown">{translate key="button.create"} <i class="icon icon--angle-down"></i></button>
-      <ul class="dropdown__menu" role="menu">
-        {foreach $nodeCreateActions as $nodeTypeName => $nodeActionUrl}
-            <li><a href="{$nodeActionUrl}">{translate key="label.node.type.`$nodeTypeName`"}</a></li>
-        {/foreach}
-      </ul>
+    <div class="btn-group clearfix">
+        <a href="#" class="btn btn--default" data-toggle="dropdown">{translate key="button.create"} <i class="icon icon--angle-down"></i></a>
+        <ul class="dropdown__menu" role="menu">
+            {foreach $nodeCreateActions as $nodeTypeName => $nodeActionUrl}
+                <li><a href="{$nodeActionUrl}">{translate key="label.node.type.`$nodeTypeName`"}</a></li>
+            {/foreach}
+        </ul>
+        {* {if isset($site)} *}
+        <a href="{url id="cms.site.trash" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}" class="btn btn--default">
+            {translate key="title.trash"}
+            <i class="icon icon--trash-o"></i>
+        </a>
+        {* {/if} *}
     </div>
     {/if}
 

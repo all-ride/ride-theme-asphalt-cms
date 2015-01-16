@@ -1,4 +1,5 @@
 {
+    "button.close": "Close",
     "button.comment": "Comment",
     "button.names.alternate": "Alternate names",
     "button.search.results.more": "Show %total% more result(s)",
