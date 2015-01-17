@@ -3,7 +3,7 @@
 *}
 
 {function name="sectionPanel" site=null node=null section=null layouts=null layout=null widgets=null inheritedWidgets=null actions=null}
-<div class="section panel panel-default clearfix" data-section="{$section}">
+<div class="section section--no-padding panel panel-default clearfix" data-section="{$section}">
     <div class="panel-heading clearfix">
         {call sectionHeader layouts=$layouts layout=$layout}
     </div>

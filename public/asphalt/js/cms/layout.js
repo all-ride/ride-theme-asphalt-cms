@@ -414,7 +414,7 @@ function initializeContent(baseUrl) {
 
         $blocks.sortable({
             handle: '.handle',
-            items: '> .widget',
+            items: '> .widget:not(.widget--locked)',
             connectWith: $blocks,
             update: function (event, ui) {
                 if (this !== ui.item.parent()[0]) {

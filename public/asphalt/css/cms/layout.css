@@ -21,7 +21,7 @@
 
 
 .panel-heading {
-  background: #D5D7D8;
+  background: #c4c5c6;
   border: 1px solid #aaa;
   padding: 3px 10px;
 }
@@ -73,11 +73,18 @@
   border: 1px solid #CCC;
   padding: 7px 7px;
 }
-.widget ~ .widget {
-  margin-top: 10px;
+.widget--button {
+  background: #fff;
+  display: block;
+  width: 100%;
+  border-style: dashed;
 }
-.grid .widget {
-  margin-top: 0;
+.widget--button:hover {
+  background: #f5f6f7;
+}
+
+.widgets .widget ~ .widget {
+  margin-top: 10px;
 }
 
 .widget .radio {

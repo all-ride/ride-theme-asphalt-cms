@@ -60,7 +60,7 @@
                         <div class="grid widget-row">
                         {foreach $availableWidgets as $name => $widget}
                         <div class="grid--bp-med__6" data-widget="{$name}">
-                            <div class="widget">
+                            <div class="widget widget--compact">
                                 <div class="radio">
                                     <label>
                                         <input name="widget" value="{$name}" type="radio">

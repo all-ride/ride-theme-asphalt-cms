@@ -135,7 +135,7 @@
   line-height: 20px;
 }
 .icon--globe {
-  color: #3c76ab;
+  color: #2980b9;
 }
 
 /*TODO: Replace with font awesome icon*/
@@ -151,10 +151,10 @@
 }
 li.selected > .dropdown > .name {
   font-weight: bold;
-  color: #3c76ab;
+  color: #2980b9;
 }
 /*li.selected .icon {
-  color: #3c76ab;
+  color: #2980b9;
 }*/
 .node li .dropdown:hover > .name {
   color: #888;
