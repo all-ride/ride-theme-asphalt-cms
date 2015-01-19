@@ -16,7 +16,7 @@
 {/block}
 
 {block name="styles" append}
-    <link href="{$app.url.base}/asphalt/css/cms/front.css" rel="stylesheet" media="screen">
+    <link href="{$app.url.base}/asphalt/css/front.min.css" rel="stylesheet" media="screen">
 {/block}
 
 {block name="container"}
