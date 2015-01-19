@@ -320,7 +320,6 @@
     })
     Plugin.call($target, option, this)
   })
-
 }(jQuery);
 
 
@@ -354,7 +353,8 @@ function initializeContent(baseUrl) {
         $buttonWidgetAddAndClose.attr('disabled', 'disabled');
 
         $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
-            $block.append(html);
+            $lockedWidget = $block.find('.widget--locked');
+            $(html).insertBefore($lockedWidget);
 
             initWidgetOrder(baseUrl, true);
 
@@ -380,7 +380,7 @@ function initializeContent(baseUrl) {
                 var block = $block.data('block');
 
 
-                var $widgets = $('.widget', $block);
+                var $widgets = $('.widget:not(.widget--locked)', $block);
                 if ($widgets.length) {
                     order[section][block] = [];
                     $widgets.each(function() {
@@ -393,7 +393,7 @@ function initializeContent(baseUrl) {
         });
 
         // post the order the cms
-        $.post(baseUrl + '/order', { order: order }, function(data) {
+        $.post(baseUrl + '/order', {order: order}, function(data) {
 
         });
     }
