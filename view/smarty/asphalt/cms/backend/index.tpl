@@ -1,19 +1,21 @@
 {extends file="base/index.sidebar"}
 
 {block name="styles" append}
-    <link href="{$app.url.base}/asphalt/css/cms/cms.css" rel="stylesheet" media="screen">
+    <link href="{$app.url.base}/asphalt/css/cms.min.css" rel="stylesheet" media="screen">
 {/block}
 
 {block name="content_title" append}
-    <div class="breadcrumb">
-        {foreach $breadcrumbs as $url => $label}
-            <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb__item{if $label@last} breadcrumb__item--active{/if}">
-              <a href="{$url}" itemprop="url">
-                <span itemprop="title">{$label}</span>
-              </a>{if !$label@last} &rsaquo;{/if}
-            </span>
-        {/foreach}
-    </div>
+    {if isset($breadcrumbs)}
+        <div class="breadcrumb">
+            {foreach $breadcrumbs as $url => $label}
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb__item{if $label@last} breadcrumb__item--active{/if}">
+                  <a href="{$url}" itemprop="url">
+                    <span itemprop="title">{$label}</span>
+                  </a>{if !$label@last} &rsaquo;{/if}
+                </span>
+            {/foreach}
+        </div>
+    {/if}
 {/block}
 
 {block name="sidebar"}
@@ -40,9 +42,8 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/asphalt/js/jquery-ui.js"></script>
-    <script src="{$app.url.base}/asphalt/js/cms/lib/jquery.mjs.nestedSortable.js"></script>
-    <script src="{$app.url.base}/asphalt/js/cms/tree.js"></script>
+    <script src="{$app.url.base}/asphalt/js/singles/cms/lib/jquery.mjs.nestedSortable.js"></script>
+    <script src="{$app.url.base}/asphalt/js/singles/cms/tree.js"></script>
     {if isset($site)}
     <script type="text/javascript">
         $(function() {

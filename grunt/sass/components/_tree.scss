@@ -120,7 +120,7 @@
 }
 /*
 .node .closed a.toggle {
-  background: url(../../img/cms/toggle.plus.png) no-repeat;
+  background: url(../img/cms/toggle.plus.png) no-repeat;
 }*/
 
 /* Handle */
@@ -135,12 +135,12 @@
   line-height: 20px;
 }
 .icon--globe {
-  color: #3c76ab;
+  color: #2980b9;
 }
 
 /*TODO: Replace with font awesome icon*/
 .entry-hidden .icon {
-  background: url(../../img/cms/entry.hidden.png) no-repeat;
+  background: url(../img/cms/entry.hidden.png) no-repeat;
 }
 
 .unlocalized a.name {
@@ -151,10 +151,10 @@
 }
 li.selected > .dropdown > .name {
   font-weight: bold;
-  color: #3c76ab;
+  color: #2980b9;
 }
 /*li.selected .icon {
-  color: #3c76ab;
+  color: #2980b9;
 }*/
 .node li .dropdown:hover > .name {
   color: #888;
