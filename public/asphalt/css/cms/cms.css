@@ -40,6 +40,13 @@ form .row-layout .help-block {
 	padding: 0 0 5px;
 	border-bottom: 1px solid  #ccc;
 }
+.breadcrumb__item a:hover {
+	text-decoration: none;
+}
+.breadcrumb__item--active a {
+	color: #535455;
+	text-decoration: none;
+}
 
 .widget-row + .widget-row {
 	margin-top: 10px;
