@@ -354,7 +354,7 @@ function initializeContent(baseUrl) {
 
         $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
             $lockedWidget = $block.find('.widget--locked');
-            $(html).insertBefore($lockedWidget);
+            $lockedWidget.before(html);
 
             initWidgetOrder(baseUrl, true);
 
