@@ -5,15 +5,17 @@
 {/block}
 
 {block name="content_title" append}
-    <div class="breadcrumb">
-        {foreach $breadcrumbs as $url => $label}
-            <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb__item{if $label@last} breadcrumb__item--active{/if}">
-              <a href="{$url}" itemprop="url">
-                <span itemprop="title">{$label}</span>
-              </a>{if !$label@last} &rsaquo;{/if}
-            </span>
-        {/foreach}
-    </div>
+    {if isset($breadcrumbs)}
+        <div class="breadcrumb">
+            {foreach $breadcrumbs as $url => $label}
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb__item{if $label@last} breadcrumb__item--active{/if}">
+                  <a href="{$url}" itemprop="url">
+                    <span itemprop="title">{$label}</span>
+                  </a>{if !$label@last} &rsaquo;{/if}
+                </span>
+            {/foreach}
+        </div>
+    {/if}
 {/block}
 
 {block name="sidebar"}

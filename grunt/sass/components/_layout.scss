@@ -68,7 +68,7 @@
 }
 
 .widget {
-  background: transparent url(../../img/cms/widget.background.png) repeat-y;
+  background: transparent url(../img/cms/widget.background.png) repeat-y;
   list-style: none;
   border: 1px solid #CCC;
   padding: 7px 7px;
@@ -146,7 +146,7 @@
 #region .droppable .widget-actions .icon {
 	border-bottom: 1px solid #CCC;
 	padding-bottom: 5px;
-	background: #E1E1E1 url(../../img/cms/arrow.down.grey.png) no-repeat scroll center bottom;
+	background: #E1E1E1 url(../img/cms/arrow.down.grey.png) no-repeat scroll center bottom;
 }
 
 #region .droppable .widget-info {
@@ -156,7 +156,7 @@
 }
 
 #region .inherited .widget-info {
-	background: transparent url(../../img/cms/widget.inherited.png) no-repeat scroll right 7px;
+	background: transparent url(../img/cms/widget.inherited.png) no-repeat scroll right 7px;
 }
 
 #region .widget-info ul {
