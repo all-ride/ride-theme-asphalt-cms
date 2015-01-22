@@ -88,7 +88,7 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/asphalt/js/singles/cms/layout.js"></script>
+    <script src="{$app.url.base}/asphalt/js/cms/layout.js"></script>
     <script type="text/javascript">
         $(function() {
             $('select[name=region]').change(function() {

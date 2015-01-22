@@ -43,7 +43,7 @@
             less: '{translate key="label.show.less"}'
         };
     </script>
-    <script src="{$app.url.base}/asphalt/js/singles/form.js"></script>
-    <script src="{$app.url.base}/asphalt/js/singles/table.js"></script>
+    <script src="{$app.url.base}/asphalt/js/form.js"></script>
+    <script src="{$app.url.base}/asphalt/js/table.js"></script>
     <script src="{$app.url.base}/asphalt/js/text.admin.js"></script>
 {/block}

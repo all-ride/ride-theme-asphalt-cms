@@ -42,8 +42,8 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/asphalt/js/singles/cms/lib/jquery.mjs.nestedSortable.js"></script>
-    <script src="{$app.url.base}/asphalt/js/singles/cms/tree.js"></script>
+    <script src="{$app.url.base}/asphalt/js/cms/lib/jquery.mjs.nestedSortable.js"></script>
+    <script src="{$app.url.base}/asphalt/js/cms/tree.js"></script>
     {if isset($site)}
     <script type="text/javascript">
         $(function() {
