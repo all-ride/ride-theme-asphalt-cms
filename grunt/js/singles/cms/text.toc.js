@@ -8,14 +8,12 @@ $(function() {
             var title = $(this);
             var label = title.data('label-menu');
 
-            if (label == undefined) {
+            if (label === undefined) {
               label = title.text().trim();
             }
 
             var anchor = label.toLowerCase().replace(/ /g, '-');
             title.prepend($('<a name="' + anchor + '"></a>'));
-
-            console.log(title.context.localName);
 
             if (title.context.localName == 'h3') {
                 if (subindex === null) {
