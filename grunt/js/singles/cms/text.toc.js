@@ -4,7 +4,7 @@ $(function() {
         var index = $('<ul></ul>');
         var subindex = null;
 
-        $('.widget h2.toc, .widget h3.toc', divIndex.parents('.region')).each(function() {
+        $('.widget h2.toc:not(.toc-ignore), .widget h3.toc:not(.toc-ignore)', divIndex.parents('.region')).each(function() {
             var title = $(this);
             var label = title.data('label-menu');
 
