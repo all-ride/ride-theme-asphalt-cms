@@ -1,3 +1,11 @@
+{if isset($filterWidgetId)}
+    {if isset($app.cms.context["orm.filters.`$filterWidgetId`"])}
+        {$bodyComponent = $app.cms.node->get('body.components')}
+        {$app.cms.node->set('body.components', "`$bodyComponent` form")}
+        {$filters = $app.cms.context["orm.filters.`$filterWidgetId`"]}
+    {/if}
+{/if}
+
 <form action="{$app.cms.node->getUrl($app.locale, $app.url.script)}" method="GET" class="form form--filter filter">
     <div class="text--lead filter__lead">{translate key="label.filter"}:</div>
     {foreach $filters as $filterName => $filter}
