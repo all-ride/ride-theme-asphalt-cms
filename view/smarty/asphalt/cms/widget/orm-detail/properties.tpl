@@ -22,11 +22,11 @@
                     {call formRow form=$form row="parameters-none"}
                 </div>
 
-                <div id="tabMapper" class="tab__pane">
+                <div id="tabMapper" class="tabs__pane">
                     {call formRow form=$form row="primary"}
                 </div>
 
-                <div id="tabMeta" class="tab__pane">
+                <div id="tabMeta" class="tabs__pane">
                     {call formRow form=$form row="meta-og"}
                     {call formRow form=$form row="format-title-og"}
                     {call formRow form=$form row="format-teaser-og"}
