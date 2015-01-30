@@ -33,7 +33,7 @@
                 {$functionName = "layout-`$layout`"|replace:"-":"_"}
                 {$style = $app.cms.node->getSectionStyle($region, $section)}
                 {$useContainer = $style|strpos:"no-container" === false}
-
+                {$useContainer|k}
                 <div class="section {$style}">
                     {if $useContainer}
                         <div class="container">

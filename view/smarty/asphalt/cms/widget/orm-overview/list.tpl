@@ -17,7 +17,7 @@
     </ul>
 
     {if $pagination}
-        {if $pagination->getPages() > $pagination->getPage()}
+        {if $pagination->getPages() >= $pagination->getPage() && $pagination->getPages() > 1}
             <div class="pagination">
                 {pagination href=$pagination->getHref() pages=$pagination->getPages() page=$pagination->getPage()}
             </div>
