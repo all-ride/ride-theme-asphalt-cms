@@ -79,7 +79,6 @@
                     {call formRow form=$form row="content-mapper"}
                 </div>
 
-
                 <div id="tabView" class="tabs__pane">
                     {call formRow form=$form row="template"}
                     {call formRow form=$form row="view-processor"}

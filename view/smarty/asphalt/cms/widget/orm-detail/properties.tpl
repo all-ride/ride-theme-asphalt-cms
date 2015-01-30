@@ -26,7 +26,7 @@
                     {call formRow form=$form row="primary"}
                 </div>
 
-                <div id="tabMeta" class="tab-pane">
+                <div id="tabMeta" class="tab__pane">
                     {call formRow form=$form row="meta-og"}
                     {call formRow form=$form row="format-title-og"}
                     {call formRow form=$form row="format-teaser-og"}
