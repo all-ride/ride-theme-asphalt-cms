@@ -75,7 +75,7 @@
                     {call formRow form=$form row="parameters-none"}
                 </div>
 
-                <div id="tabMapper" class="tab__pane">
+                <div id="tabMapper" class="tabs__pane">
                     {call formRow form=$form row="content-mapper"}
                 </div>
 
