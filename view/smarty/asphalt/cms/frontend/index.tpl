@@ -31,7 +31,18 @@
         {foreach $regions.$region as $section => $layout}
             {if isset($widgets.$region.$section)}
                 {$functionName = "layout-`$layout`"|replace:"-":"_"}
-                {call $functionName section=$section widgets=$widgets.$region.$section style=$app.cms.node->getSectionStyle($region, $section)}
+                {$style = $app.cms.node->getSectionStyle($region, $section)}
+                {$useContainer = $style|strpos:"no-container" === false}
+
+                <div class="section {$style}">
+                    {if $useContainer}
+                        <div class="container">
+                            {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
+                        </div>
+                    {else}
+                        {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
+                    {/if}
+                </div>
             {/if}
         {/foreach}
     </div>
