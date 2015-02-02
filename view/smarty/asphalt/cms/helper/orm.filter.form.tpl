@@ -15,7 +15,7 @@
             {if !$isMulti}
                 <div class="form__checkbox-item">
                     <label class="form__label {if !$filter.value} form__label--selected{/if} form__label--checkbox">
-                        <input name="{$filterName}" type="radio" value="" {if !$filter.value} checked="checked"{/if}>
+                        <input name="{$filterName}" type="radio" value="" {if !$filter.value} checked="checked"{/if} class="form__checkbox"> {translate key="label.select.all"}
                     </label>
                 </div>
             {/if}
