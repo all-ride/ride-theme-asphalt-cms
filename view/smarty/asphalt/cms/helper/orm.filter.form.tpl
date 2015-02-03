@@ -6,7 +6,7 @@
     {/if}
 {/if}
 
-<form action="{$app.cms.node->getUrl($app.locale, $app.url.script)}" method="GET" class="form form--filter filter">
+<form action="{$filterUrl}" method="GET" class="form form--filter filter">
     <div class="text--lead filter__lead">{translate key="label.filter"}:</div>
     {foreach $filters as $filterName => $filter}
         {$isMulti = $filter.type == "multi.or" || $filter.type == "multi.and"}
