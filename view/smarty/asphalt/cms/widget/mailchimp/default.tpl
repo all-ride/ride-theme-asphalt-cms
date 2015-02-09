@@ -5,7 +5,8 @@
 
     {include file="base/form.prototype"}
     <form id="{$form->getId()}" class="form" action="{$app.url.request}" method="post" role="form">
-        {call formWidget form=$form row="email"}
+        {*{call formWidget form=$form row="email"}*}
+        {call formRows form=$form}
         <button type="submit" class="btn" name="subscribe">{translate key="button.subscribe"}</button>
     </form>
 </div>
