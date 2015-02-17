@@ -1,5 +1,5 @@
 function handleTextReuse(isChecked) {
-    var $alert = $('.alert-warning');
+    var $alert = $('.notice--warning');
     if (isChecked) {
         $alert.addClass('superhidden');
     } else {
