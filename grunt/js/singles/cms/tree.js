@@ -10,7 +10,11 @@ function joppaInitializeNodeTree(nodeTreeAction, nodeToggleAction, nodeOrderActi
 
         // implement the expand/collapse function of the node tree
         for (var collapsedNode in collapsedNodes) {
-            $('#node-' + collapsedNode).addClass('closed');
+            var $node = $('#node-' + collapsedNode);
+            $node
+                .addClass('closed')
+                .find('.toggle .icon')
+                    .addClass('icon--plus-square-o');
         }
 
         // implement the expand/collapse function of the node tree
