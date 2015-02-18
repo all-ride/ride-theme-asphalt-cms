@@ -14,7 +14,7 @@ function joppaInitializeNodeTree(nodeTreeAction, nodeToggleAction, nodeOrderActi
             $node
                 .addClass('closed')
                 .find('.toggle .icon')
-                    .addClass('icon--plus-square-o');
+                    .toggleClass('icon--plus-square-o').toggleClass('icon--minus-square-o');
         }
 
         // implement the expand/collapse function of the node tree
