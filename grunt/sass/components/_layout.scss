@@ -72,6 +72,14 @@
   list-style: none;
   border: 1px solid #CCC;
   padding: 7px 7px;
+  label {
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+  }
+  img {
+    vertical-align: middle;
+  }
 }
 .widget--button {
   background: #fff;

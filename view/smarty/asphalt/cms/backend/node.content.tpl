@@ -44,7 +44,7 @@
     <p><button class="btn btn--default section-add" data-method="append"><i class="icon icon--plus"></i> {translate key="button.section.add"}</button></p>
 
     <div class="modal modal-widget-add fade" id="modalWidgetAdd" tabindex="-1" role="dialog" aria-labelledby="modalWidgetAddLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal--lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close btn btn--default" data-dismiss="modal"><i class="icon icon--times" aria-hidden="true"></i> <span class="sr-only">{translate key="button.close"}</span></button>
