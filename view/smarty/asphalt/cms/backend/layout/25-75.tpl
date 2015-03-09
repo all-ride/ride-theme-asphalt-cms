@@ -7,7 +7,7 @@
         {call widgetPanel site=$site node=$node widget=$widget widgetId=$widgetId inheritedWidgets=$inheritedWidgets[$block] actions=$actions}
     {/foreach}
 {/if}
-        <button class="widget widget--locked widget--button widget-add"><i class="icon icon--plus"></i><br>{translate key="button.widget.add"}</button>
+        <button class="widget widget--locked widget--button widget-add"><i class="icon icon--plus"></i>{translate key="button.widget.add"}</button>
     </div>
 
 {$block = '2'}
@@ -17,7 +17,7 @@
         {call widgetPanel site=$site node=$node widget=$widget widgetId=$widgetId inheritedWidgets=$inheritedWidgets[$block] actions=$actions}
     {/foreach}
 {/if}
-        <button class="widget widget--locked widget--button widget-add"><i class="icon icon--plus"></i><br>{translate key="button.widget.add"}</button>
+        <button class="widget widget--locked widget--button widget-add"><i class="icon icon--plus"></i>{translate key="button.widget.add"}</button>
     </div>
 </div>
 {/function}
