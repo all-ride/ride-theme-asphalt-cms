@@ -3,7 +3,7 @@
 }
 
 .section__content {
-  padding: 10px 20px;
+  padding: 0 10px;
   border: 1px solid #ccc;
   border-top: 0;
 }
@@ -16,7 +16,10 @@
 }
 .section__content [data-block] {
   padding: 10px;
-  border: 1px solid #e3e3e3;
+  // border: 1px solid #e3e3e3;
+  & + [data-block] {
+    border-left: 1px solid #e3e3e3;
+  }
 }
 
 
@@ -86,6 +89,9 @@
   display: block;
   width: 100%;
   border-style: dashed;
+  i {
+    margin-right: 7px;
+  }
 }
 .widget--button:hover {
   background: #f5f6f7;

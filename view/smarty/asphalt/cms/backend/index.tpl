@@ -21,7 +21,7 @@
 {block name="sidebar"}
     {if isset($nodeCreateActions)}
     <div class="btn-group clearfix">
-        <a href="#" class="btn btn--default" data-toggle="dropdown">{translate key="button.create"} <i class="icon icon--angle-down"></i></a>
+        <a href="#" class="btn btn--brand" data-toggle="dropdown">{translate key="button.create"} <i class="icon icon--angle-down"></i></a>
         <ul class="dropdown__menu" role="menu">
             {foreach $nodeCreateActions as $nodeTypeName => $nodeActionUrl}
                 <li><a href="{$nodeActionUrl}">{translate key="label.node.type.`$nodeTypeName`"}</a></li>
