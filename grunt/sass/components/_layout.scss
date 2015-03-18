@@ -1,13 +1,14 @@
 .section {
-  position: relative;
-  padding-left: 35px;
+  // position: relative;
+  // padding-left: 35px;
   margin-bottom: 20px;
 }
 
 .section__content {
   padding: 0 10px;
   border: 1px solid #ccc;
-  border-left: 0;
+  // border-left: 0;
+  border-top: 0;
 }
 .section__content .grid {
   display: -webkit-flex;
@@ -26,11 +27,11 @@
 
 
 .panel-heading {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 35px;
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // width: 35px;
   padding: 3px;
   border: 1px solid #aaa;
   background: #c4c5c6;
@@ -38,8 +39,8 @@
 }
 .section__handle,
 .section__layouts {
-  // float: left;
-  // margin-right: 10px;
+  float: left;
+  margin-right: 10px;
 }
 .section__handle {
   cursor: move;
@@ -58,7 +59,7 @@
   background: #fff;
 }
 .section__actions {
-  // float: right;
+  float: right;
   padding-top: 2px;
 }
 
