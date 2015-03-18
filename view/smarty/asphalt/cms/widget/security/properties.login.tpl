@@ -12,36 +12,33 @@
             </div>
 
             <div class="tabs__content">
-                <div id="tabWidget" class="tab__pane active">
-                    <div class"form__item form__item--radios">
+                <div id="tabWidget" class="tabs__pane active">
+                    <div class="form__item form__item--radios">
                         <label class="form__label">
                             {call formWidget form=$form row="authenticated" part="referer"}
                             {translate key="label.login.redirect.referer"}
                         </label>
                     </div>
 
-                    <div class"form__item form__item--radios">
+                    <div class="form__item form__item--radios">
                         <label class="form__label">
                             {call formWidget form=$form row="authenticated" part="node"}
                             {translate key="label.login.redirect.node"}
                         </label>
-                    </div>
-
-                    <div class="form__item redirect-type redirect-type-node">
-                        <div class="col-lg-12">
+                        <div class="redirect-type redirect-type-node">
                             {call formWidget form=$form row="node"}
                             {call formWidgetErrors form=$form row="node"}
                         </div>
                     </div>
 
-                    <div class"form__item form__item--radios">
+                    <div class="form__item form__item--radios">
                         <label class="form__label">
                             {call formWidget form=$form row="authenticated" part="render"}
                             {translate key="label.login.render"}
                         </label>
                     </div>
 
-                    <div class"form__item form__item--radios">
+                    <div class="form__item form__item--radios">
                         <label class="form__label">
                             {call formWidget form=$form row="authenticated" part="nothing"}
                             {translate key="label.login.nothing"}
@@ -49,7 +46,7 @@
                     </div>
                 </div>
 
-                <div id="tabView" class="tab__pane">
+                <div id="tabView" class="tabs__pane">
                     {call formRow form=$form row="template"}
                 </div>
             </div>
