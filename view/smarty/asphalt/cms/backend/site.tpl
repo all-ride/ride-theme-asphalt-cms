@@ -12,7 +12,7 @@
     {url var="actionUrl" id="cms.site.add" parameters=["locale" => $locale]}
     {isGranted url=$actionUrl}
     <div class="btn--group dropdown">
-      <button type="button" class="btn btn--default dropdown-toggle" data-toggle="dropdown">
+      <button type="button" class="btn btn--brand dropdown-toggle" data-toggle="dropdown">
         {translate key="button.create"} <i class="icon icon--angle-down"></i>
       </button>
       <ul class="dropdown__menu" role="menu">
