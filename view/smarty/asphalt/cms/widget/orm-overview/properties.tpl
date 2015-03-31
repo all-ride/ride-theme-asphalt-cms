@@ -83,6 +83,7 @@
                     {call formRow form=$form row="template"}
                     {call formRow form=$form row="view-processor"}
                     {call formRow form=$form row="title"}
+                    {call formRow form=$form row="empty-result-view"}
                     {call formRow form=$form row="empty-result-message"}
 
                     <h4 class="pagination-attribute">{translate key="title.pagination"}</h4>
