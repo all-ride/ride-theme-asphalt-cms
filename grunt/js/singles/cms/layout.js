@@ -559,5 +559,22 @@ function initializeContent(baseUrl) {
         });
     });
 
+    // filter widgets
+    var $widgets = $('.widget--compact');
+    $('#filter-widgets').on('keyup', function(e) {
+      if(e.which == 13) {
+        return false;
+      }
+      var value = $(this).val();
+      $widgets.parent().show();
+      var widgets = $widgets.filter(function() {
+        var string = $(this).text(),
+            regexpres = new RegExp(value, 'i'),
+            result = string.search(regexpres);
+
+        return result < 0;
+      }).parent().hide();
+    });
+
     initWidgetOrder(baseUrl);
 }

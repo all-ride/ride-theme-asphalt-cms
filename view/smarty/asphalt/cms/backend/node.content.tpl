@@ -57,6 +57,10 @@
 
                         <p>{translate key="label.widgets.available.description"}</p>
 
+                        <div class="form__item form__item">
+                            <input type="text" class="form__text" placeholder="filter..." autofocus id="filter-widgets" />
+                        </div>
+
                         <div class="grid widget-row">
                         {foreach $availableWidgets as $name => $widget}
                         <div class="grid--bp-med__6" data-widget="{$name}">
@@ -70,9 +74,6 @@
                                 </div>
                             </div>
                         </div>
-                            {if $widget@iteration is div by 2}
-                        </div><div class="grid widget-row">
-                            {/if}
                        {/foreach}
                         </div>
                     </form>
