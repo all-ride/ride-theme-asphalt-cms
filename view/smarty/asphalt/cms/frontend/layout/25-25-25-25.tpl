@@ -1,4 +1,4 @@
-{function name="layout_20_20_20_20" section=null widgets=null}
+{function name="layout_25_25_25_25" section=null widgets=null}
 <div class="grid">
 {$block = '1'}
     <div class="grid__12 grid--bp-sml__6 grid--bp-med__3" id="block-{$section}-{$block}">

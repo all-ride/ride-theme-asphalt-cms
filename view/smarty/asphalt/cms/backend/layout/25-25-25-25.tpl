@@ -1,4 +1,4 @@
-{function name="layout_20_20_20_20" site=null node=null section=null widgets=null inheritedWidgets=null actions=null}
+{function name="layout_25_25_25_25" site=null node=null section=null widgets=null inheritedWidgets=null actions=null}
 <div class="grid">
 {$block = '1'}
     <div class="grid--bp-med__3 block droppable widgets" id="block-{$section}-{$block}" data-section="{$section}" data-block="{$block}">
