@@ -30,6 +30,11 @@
         <ul class="dropdown__menu dropdown__menu--right">
             <li><a href="#" class="widget-add">{translate key="button.widget.add"}</a></li>
             <li>
+                <a href="{url id="cms.node.content.section.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section]}?referer={$app.url.request|urlencode}">
+                    {translate key="label.widget.action.properties"}
+                </a>
+            </li>
+            <li>
                 <a href="{url id="cms.node.content.section.style" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section]}?referer={$app.url.request|urlencode}">
                     {translate key="label.widget.action.style"}
                 </a>
