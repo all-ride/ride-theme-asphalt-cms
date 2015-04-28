@@ -32,15 +32,21 @@
             {if isset($widgets.$region.$section)}
                 {$functionName = "layout-`$layout`"|replace:"-":"_"}
                 {$style = $app.cms.node->getSectionStyle($region, $section)}
-                {$useContainer = $style|strpos:"no-container" === false}
-                {$useContainer|k}
+                {$title = $app.cms.node->getSectionTitle($region, $section, $app.locale)}
+                {$isFullWidth = $app.cms.node->isSectionFullWidth($region, $section)}
                 <div class="section {$style}">
-                    {if $useContainer}
+                    {if $isFullWidth}
+                        {if $title}
+                            <div class="section__title">{$title}</div>
+                        {/if}
+                        {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
+                    {else}
                         <div class="container">
+                            {if $title}
+                                <div class="section__title">{$title}</div>
+                            {/if}
                             {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
                         </div>
-                    {else}
-                        {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
                     {/if}
                 </div>
             {/if}

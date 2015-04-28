@@ -1,6 +1,6 @@
 {extends file="cms/backend/index"}
 
-{block name="head_title" prepend}{translate key="title.section.style"} - {$node->getName($locale)} - {/block}
+{block name="head_title" prepend}{translate key="title.section.properties"} - {$node->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
     {if !$site->isAutoPublish()}
@@ -16,7 +16,7 @@
 
 {block name="content_title" append}
     <div class="page-header">
-        <h1>{$node->getName($locale)} <small>{translate key="title.section.style"}</small></h1>
+        <h1>{$node->getName($locale)} <small>{translate key="title.section.properties"}</small></h1>
     </div>
 {/block}
 
@@ -35,4 +35,5 @@
             </div>
         </div>
     </form>
+
 {/block}
