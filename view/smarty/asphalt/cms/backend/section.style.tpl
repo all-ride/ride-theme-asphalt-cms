@@ -23,19 +23,16 @@
 {block name="content_body" append}
     {include file="base/form.prototype"}
 
-<form class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
-    <fieldset>
-        {call formRows form=$form}
+    <form class="form form-horizontal" action="{$app.url.request}" method="POST" role="form">
+        <div class="form__group">
+            {call formRows form=$form}
 
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
+            <div class="form__actions">
+                <button type="submit" class="btn btn--default">{translate key="button.save"}</button>
                 {if $referer}
-                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
+                    <a href="{$referer}" class="btn btn--link">{translate key="button.cancel"}</a>
                 {/if}
             </div>
         </div>
-    </fieldset>
-</form>
-
+    </form>
 {/block}
