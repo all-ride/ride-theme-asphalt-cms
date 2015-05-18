@@ -4,6 +4,8 @@
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$action}{if $referer}?referer={$referer|urlencode}{/if}" method="POST" role="form">
     <div class="form__group">
+        {call formWidget form=$form row="__action"}
+
         {$errors = $form->getValidationErrors('username')}
         <div class="form-group{if $errors} has-error{/if}">
             <div class="col-lg-12">
