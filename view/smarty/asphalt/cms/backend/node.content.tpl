@@ -61,7 +61,7 @@
                             <input type="text" class="form__text" placeholder="filter..." autofocus id="filter-widgets" />
                         </div>
 
-                        <div class="grid widget-row">
+                        <div class="form__item grid widget-row">
                         {foreach $availableWidgets as $name => $widget}
                         <div class="grid--bp-med__6" data-widget="{$name}">
                             <div class="widget widget--compact">
