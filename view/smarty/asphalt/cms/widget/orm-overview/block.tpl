@@ -6,7 +6,7 @@
 {/if}
 
 {if $filters}
-    {include 'cms/helper/orm.filters.form'}
+    {include 'cms/helper/orm.filter.form'}
 {/if}
 
 {if $result}
