@@ -46,8 +46,8 @@
                 </div>
                 {/if}
             {/if}
-        {/if}
         </div>
+        {/if}
     {/foreach}
 {/if}
 
