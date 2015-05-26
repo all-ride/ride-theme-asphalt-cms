@@ -18,6 +18,7 @@
                     <h4>{translate key="title.condition"}</h4>
                     {call formRow form=$form row="condition"}
                     {call formRow form=$form row="filters"}
+                    {call formRow form=$form row="search"}
 
                     <h4>{translate key="title.order"}</h4>
                     <div class="form-group grid clearfix">
