@@ -1,6 +1,8 @@
 {if isset($filterWidgetId) && isset($app.cms.context["orm.filters.`$filterWidgetId`"])}
     {$bodyComponent = $app.cms.node->get('body.components')}
-    {$app.cms.node->set('body.components', "`$bodyComponent` form")}
+    {if !$bodyComponent|strstr:'form'}
+        {$app.cms.node->set('body.components', "`$bodyComponent` form")}
+    {/if}
     {$filters = $app.cms.context["orm.filters.`$filterWidgetId`"]}
     {$filterUrl = $app.cms.context["orm.filters.`$filterWidgetId`.url"]}
 {/if}

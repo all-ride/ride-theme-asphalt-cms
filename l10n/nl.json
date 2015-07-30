@@ -19,5 +19,6 @@
     "title.entry.add": "Maak een nieuwe entry",
     "title.entry.delete": "Entry verwijderen",
     "title.entry.edit": "Entry bewerken",
-    "title.text": "Tekst"
+    "title.text": "Tekst",
+    "widget.published.not": "Niet gepubliceerd"
 }
