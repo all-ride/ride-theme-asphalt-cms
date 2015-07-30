@@ -6,17 +6,18 @@
     "button.text.existing": "Use a existing text",
     "label.comments.authenticated": "You need to be logged in to post comments.",
     "label.comments.none": "There are no comments.",
-    "label.search.query.provide": "Please provide a search query.",
+    "label.query.search": "Search query",
     "label.search.query.none": "Your search for <em>'%query%'</em> yielded no results.",
+    "label.search.query.provide": "Please provide a search query.",
     "label.search.query.result": "Your search for <em>'%query%'</em> yielded 1 result.",
     "label.search.query.results": "Your search for <em>'%query%'</em> yielded %total% results.",
     "label.show.less": "show less",
     "label.show.more": "show more",
     "label.text.existing.select": "Select a existing text to use it in this text block.",
-    "label.query.search": "Search query",
     "title.cta": "Call To Action",
     "title.entry.add": "Create A New Entry",
     "title.entry.delete": "Delete Entry",
     "title.entry.edit": "Edit Entry",
-    "title.text": "Text"
+    "title.text": "Text",
+    "widget.published.not": "Not published"
 }
