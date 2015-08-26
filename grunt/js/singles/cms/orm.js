@@ -24,25 +24,25 @@ function updateEntryOptions(action, modelInput, entryInput) {
 }
 
 function joppaContentInitializeDetailProperties(uniqueFieldsAction) {
-    $("#form-content-properties-model").change(function() {
+    $("#form-content-properties-form-content-properties-model").change(function() {
         joppaContentUpdateIdFields(uniqueFieldsAction);
     });
 }
 
 function joppaContentInitializeEntryProperties(entriesAction) {
-    $("#form-content-properties-model").change(function() {
-        updateEntryOptions(entriesAction, $('#form-content-properties-model'), $('#form-content-properties-entry'));
+    $("#form-content-properties-form-content-properties-model").change(function() {
+        updateEntryOptions(entriesAction, $('#form-content-properties-form-content-properties-model'), $('#form-content-properties-form-content-properties-entry'));
     });
 }
 
 function joppaContentInitializeOverviewProperties(orderFieldsAction, filterFieldsAction, contentMappersAction) {
-    $("#form-content-properties-model").change(function() {
+    $("#form-content-properties-form-content-properties-model").change(function() {
         joppaContentUpdateContentMappers(contentMappersAction);
         joppaContentUpdateOrderFields(orderFieldsAction);
         joppaContentUpdateFilterFields(filterFieldsAction);
 
-        $("#form-content-properties-condition-expression").val('');
-        $("#form-content-properties-order-expression").val('');
+        $("#form-content-properties-form-content-properties-condition-expression").val('');
+        $("#form-content-properties-form-content-properties-order-expression").val('');
         $('.row-filters .collection-control').remove();
     });
 
@@ -65,28 +65,28 @@ function joppaContentInitializeOverviewProperties(orderFieldsAction, filterField
     });
 
     $("#form-content-properties-order-add").click(function() {
-        var orderField = $("#form-content-properties-order-field").val();
+        var orderField = $("#form-content-properties-form-content-properties-order-field").val();
         if (!orderField) {
             return false;
         }
 
-        orderField = '{' + orderField + '} ' + $("#form-content-properties-order-direction").val();
+        orderField = '{' + orderField + '} ' + $("#form-content-properties-form-content-properties-order-direction").val();
 
-        var orderExpression = $("#form-content-properties-order").val();
+        var orderExpression = $("#form-content-properties-form-content-properties-order").val();
         if (orderExpression) {
             orderExpression += ', ';
         }
 
         orderExpression += orderField;
 
-        $("#form-content-properties-order").val(orderExpression);
-        $("#form-content-properties-order-field").val('');
+        $("#form-content-properties-form-content-properties-order").val(orderExpression);
+        $("#form-content-properties-form-content-properties-order-field").val('');
 
         return false;
     });
 
-    $("#form-content-properties-pagination-enable").change(function() {
-        var usePagination = $("#form-content-properties-pagination-enable").is(':checked');
+    $("#form-content-properties-form-content-properties-pagination-enable").change(function() {
+        var usePagination = $("#form-content-properties-form-content-properties-pagination-enable").is(':checked');
 
         var suffix = usePagination ? ':hidden' : ':visible';
         $("#form-content-properties #tabQuery .pagination-attribute" + suffix).slideToggle('fast');
@@ -100,7 +100,7 @@ function joppaContentInitializeOverviewProperties(orderFieldsAction, filterField
             }
         });
 
-        if ($('#form-content-properties-pagination-show').is(':checked')) {
+        if ($('#form-content-properties-form-content-properties-pagination-show').is(':checked')) {
             if (usePagination) {
                 $("#form-content-properties .pagination-ajax").first().show();
             } else {
@@ -110,7 +110,7 @@ function joppaContentInitializeOverviewProperties(orderFieldsAction, filterField
             $("#form-content-properties .pagination-ajax").first().hide();
         }
 
-        if ($('#form-content-properties-more-show').is(':checked')) {
+        if ($('#form-content-properties-form-content-properties-more-show').is(':checked')) {
             $("#form-content-properties .more-attribute").each(function() {
                 if (usePagination) {
                     $(this).show();
@@ -123,58 +123,58 @@ function joppaContentInitializeOverviewProperties(orderFieldsAction, filterField
         }
     });
 
-    $("#form-content-properties-pagination-show").click(function() {
-        var suffix = $("#form-content-properties-pagination-show").is(':checked') ? ':hidden' : ':visible';
+    $("#form-content-properties-form-content-properties-pagination-show").click(function() {
+        var suffix = $("#form-content-properties-form-content-properties-pagination-show").is(':checked') ? ':hidden' : ':visible';
         $("#form-content-properties .pagination-ajax" + suffix).first().slideToggle('fast');
     });
 
-    $("#form-content-properties-more-show").change(function() {
-        var suffix = $("#form-content-properties-more-show").is(':checked') ? ':hidden' : ':visible';
+    $("#form-content-properties-form-content-properties-more-show").change(function() {
+        var suffix = $("#form-content-properties-form-content-properties-more-show").is(':checked') ? ':hidden' : ':visible';
         $("#form-content-properties #tabView .more-attribute" + suffix).slideToggle('fast');
     });
 
-    $("#form-content-properties-parameters-type-none").click(function() {
+    $("#form-content-properties-form-content-properties-parameters-type-none").click(function() {
         $("#form-content-properties .parameters-enable:visible").slideToggle('fast');
     });
 
-    $("#form-content-properties-parameters-type-numeric").click(function() {
+    $("#form-content-properties-form-content-properties-parameters-type-numeric").click(function() {
         $("#form-content-properties .parameters-named:visible").slideToggle('fast');
         $("#form-content-properties .parameters-numeric:hidden").slideToggle('fast');
         $("#form-content-properties .row-parameters-none:hidden").slideToggle('fast');
     });
 
-    $("#form-content-properties-parameters-type-named").click(function() {
+    $("#form-content-properties-form-content-properties-parameters-type-named").click(function() {
         $("#form-content-properties .parameters-numeric:visible").slideToggle('fast');
         $("#form-content-properties .parameters-named:hidden").slideToggle('fast');
         $("#form-content-properties .row-parameters-none:hidden").slideToggle('fast');
     });
 
-    if (!$("#form-content-properties-pagination-enable").is(':checked')) {
+    if (!$("#form-content-properties-form-content-properties-pagination-enable").is(':checked')) {
         $("#form-content-properties .pagination-attribute").hide();
     }
 
-    if (!$("#form-content-properties-more-show").is(':checked')) {
+    if (!$("#form-content-properties-form-content-properties-more-show").is(':checked')) {
         $("#form-content-properties .more-attribute").hide();
     }
 
-    if (!$("#form-content-properties-pagination-show").is(':checked')) {
+    if (!$("#form-content-properties-form-content-properties-pagination-show").is(':checked')) {
         $("#form-content-properties .pagination-ajax").first().hide();
     }
 
-    if ($("#form-content-properties-parameters-type-none").is(':checked')) {
+    if ($("#form-content-properties-form-content-properties-parameters-type-none").is(':checked')) {
         $("#form-content-properties .parameters-enable").hide();
-    } else if ($("#form-content-properties-parameters-type-named").is(':checked')) {
+    } else if ($("#form-content-properties-form-content-properties-parameters-type-named").is(':checked')) {
         $("#form-content-properties .parameters-enable").not('.parameters-named').not('.row-parameters-none').hide();
-    } else if ($("#form-content-properties-parameters-type-numeric").is(':checked')) {
+    } else if ($("#form-content-properties-form-content-properties-parameters-type-numeric").is(':checked')) {
         $("#form-content-properties .parameters-enable").not('.parameters-numeric').not('.row-parameters-none').hide();
     }
 }
 
 function joppaContentUpdateOrderFields(action) {
-    var model = $("#form-content-properties-model").val();
+    var model = $("#form-content-properties-form-content-properties-model").val();
 
     $.getJSON(action.replace('%25model%25', model).replace('%25recursiveDepth%25', 1), function(data) {
-        var select = $("#form-content-properties-order-field");
+        var select = $("#form-content-properties-form-content-properties-order-field");
         select.empty();
         select.append('<option value="">---</option>');
         for (var key in data.fields) {
@@ -188,7 +188,7 @@ function joppaContentUpdateOrderFields(action) {
 }
 
 function joppaContentUpdateFilterFields(action) {
-    var model = $("#form-content-properties-model").val();
+    var model = $("#form-content-properties-form-content-properties-model").val();
 
     $.getJSON(action.replace('%25model%25', model).replace('%25recursiveDepth%25', 1), function(data) {
         filterFields = data.fields;
@@ -196,10 +196,10 @@ function joppaContentUpdateFilterFields(action) {
 }
 
 function joppaContentUpdateIdFields(action) {
-    var model = $("#form-content-properties-model").val();
+    var model = $("#form-content-properties-form-content-properties-model").val();
 
     $.getJSON(action.replace('%25model%25', model), function(data) {
-        var select = $("#form-content-properties-field-id");
+        var select = $("#form-content-properties-form-content-properties-field-id");
         select.empty();
         for (var key in data.fields) {
             if (data.fields.hasOwnProperty(key)) {
@@ -211,10 +211,10 @@ function joppaContentUpdateIdFields(action) {
 }
 
 function joppaContentUpdateContentMappers(action) {
-    var model = $("#form-content-properties-model").val();
+    var model = $("#form-content-properties-form-content-properties-model").val();
 
     $.getJSON(action.replace('%25model%25', model), function(data) {
-        var select = $("#form-content-properties-content-mapper");
+        var select = $("#form-content-properties-form-content-properties-content-mapper");
 
         select.empty();
         select.append('<option value="">---</option>');
