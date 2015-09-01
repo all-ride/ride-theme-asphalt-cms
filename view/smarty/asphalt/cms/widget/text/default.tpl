@@ -1,5 +1,13 @@
 {* widget: text; action: index; translation: widget.text *}
 
+{function renderCTA cta=null class=''}
+    {if callToAction}
+        <a href="{$cta->getUrl()}{$cta->getSuffix()}" class="{class} cta{if $cta->getType()} cta-{$cta->getType()}{/if}">
+            {$cta->getLabel()|text}
+        </a>
+    {/if}
+{/function}
+
 <div class="widget widget-text text {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
     {if $title}
         {$title = $title|text}
@@ -27,18 +35,21 @@
                 <img src="{image src=$image width=300 height=300 transformation="resize"}" class="{$imageClass}" />
                 {$html|text}
                 {foreach $callToActions as $callToAction}
-                    <a href="{$callToAction->getUrl()}" class="cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a>
+                    {call renderCTA cta=$callToAction}
+                    {* <a href="{$callToAction->getUrl()}" class="cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a> *}
                 {/foreach}
             {else}
                 <img src="{image src=$image width=300 height=300 transformation="resize"}" class="{$imageClass}" />
                 {foreach $callToActions as $callToAction}
-                    <a href="{$callToAction->getUrl()}" class="cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a>
+                    {call renderCTA cta=$callToAction}
+                    {* <a href="{$callToAction->getUrl()}" class="cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a> *}
                 {/foreach}
             {/if}
         {else}
             {$html|text}
             {foreach $callToActions as $callToAction}
-                <a href="{$callToAction->getUrl()}" class="text__cta cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a>
+                {call renderCTA cta=$callToAction class="text__cta"}
+                {* <a href="{$callToAction->getUrl()}" class="text__cta cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a> *}
             {/foreach}
         {/if}
     </div>
