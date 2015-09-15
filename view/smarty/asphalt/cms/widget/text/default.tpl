@@ -2,7 +2,7 @@
 
 {function renderCTA cta=null class=''}
     {if callToAction}
-        <a href="{$cta->getUrl()}{$cta->getSuffix()}" class="{class} cta{if $cta->getType()} cta-{$cta->getType()}{/if}">
+        <a href="{$cta->getUrl()}{$cta->getSuffix()}" class="{$class} cta{if $cta->getType()} cta-{$cta->getType()}{/if}">
             {$cta->getLabel()|text}
         </a>
     {/if}
