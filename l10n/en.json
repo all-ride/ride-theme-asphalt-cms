@@ -19,5 +19,6 @@
     "title.entry.delete": "Delete Entry",
     "title.entry.edit": "Edit Entry",
     "title.text": "Text",
+    "widget.orm.entry.default": "Entry default",
     "widget.published.not": "Not published"
 }

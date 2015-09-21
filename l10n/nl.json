@@ -20,5 +20,6 @@
     "title.entry.delete": "Entry verwijderen",
     "title.entry.edit": "Entry bewerken",
     "title.text": "Tekst",
+    "widget.orm.entry.default": "Entry default",
     "widget.published.not": "Niet gepubliceerd"
 }
