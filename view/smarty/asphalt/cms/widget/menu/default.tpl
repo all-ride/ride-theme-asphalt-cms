@@ -12,7 +12,7 @@
             {continue}
         {/if}
 
-        {if $node->isPublished() && $nodeTypes[$node->getType()]->getFrontendCallback() && $node->isAvailableInLocale($app.locale) && $node->isAllowed($app.user)}
+        {if $node->isPublished() && $nodeTypes[$node->getType()]->getFrontendCallback() && $node->isAvailableInLocale($app.locale) && $node->isAllowed($app.security)}
         <li class="{if $node@first}first {/if}{cycle values="even,odd" name=$prefix}{if $app.cms.node->hasParent($node->getId())} active-trail{elseif $app.cms.node->getId() == $node->getId()} active{/if}{if $node@last} last{/if}">
             <a href="{$app.url.script}{$node->getRoute($app.locale)}"><span>{$node->getName($app.locale, "menu")}</span></a>
             {if $node->getChildren() && $depth > 1}
