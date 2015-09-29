@@ -50,6 +50,13 @@
                     <button type="button" class="close btn btn--default" data-dismiss="modal"><i class="icon icon--times" aria-hidden="true"></i> <span class="sr-only">{translate key="button.close"}</span></button>
                     <h4 class="modal-title" id="modalWidgetAddLabel">{translate key="button.widget.add"}</h4>
                 </div>
+                <div class="modal-header clearfix">
+                    <div class="pull--right">
+                        <button type="button" class="btn btn--link" data-dismiss="modal">{translate key="button.cancel"}</button>
+                        <button type="button" class="btn btn--default widget-add-submit">{translate key="button.add"}</button>
+                        <button type="button" class="btn btn--default widget-add-submit-close">{translate key="button.add.close"}</button>
+                    </div>
+                </div>
                 <div class="modal-body">
                     <form action="#" class="form-widget-add">
                         <input name="section" type="hidden" />
