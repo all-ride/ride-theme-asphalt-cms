@@ -12,8 +12,9 @@
 
             <div class="tabs__content">
                 <div id="tabWidget" class="tabs__pane active">
-                    {call formRow form=$form row="recipient"}
                     {call formRow form=$form row="subject"}
+                    {call formRow form=$form row="recipient"}
+                    {call formRow form=$form row="bcc"}
                     {call formRow form=$form row="finishNode"}
                 </div>
 
