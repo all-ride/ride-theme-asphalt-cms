@@ -32,3 +32,7 @@
 </form>
 
 {/block}
+
+{block name="scripts" append}
+    <script src="{$app.url.base}/asphalt/js/form.js"></script>
+{/block}
