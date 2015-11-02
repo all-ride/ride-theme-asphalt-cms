@@ -92,6 +92,13 @@
   img {
     vertical-align: middle;
   }
+  &.inherited {
+    background-color: rgba(255, 215, 0, 0.125);
+    .icon--exclamation-circle {
+      margin-right: 5px;
+      color: #6D5F14;
+    }
+  }
 }
 .widget--button {
   background: #fff;
