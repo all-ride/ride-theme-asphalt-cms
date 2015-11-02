@@ -53,12 +53,15 @@
 {/function}
 
 {function name="widgetPanel" site=null node=null widget=null widgetId=null inheritedWidgets=$inheritedWidgets actions=$actions}
-<div class="widget {if isset($inheritedWidgets[$widgetId])} inherited{/if} clearfix" data-widget="{$widgetId}">
+<div class="widget{if isset($inheritedWidgets[$widgetId])} inherited{/if} clearfix" data-widget="{$widgetId}">
     <div class="widget__header clearfix">
         <div class="widget__handle">
             <div class="handle"><i class="icon icon--arrows"></i></div>
         </div>
         <div class="widget__actions text-right dropdown">
+            {if isset($inheritedWidgets[$widgetId])}
+            <i class="icon icon--exclamation-circle"></i>
+            {/if}
             <a href="#" class="dropdown" data-toggle="dropdown"><i class="icon icon--cog"></i></a>
             <ul class="dropdown__menu dropdown__menu--right">
                 {$actionsAvailable = false}
