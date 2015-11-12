@@ -3,8 +3,8 @@
     'page' => 'file-o',
     'folder' => 'folder-open-o',
     'entry' => 'hdd-o',
-    'reference' => 'retweet',
-    'redirect' => 'share-square-o'
+    'reference' => 'share-square-o',
+    'redirect' => 'refresh'
 ]}
 
 {function name="renderTreeNode" treeNode=null level=null treeIcons=null}
