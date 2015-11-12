@@ -70,6 +70,7 @@
 
                         <div class="form__item grid widget-row">
                         {foreach $availableWidgets as $name => $widget}
+                            {isGranted permission="cms.widget.`$name`.manage"}
                         <div class="grid--bp-med__6" data-widget="{$name}">
                             <div class="widget widget--compact">
                                 <div class="radio">
@@ -81,6 +82,7 @@
                                 </div>
                             </div>
                         </div>
+                            {/isGranted}
                        {/foreach}
                         </div>
                     </form>
