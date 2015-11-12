@@ -24,10 +24,10 @@
                     <div class="form-group grid clearfix">
                         <label class="grid--bp-med__2 control-label">{translate key="label.order.field"}</label>
                         <div class="grid--bp-med__10">
-                            {call formWidget form=$form row="order-field"}
-                            {call formWidget form=$form row="order-direction"}
+                            {call formWidget form=$form row="order-field" class="form__select--inline"}
+                            {call formWidget form=$form row="order-direction" class="form__select--inline"}
                             <button class="btn btn--default btn-order-add" id="form-content-properties-order-add">{translate key="button.add"}</button>
-                            <span class="help-block">{translate key="label.order.field.description"}</span>
+                            <div class="help-block">{translate key="label.order.field.description"}</div>
                         </div>
                     </div>
 

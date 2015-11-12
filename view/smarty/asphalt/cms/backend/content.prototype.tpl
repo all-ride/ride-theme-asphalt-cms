@@ -83,6 +83,10 @@
             <div class="handle"><i class="icon icon--arrows"></i></div>
         </div>
         <div class="widget__actions text-right dropdown">
+            {if isset($inheritedWidgets[$widgetId])}
+                <i class="icon icon--exclamation-circle"></i>
+            {/if}
+
             {if $availableActions}
             <a href="#" class="dropdown" data-toggle="dropdown"><i class="icon icon--cog"></i></a>
             <ul class="dropdown__menu dropdown__menu--right">

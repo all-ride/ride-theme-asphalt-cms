@@ -19,6 +19,7 @@
                     {call formRow form=$form row="template"}
                     {call formRow form=$form row="view-processor"}
                     {call formRow form=$form row="title"}
+                    {call formRow form=$form row="breadcrumb"}
 
                     <h4>{translate key="title.formats.data"}</h4>
 
