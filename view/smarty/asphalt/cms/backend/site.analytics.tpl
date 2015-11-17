@@ -26,8 +26,6 @@
     {include file="base/form.prototype"}
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data" class="form">
         <div class="form__group">
-            <h3>{translate key="title.meta.general"}</h3>
-
             {call formRows form=$form}
 
             {call formActions referer=$referer}
