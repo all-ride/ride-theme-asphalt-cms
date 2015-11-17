@@ -30,6 +30,8 @@
             {call formRow form=$form row='gtm_id'}
             {call formRow form=$form row='ga_id'}
 
+            {call formRows form=$form}
+
             {call formActions referer=$referer}
         </div>
     </form>
