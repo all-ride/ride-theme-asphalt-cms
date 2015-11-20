@@ -23,6 +23,8 @@
 {block name="content_body" append}
     {include file="base/form.prototype"}
 
+    {isGranted permission="cms.node.varnish.manage" var="isGranted"}{/isGranted}
+    {if $isGranted}
     <h3>{translate key="title.headers"}</h3>
 
     <form id="{$formHeaders->getId()}" action="{$app.url.request}" method="POST" role="form" class="form grid">
@@ -32,6 +34,7 @@
             {call formActions referer=$referer}
         </div>
     </form>
+    {/if}
 
     <h3>{translate key="title.cache.clear"}</h3>
 
