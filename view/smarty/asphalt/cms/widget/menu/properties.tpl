@@ -11,19 +11,18 @@
             </div>
 
             <div class="tabs__content">
-                <div id="tabWidget" class="tabs__pane active">
-                    {call formRow form=$form row="node"}
-                    {call formRow form=$form row="depth"}
+                <div id="tabView" class="tabs__pane">
+                    {call formRow form=$form row="template"}
+                    {call formRow form=$form row="title-show"}
                     {call formRow form=$form row="title"}
                 </div>
 
-                <div id="tabView" class="tabs__pane">
-                    {call formRow form=$form row="template"}
+                <div id="tabWidget" class="tabs__pane active">
+                    {call formRows form=$form}
                 </div>
             </div>
         </div>
 
-        {call formRows form=$form}
 
         <div class="form__actions">
             <button type="submit" class="btn btn--default">{translate key="button.save"}</button>
