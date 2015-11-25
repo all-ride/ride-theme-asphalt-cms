@@ -17,7 +17,7 @@
 {block name="content_body" append}
     <div class="btn--group">
     {foreach $actions as $url => $dataAction}
-        <a href="{$url}" class="btn btn--default">{$dataAction}</a>
+        <a href="{$url}" class="btn btn--brand">{$dataAction}</a>
     {/foreach}
     </div>
 
