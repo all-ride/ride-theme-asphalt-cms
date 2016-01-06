@@ -35,9 +35,37 @@
 
     <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
         <div class="form__group">
+            {call formRow form=$form row="name"}
+
+            <div class="form__group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <a href="#" class="btn-alternate-names">{translate key="button.names.alternate"}</a>
+                </div>
+            </div>
+
+            <div class="alternate-names">
+                {call formRow form=$form row="name-title"}
+                {call formRow form=$form row="name-menu"}
+                {call formRow form=$form row="name-breadcrumb"}
+            </div>
+
             {call formRows form=$form}
 
             {call formActions referer=$referer}
         </div>
     </form>
+{/block}
+
+{block name="scripts" append}
+    <script src="{$app.url.base}/asphalt/js/form.js"></script>
+    <script>
+        $(function() {
+            $('.btn-alternate-names').click(function() {
+                $('.alternate-names').toggle();
+
+                return false;
+            });
+        });
+        $('.alternate-names').hide();
+    </script>
 {/block}
