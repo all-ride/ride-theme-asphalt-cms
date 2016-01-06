@@ -43,7 +43,6 @@
                 </div>
             </div>
 
-
             <div class="alternate-names">
                 {call formRow form=$form row="name-title"}
                 {call formRow form=$form row="name-menu"}
