@@ -26,6 +26,10 @@
 
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form" class="form grid">
         <div class="form__group grid--bp-med__10">
+            {if $form->hasRow('availableLocales')}
+                {call formRow form=$form row="availableLocales"}
+            {/if}
+
             {call formRow form=$form row="published"}
 
             <div class="grid">
