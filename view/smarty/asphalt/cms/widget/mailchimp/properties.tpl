@@ -15,7 +15,7 @@
 
             <div class="tabs__content">
                 <div id="tabWidget" class="tabs__pane active">
-                    {call formRow form=$form row="title.{$app.locale}"}
+                    {call formRow form=$form row="title"}
                     {call formRow form=$form row="apikey"}
                     {call formRow form=$form row="listid"}
                 </div>
