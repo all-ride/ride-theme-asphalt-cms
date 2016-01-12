@@ -37,7 +37,7 @@
     {/if}
 
     <div class="site-tree">
-        <div class="loading"></div>
+        <div class="loading tree-spinner"></div>
     </div>
 {/block}
 
@@ -47,13 +47,16 @@
     {if isset($site)}
     <script type="text/javascript">
         $(function() {
-            joppaInitializeNodeTree(
-                '{url id="cms.site.tree" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}{if isset($referer)}?referer={$referer|urlencode}{/if}',
-                '{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}',
-                '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
-                {$collapsedNodes},
-                {if isset($node)}'{$node->getId()}'{else}null{/if}
-            );
+            // push the tree intializer to the end of the event queu
+            setTimeout(function() {
+                joppaInitializeNodeTree(
+                    '{url id="cms.site.tree" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}{if isset($referer)}?referer={$referer|urlencode}{/if}',
+                    '{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}',
+                    '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
+                    {$collapsedNodes},
+                    {if isset($node)}'{$node->getId()}'{else}null{/if}
+                )
+            }, 0);
         });
     </script>
     {/if}
