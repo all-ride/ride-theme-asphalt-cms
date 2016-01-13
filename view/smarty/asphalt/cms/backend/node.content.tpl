@@ -65,7 +65,7 @@
                         <p>{translate key="label.widgets.available.description"}</p>
 
                         <div class="form__item form__item">
-                            <input type="text" class="form__text" placeholder="filter..." autofocus id="filter-widgets" />
+                            <input type="text" class="form__text" placeholder="filter..." autocomplete="off" autofocus id="filter-widgets" />
                         </div>
 
                         <div class="form__item grid widget-row">
