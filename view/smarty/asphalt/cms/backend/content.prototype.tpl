@@ -84,7 +84,7 @@
         </div>
         <div class="widget__actions text-right dropdown">
             {if isset($inheritedWidgets[$widgetId])}
-                <i class="icon icon--exclamation-circle"></i>
+                <i class="icon icon--exclamation-circle" title="{translate key="warning.widget.inherited"}"></i>
             {/if}
 
             {if $availableActions}
@@ -129,6 +129,9 @@
         {$widget->getPropertiesPreview()}
         {if !$widget->getProperties()->isPublished()}
             <span class="label label--warning">{translate key="widget.published.not"}</span>
+        {/if}
+        {if $widget->getProperties()->getAvailableLocales()|is_array}
+            <span class="label label--warning">{translate key="widget.locales.available"}: {', '|implode:$widget->getProperties()->getAvailableLocales()}</span>
         {/if}
     </div>
 </div>
