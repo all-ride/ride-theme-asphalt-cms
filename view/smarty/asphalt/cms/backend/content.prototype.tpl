@@ -74,7 +74,7 @@
         {/if}
 
         {$deleteAction = ["label" => "button.delete"|translate, "class" => "widget-delete", "data-confirm" => "label.confirm.widget.delete"|translate|escape]}
-        {$availableActions[$actionUrl] = $deleteAction}
+        {$availableActions[(string) $actionUrl] = $deleteAction}
     {/if}
 
 <div class="widget{if isset($inheritedWidgets[$widgetId])} inherited{/if}{if !$availableActions} locked{/if} clearfix" data-widget="{$widgetId}">
@@ -109,7 +109,7 @@
             {/if}
         </div>
         <div class="widget__title text-left">
-            <img src="{image src=$widget->getIcon() default="bootstrap/img/cms/widget.png"}" />
+            <img src="{image src=$widget->getIcon() default="asphalt/img/cms/widget.png"}" />
             {$name = $widget->getName()}
             {if $widget->getPropertiesCallback()}
                 {isGranted permission="cms.widget.`$name`.properties"}

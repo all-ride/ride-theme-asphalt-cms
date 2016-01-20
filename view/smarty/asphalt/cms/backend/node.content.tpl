@@ -76,7 +76,7 @@
                                 <div class="radio">
                                     <label>
                                         <input name="widget" value="{$name}" type="radio">
-                                        <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
+                                        <img src="{image src=$widget->getIcon() default="asphalt/img/cms/widget.png"}" class="handle" />
                                         {translate key="widget.`$name`"}
                                     </label>
                                 </div>
