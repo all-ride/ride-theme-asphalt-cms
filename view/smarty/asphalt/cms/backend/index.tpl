@@ -50,7 +50,7 @@
             // push the tree intializer to the end of the event queu
             setTimeout(function() {
                 joppaInitializeNodeTree(
-                    '{url id="cms.site.tree" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}{if isset($referer)}?referer={$referer|urlencode}{/if}',
+                    '{url id="cms.site.tree" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}?date={$site->getDateModified()}',
                     '{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}',
                     '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
                     {$collapsedNodes},
