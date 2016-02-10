@@ -361,7 +361,7 @@ function initializeContent(baseUrl) {
             $buttonWidgetAddAndClose.removeAttr('disabled');
         });
 
-        handleXHRCallback(jqxhr, 'Widget added', 'Could not add widget');
+        rideApp.common.handleXHRCallback(jqxhr, 'Widget added', 'Could not add widget');
     };
 
     // perform the order update to the cms
@@ -396,7 +396,7 @@ function initializeContent(baseUrl) {
         // post the order the cms
         var jqxhr = $.post(baseUrl + '/order', {order: order}, function(data) {
         });
-        handleXHRCallback(jqxhr, 'Order updated', 'Could not update order');
+        rideApp.common.handleXHRCallback(jqxhr, 'Order updated', 'Could not update order');
     }
 
     // initialize the sortable for the widgets
@@ -458,7 +458,7 @@ function initializeContent(baseUrl) {
             $('.section:last', $sections).scrollTop();
         });
 
-        handleXHRCallback(jqxhr, 'Section added', 'Could not add section');
+        rideApp.common.handleXHRCallback(jqxhr, 'Section added', 'Could not add section');
     });
 
     // delete a section
@@ -481,7 +481,7 @@ function initializeContent(baseUrl) {
             }
         });
 
-        handleXHRCallback(jqxhr, 'Section removed', 'Could not remove section');
+        rideApp.common.handleXHRCallback(jqxhr, 'Section removed', 'Could not remove section');
     });
 
     // change section layout
@@ -496,7 +496,7 @@ function initializeContent(baseUrl) {
 
             initWidgetOrder(baseUrl, true);
         });
-        handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
+        rideApp.common.handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
     });
 
     // add widget with double click
@@ -564,7 +564,7 @@ function initializeContent(baseUrl) {
             }
         });
 
-        handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
+        rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
     // filter widgets
@@ -585,22 +585,4 @@ function initializeContent(baseUrl) {
     });
 
     initWidgetOrder(baseUrl);
-
-    /**
-     * handle the XHR callbacks
-     */
-    var handleXHRCallback = function(jqxhr, successMsg, errorMsg) {
-      if (alertify !== undefined) {
-        jqxhr.done(function() {
-          alertify
-            .logPosition("bottom right")
-            .success(successMsg);
-        });
-        jqxhr.fail(function() {
-          alertify
-            .logPosition("bottom right")
-            .error(errorMsg);
-        });
-      }
-    }
 }
