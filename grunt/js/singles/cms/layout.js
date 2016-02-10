@@ -322,7 +322,6 @@
   })
 }(jQuery);
 
-
 function initializeContent(baseUrl) {
     var $document = $(document);
     var $formWidgetAdd = $('.form-widget-add');
@@ -352,7 +351,7 @@ function initializeContent(baseUrl) {
         $buttonWidgetAdd.attr('disabled', 'disabled');
         $buttonWidgetAddAndClose.attr('disabled', 'disabled');
 
-        $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
+        var jqxhr = $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
             $lockedWidget = $block.find('.widget--locked');
             $lockedWidget.before(html);
 
@@ -361,6 +360,8 @@ function initializeContent(baseUrl) {
             $buttonWidgetAdd.removeAttr('disabled');
             $buttonWidgetAddAndClose.removeAttr('disabled');
         });
+
+        handleXHRCallback(jqxhr, 'Widget added', 'Could not add widget');
     };
 
     // perform the order update to the cms
@@ -393,9 +394,9 @@ function initializeContent(baseUrl) {
         });
 
         // post the order the cms
-        $.post(baseUrl + '/order', {order: order}, function(data) {
-
+        var jqxhr = $.post(baseUrl + '/order', {order: order}, function(data) {
         });
+        handleXHRCallback(jqxhr, 'Order updated', 'Could not update order');
     }
 
     // initialize the sortable for the widgets
@@ -442,7 +443,7 @@ function initializeContent(baseUrl) {
         e.preventDefault();
         var method = $(this).data('method');
 
-        $.post(baseUrl + '/sections', function(html) {
+        var jqxhr = $.post(baseUrl + '/sections', function(html) {
             switch(method) {
               case 'prepend':
                 $sections.prepend(html);
@@ -456,6 +457,8 @@ function initializeContent(baseUrl) {
 
             $('.section:last', $sections).scrollTop();
         });
+
+        handleXHRCallback(jqxhr, 'Section added', 'Could not add section');
     });
 
     // delete a section
@@ -468,7 +471,7 @@ function initializeContent(baseUrl) {
         }
 
         var $section = $this.closest('.section');
-        $.ajax({
+        var jqxhr = $.ajax({
             url: baseUrl + '/sections/' + $section.data('section'),
             type: 'DELETE',
             success: function(result) {
@@ -477,6 +480,8 @@ function initializeContent(baseUrl) {
                 initWidgetOrder(baseUrl, true);
             }
         });
+
+        handleXHRCallback(jqxhr, 'Section removed', 'Could not remove section');
     });
 
     // change section layout
@@ -486,11 +491,12 @@ function initializeContent(baseUrl) {
         var $this = $(this);
         var $section = $this.closest('.section');
 
-        $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
+        var jqxhr = $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
             $section.replaceWith(html);
 
             initWidgetOrder(baseUrl, true);
         });
+        handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
     });
 
     // add widget with double click
@@ -550,13 +556,15 @@ function initializeContent(baseUrl) {
         var $block = $this.closest('.block');
         var $widget = $this.closest('.widget');
 
-        $.ajax({
+        var jqxhr = $.ajax({
             url: baseUrl + '/sections/' + $section.data('section') + '/block/' + $block.data('block') + '/widget/' + $widget.data('widget'),
             type: 'DELETE',
             success: function(result) {
                 $widget.remove();
             }
         });
+
+        handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
     // filter widgets
@@ -577,4 +585,22 @@ function initializeContent(baseUrl) {
     });
 
     initWidgetOrder(baseUrl);
+
+    /**
+     * handle the XHR callbacks
+     */
+    var handleXHRCallback = function(jqxhr, successMsg, errorMsg) {
+      if (alertify !== undefined) {
+        jqxhr.done(function() {
+          alertify
+            .logPosition("bottom right")
+            .success(successMsg);
+        });
+        jqxhr.fail(function() {
+          alertify
+            .logPosition("bottom right")
+            .error(errorMsg);
+        });
+      }
+    }
 }
