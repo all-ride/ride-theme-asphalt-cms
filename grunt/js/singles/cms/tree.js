@@ -51,11 +51,14 @@ function joppaInitializeNodeTree(nodeTreeAction, nodeToggleAction, nodeOrderActi
                 $tree
                   .nestedSortable('destroy')
                   .addClass('disabled');
-                $.post(nodeOrderAction, {data: order}, function(data) {
+
+                var jqxhr = $.post(nodeOrderAction, {data: order}, function(data) {
                   $tree
                     .nestedSortable(nestedSortableConfig)
                     .removeClass('disabled');
                 });
+
+                rideApp.common.handleXHRCallback(jqxhr, 'Tree updated', 'Could not update tree');
             }
         };
         $tree.nestedSortable(nestedSortableConfig);
