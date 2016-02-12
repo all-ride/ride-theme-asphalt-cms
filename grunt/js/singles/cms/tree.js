@@ -58,6 +58,12 @@ function joppaInitializeNodeTree(nodeTreeAction, nodeToggleAction, nodeOrderActi
                     .removeClass('disabled');
                 });
 
+                // rideApp.xhrhandle.request(nodeOrderAction, 'post', {data: order}, function(data) {
+                //   $tree
+                //     .nestedSortable(nestedSortableConfig)
+                //     .removeClass('disabled');
+                // });
+
                 rideApp.common.handleXHRCallback(jqxhr, 'Tree updated', 'Could not update tree');
             }
         };
