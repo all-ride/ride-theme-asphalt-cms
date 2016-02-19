@@ -18,6 +18,8 @@
     <div class="page-header">
         <h1>{$node->getName($locale)} <small>{translate key="title.node.varnish"}</small></h1>
     </div>
+    {include 'cms/helper/node.actions'}
+    {renderNodeActions actions=$nodeActions current='varnish'}
 {/block}
 
 {block name="content_body" append}

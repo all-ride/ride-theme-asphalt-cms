@@ -17,8 +17,10 @@
 {block name="content_title" append}
     <div class="page-header">
         <h1>{$node->getName($locale)} <small>{translate key="title.node.advanced"}</small></h1>
-        <a href="{$node->getUrl($locale, $app.url.script)}">{$app.url.script}{$node->getRoute($locale)}</a>
+        {* <a href="{$node->getUrl($locale, $app.url.script)}">{$app.url.script}{$node->getRoute($locale)}</a> *}
     </div>
+    {include 'cms/helper/node.actions'}
+    {renderNodeActions actions=$nodeActions current='advanced'}
 {/block}
 
 {block name="content_body" append}
