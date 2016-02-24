@@ -22,6 +22,7 @@
                 <div id="tabView" class="tabs__pane">
                     {call formRow form=$form row="template"}
                     {call formRow form=$form row="finishNode"}
+                    {call formRow form=$form row="errorNode"}
                 </div>
                 <div id="tabFields" class="tabs__pane">
                     {call formRows form=$form}
