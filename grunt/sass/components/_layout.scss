@@ -99,6 +99,9 @@
       color: #6D5F14;
     }
   }
+  &.locked {
+    opacity: .6;
+  }
 }
 .widget--button {
   background: #fff;
