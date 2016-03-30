@@ -15,18 +15,18 @@
 {block name="content_body" append}
     {include file="base/form.prototype"}
 
-    <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
+    <form id="{$form->getId()}" class="form-horizontal form form--selectize" action="{$app.url.request}" method="POST" role="form">
         <div class="form__group">
             {call formRows form=$form}
 
-            <div class="form__group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn--default">{translate key="button.save"}</button>
-                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                    {if $urlDelete}
-                        <a href="{$urlDelete}" class="btn">{translate key="button.theme.delete"}</a>
-                    {/if}
-                </div>
+            <div class="form__actions">
+                <button type="submit" class="btn btn--brand">{translate key="button.save"}</button>
+                {if $urlDelete}
+                    <a href="{$urlDelete}" class="btn btn--danger">{translate key="button.theme.delete"}</a>
+                {/if}
+                {if $referer}
+                    <a href="{$referer}" class="btn btn--link">{translate key="button.cancel"}</a>
+                {/if}
             </div>
         </div>
     </form>
