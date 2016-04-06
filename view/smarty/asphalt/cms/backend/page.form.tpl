@@ -50,7 +50,11 @@
             </div>
 
             {call formRow form=$form row="route"}
-            {call formRow form=$form row="theme"}
+
+            {$rows = $form->getRows()}
+            {if isset($rows["theme"]) }
+                {call formRow form=$form row="theme"}
+            {/if}
 
             {call formRows form=$form}
 

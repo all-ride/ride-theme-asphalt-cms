@@ -1,4 +1,4 @@
-{extends file="base/index.sidebar"}
+{extends file="base/index"}
 
 {block name="head_title" prepend}{translate key="title.sites"} - {/block}
 
@@ -8,24 +8,15 @@
     </div>
 {/block}
 
-{block name="sidebar" append}
-    {url var="actionUrl" id="cms.site.add" parameters=["locale" => $locale]}
-    {isGranted url=$actionUrl}
-    <div class="btn--group dropdown">
-      <button type="button" class="btn btn--brand dropdown-toggle" data-toggle="dropdown">
-        {translate key="button.create"} <i class="icon icon--angle-down"></i>
-      </button>
-      <ul class="dropdown__menu" role="menu">
-        <li><a href="{$actionUrl}">{translate key="label.node.type.site"}</a></li>
-    </ul>
-    </div>
-    {/isGranted}
-{/block}
-
 {block name="content_body" append}
     <ul>
     {foreach $sites as $site}
         <li><a href="{$site.url}">{$site.name}</a></li>
     {/foreach}
     </ul>
+
+    {url var="actionUrl" id="cms.site.add" parameters=["locale" => $locale]}
+    {isGranted url=$actionUrl}
+        <a href="{$actionUrl}" class="btn btn--brand"><i class="icon icon--plus"></i> {translate key="button.site.add"}</a>
+    {/isGranted}
 {/block}
