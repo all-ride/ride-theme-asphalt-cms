@@ -5,28 +5,42 @@
         <div class="tabbable">
             <ul class="tabs">
                 <li class="tabs__tab active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
-                <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+                {if $form->hasRow('model')}
+                    <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+                {/if}
             </ul>
 
             <div class="tabs__content">
                 <div id="tabQuery" class="tabs__pane active">
-                    {call formRow form=$form row="model"}
+                    {if $form->hasRow('model')}
+                        {call formRow form=$form row="model"}
+                    {/if}
                     {call formRow form=$form row="entry"}
-                    {call formRow form=$form row="include-unlocalized"}
+                    {if $form->hasRow('include-unlocalized')}
+                        {call formRow form=$form row="include-unlocalized"}
+                    {/if}
                 </div>
 
                 <div id="tabView" class="tabs__pane">
-                    {call formRow form=$form row="template"}
-                    {call formRow form=$form row="view-processor"}
-                    {call formRow form=$form row="title"}
-                    {call formRow form=$form row="breadcrumb"}
+                    {if $form->hasRow('template')}
+                        {call formRow form=$form row="template"}
+                    {/if}
+                    {if $form->hasRow('view-processor')}
+                        {call formRow form=$form row="view-processor"}
+                    {/if}
+                    {if $form->hasRow('title' && $form->hasRow('breadcrumb'))}
+                        {call formRow form=$form row="title"}
+                        {call formRow form=$form row="breadcrumb"}
+                    {/if}
 
-                    <h4>{translate key="title.formats.data"}</h4>
+                    {if $form->hasRow('format-title')}
+                        <h4>{translate key="title.formats.data"}</h4>
 
-                    {call formRow form=$form row="format-title"}
-                    {call formRow form=$form row="format-teaser"}
-                    {call formRow form=$form row="format-image"}
-                    {call formRow form=$form row="format-date"}
+                        {call formRow form=$form row="format-title"}
+                        {call formRow form=$form row="format-teaser"}
+                        {call formRow form=$form row="format-image"}
+                        {call formRow form=$form row="format-date"}
+                    {/if}
                 </div>
             </div>
         </div>

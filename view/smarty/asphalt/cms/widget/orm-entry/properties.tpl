@@ -13,7 +13,9 @@
 
             <div class="tabs__content">
                 <div id="tabQuery" class="tabs__pane active">
-                    {call formRow form=$form row="model"}
+                    {if $form->hasRow('model')}
+                        {call formRow form=$form row="model"}
+                    {/if}
                     {call formRow form=$form row="field-id"}
                     {call formRow form=$form row="include-unlocalized"}
                 </div>
