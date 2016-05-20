@@ -5,10 +5,7 @@
 }
 
 .section__content {
-  padding: 0 10px;
-  border: 1px solid #ccc;
-  // border-left: 0;
-  border-top: 0;
+  padding: 0 12px;
 }
 .section__content .grid {
   display: -webkit-flex;
@@ -25,42 +22,70 @@
   }
 }
 
-
 .panel-heading {
-  // position: absolute;
-  // top: 0;
-  // bottom: 0;
-  // left: 0;
-  // width: 35px;
-  padding: 3px;
-  border: 1px solid #aaa;
-  background: #c4c5c6;
+  padding: 6px;
+  background: #d7d7d7;
+}
+.panel-heading {
+  display: flex;
+  flex-flow: row nowrap;
   text-align: center;
 }
 .section__handle,
 .section__layouts {
   float: left;
-  margin-right: 10px;
+  margin-right: 6px;
+}
+.section__layouts {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  .layout {
+    display: block;
+    padding: 2px;
+    float: left;
+    color: #fff;
+    text-decoration: none;
+    + .layout {
+      margin-left: 6px;
+    }
+    &.layout-active {
+      background: #3498db;
+    }
+  }
 }
 .section__handle {
+  line-height: 24px;
+  width: 24px;
+  text-align: center;
   cursor: move;
-  padding-top: 2px;
-}
-.section__layouts a {
-  text-decoration: none;
-  display: inline-block;
-  border: 1px solid transparent;
-}
-.section__layouts a.layout-active {
-  border-color: #76B5ED;
 }
 .section__layouts img {
   vertical-align: middle;
   background: #fff;
 }
 .section__actions {
+  display: flex;
+  flex-flow: row nowrap;
   float: right;
+  margin-left: auto;
   padding-top: 2px;
+  .action {
+    line-height: 24px;
+    width: 24px;
+    text-align: center;
+    display: inline-block;
+    &, &:active {
+      color: #888;
+    }
+    &:hover,
+    &:focus {
+      color: #555;
+    }
+    + .action {
+      margin-left: 6px;
+    }
+  }
 }
 
 #region .droppable {
@@ -80,10 +105,10 @@
 }
 
 .widget {
-  background: transparent url(../img/cms/widget.background.png) repeat-y;
+  background: white;
   list-style: none;
   border: 1px solid #CCC;
-  padding: 7px 7px;
+  padding: 6px;
   label {
     cursor: pointer;
     display: block;
@@ -91,6 +116,7 @@
   }
   img {
     vertical-align: middle;
+    margin-right: 6px;
   }
   &.inherited {
     background-color: rgba(255, 215, 0, 0.125);
@@ -102,32 +128,39 @@
   &.locked {
     opacity: .6;
   }
-}
-.widget--button {
-  background: #fff;
-  display: block;
-  width: 100%;
-  border-style: dashed;
-  i {
-    margin-right: 7px;
+  &.ui-sortable-helper:first-child + .widget {
+    margin-top: 0 !important;
   }
 }
-.widget--button:hover {
-  background: #f5f6f7;
+.widget--button {
+  order: 2;
+  background: transparent;
+  border-style: dashed;
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  .icon {
+    margin-right: 6px;
+  }
+  &:hover,
+  &:focus {
+    border-style: solid;
+    background: #fff;
+  }
 }
 
 .widgets .widget ~ .widget {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .widget .radio {
   position: relative;
-  padding-left: 25px;
+  padding-left: 24px;
 }
 .widget .radio input {
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 3px;
 }
 
 .widget__header {
@@ -149,10 +182,6 @@
 .widget__title {
   margin: 0 30px;
   font-weight: bold;
-}
-.widget__title img {
-  vertical-align: middle;
-  margin-right: 5px;
 }
 
 .widget__content {
@@ -230,4 +259,106 @@
 #widgets .widget img {
 	position: absolute;
   left: 4px;
+}
+
+.layout {
+  &:before {
+    content: '';
+    display: block;
+    width: 34px;  //  Best for dividing with a 2px gutter
+    height: 24px;
+  }
+  &[data-layout="100-no-grid"]:before,
+  &[data-layout="100"]:before {
+    background: currentColor;
+  }
+  &[data-layout="50-50"]:before {
+    background: url('../img/layout/50-50.png');
+    background: linear-gradient(to right,
+      currentColor, currentColor 16px,
+      transparent 16px, transparent 18px,
+      currentColor 18px, currentColor);
+  }
+  &[data-layout="33-33-33"]:before {
+    background: url('../img/layout/33-33-33.png');
+    background: linear-gradient(to right,
+      currentColor, currentColor 10px,
+      transparent 10px, transparent 12px,
+      currentColor 12px, currentColor 22px,
+      transparent 22px, transparent 24px,
+      currentColor 24px, currentColor);
+  }
+  &[data-layout="25-25-25-25"]:before {
+    background: url('../img/layout/25-25-25-25.png');
+    background: linear-gradient(to right, 
+      currentColor, currentColor 7px,
+      transparent 7px, transparent 9px,
+      currentColor 9px, currentColor 16px,
+      transparent 16px, transparent 18px,
+      currentColor 18px, currentColor 25px,
+      transparent 25px, transparent 27px,
+      currentColor 27px, currentColor);
+  }
+  &[data-layout="25-75"]:before {
+    background: url('../img/layout/25-75.png');
+    background: linear-gradient(to right,
+      currentColor, currentColor 8px,
+      transparent 8px, transparent 10px,
+      currentColor 10px, currentColor);
+  }
+  &[data-layout="75-25"]:before {
+    background: url('../img/layout/75-25.png');
+    background: linear-gradient(to left,
+      currentColor, currentColor 8px,
+      transparent 8px, transparent 10px,
+      currentColor 10px, currentColor);
+  }
+  &[data-layout="33-66"]:before {
+    background: url('../img/layout/33-66.png');
+    background: linear-gradient(to right,
+      currentColor, currentColor 10px,
+      transparent 10px, transparent 12px,
+      currentColor 12px, currentColor);
+  }
+  &[data-layout="66-33"]:before {
+    background: url('../img/layout/66-33.png');
+    background: linear-gradient(to left,
+      currentColor, currentColor 10px,
+      transparent 10px, transparent 12px,
+      currentColor 12px, currentColor);
+  }
+  &[data-layout="25-50-25"]:before {
+    background: url('../img/layout/25-50-25.png');
+    background: linear-gradient(to left,
+      currentColor, currentColor 8px,
+      transparent 8px, transparent 10px,
+      currentColor 10px, currentColor 24px,
+      transparent 24px, transparent 26px,
+      currentColor 26px, currentColor);
+  }
+  &[data-layout="25-58-17"]:before {
+    background: url('../img/layout/25-58-17.png');
+    background: linear-gradient(to left,
+      currentColor, currentColor 8px,
+      transparent 8px, transparent 10px,
+      currentColor 10px, currentColor 27px,
+      transparent 27px, transparent 29px,
+      currentColor 29px, currentColor);
+  }
+}
+
+.panel {
+  background: #fafafa;
+  border: 1px solid #d7d7d7;
+}
+
+//  Drop target
+.ui-sortable-placeholder {
+  background: none;
+  border-style: dashed;
+}
+
+//  Show a shadow when dragging
+.ui-sortable-helper {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
 }

@@ -13,41 +13,61 @@
 </div>
 {/function}
 
-{function name="sectionHeader" layouts=null layout=null}
+{function 'sectionHeader' layouts=null layout=null}
     <div class="section__handle">
         <div class="handle"><i class="icon icon--arrows"></i></div>
     </div>
     <div class="section__layouts">
-{foreach $layouts as $l}
-    {$layoutName = $l->getName()}
-        <a href="#" class="layout layout-{$layoutName}{if $layoutName == $layout} layout-active{/if}" title="{"layout.`$layoutName`"|translate|escape}" data-layout="{$layoutName}">
-            <img src="{image src="img/cms/layout/`$layoutName`.png" transformation="resize" width=30 height=30}" />
+    {$enabledLayouts = $app.system->getConfig()->get('cms.layouts')}
+    {foreach $layouts as $l}
+        {$layoutName = $l->getName()}
+        {if !$enabledLayouts || $enabledLayouts[$layoutName] || $layoutName == $layout}
+        {$layoutTitle = "layout.$layoutName"|translate|escape}
+        <a href="#" class="layout layout-{$layoutName}{if $layoutName == $layout} layout-active{/if}" title="{$layoutTitle}" data-layout="{$layoutName}">
         </a>
-{/foreach}
+        {/if}
+    {/foreach}
     </div>
-    <div class="section__actions text-right dropdown">
-        <a href="#" class="dropdown" data-toggle="dropdown"><i class="icon icon--cog"></i></a>
-        <ul class="dropdown__menu dropdown__menu--right">
-            <li><a href="#" class="widget-add">{translate key="button.widget.add"}</a></li>
-            <li>
-                <a href="{url id="cms.node.content.section.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section]}?referer={$app.url.request|urlencode}">
-                    {translate key="label.widget.action.properties"}
-                </a>
-            </li>
-            <li>
-                <a href="{url id="cms.node.content.section.style" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section]}?referer={$app.url.request|urlencode}">
-                    {translate key="label.widget.action.style"}
-                </a>
-            </li>
-            <li class="divider"></li>
-            <li><a class="section-delete" href="#" data-confirm="{"label.confirm.section.delete"|translate|escape}">{translate key="button.delete"}</a></li>
-        </ul>
+    <div class="section__actions text-right">
+
+        {url id='cms.node.content.section.properties' parameters=[
+            'site' => $site->getId(),
+            'revision' => $node->getRevision(),
+            'node' => $node->getId(),
+            'locale' => $locale,
+            'region' => $region,
+            'section' => $section
+        ] var='propertyActionUrl'}
+
+        {url id='cms.node.content.section.style' parameters=[
+            "site" => $site->getId(),
+            "revision" => $node->getRevision(),
+            "node" => $node->getId(),
+            "locale" => $locale,
+            "region" => $region,
+            "section" => $section
+        ] var='styleActionUrl'}
+
+        <a href="{$propertyActionUrl}?referer={$app.url.request|urlencode}" class="action" title="{'label.widget.action.properties'|translate}">
+            <i class="icon icon--cog"></i>
+            <span class="visuallyhidden">{'label.widget.action.properties'|translate}</span>
+        </a>
+
+        <a href="{$styleActionUrl}?referer={$app.url.request|urlencode}" class="action" title="{'label.widget.action.style'|translate}">
+            <i class="icon icon--paint-brush"></i>
+            <span class="visuallyhidden">{'label.widget.action.style'|translate}</span>
+        </a>
+
+        <a href="#" class="action section-delete" title="{'button.delete'|translate}" data-confirm="{'label.confirm.section.delete'|translate|escape}">
+            <i class="icon icon--close"></i>
+            <span class="visuallyhidden">{'button.delete'|translate}</span>
+        </a>
     </div>
 {/function}
 
 {function name="sectionContent" site=null node=null section=null layout=null widgets=null inheritedWidgets=null actions=null}
     <div class="section__content">
-        {$functionName = "layout-`$layout`"|replace:"-":"_"}
+        {$functionName = "layout-$layout"|replace:'-':'_'}
         {call $functionName site=$site node=$node section=$section widgets=$widgets inheritedWidgets=$inheritedWidgets actions=$actions}
     </div>
 {/function}
