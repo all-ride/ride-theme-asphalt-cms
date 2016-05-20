@@ -3,3 +3,5 @@
 *.settings/*
 .sass-cache
 node_modules
+*.sublime-project
+*.sublime-workspace

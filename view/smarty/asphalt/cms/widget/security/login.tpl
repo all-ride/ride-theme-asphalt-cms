@@ -2,7 +2,7 @@
 
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$action}{if $referer}?referer={$referer|urlencode}{/if}" method="POST" role="form">
+<form id="{$form->getId()}" class="form" action="{$action}{if $referer}?referer={$referer|urlencode}{/if}" method="POST" role="form">
     <div class="form__group">
         {call formWidget form=$form row="__action"}
 
