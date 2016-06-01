@@ -13,6 +13,9 @@
             <div class="tabs__content">
                 <div id="tabWidget" class="tabs__pane active">
                     {call formRow form=$form row="subject"}
+                {if $form->hasRow('sender')}
+                    {call formRow form=$form row="sender"}
+                {/if}
                     {call formRow form=$form row="recipient"}
                     {call formRow form=$form row="bcc"}
                     {call formRow form=$form row="finishNode"}
