@@ -19,11 +19,14 @@
     </div>
     <div class="section__layouts">
     {$enabledLayouts = $app.system->getConfig()->get('cms.layouts')}
+    {$defaultIcon = "`$app.url.script`/asphalt/img/default.png"}
     {foreach $layouts as $l}
         {$layoutName = $l->getName()}
-        {if !$enabledLayouts || $enabledLayouts[$layoutName] || $layoutName == $layout}
+        {if !$enabledLayouts || !array_key_exists($layoutName, $enabledLayouts) || $enabledLayouts[$layoutName] || $layoutName == $layout}
         {$layoutTitle = "layout.$layoutName"|translate|escape}
         <a href="#" class="layout layout-{$layoutName}{if $layoutName == $layout} layout-active{/if}" title="{$layoutTitle}" data-layout="{$layoutName}">
+            {$layoutIcon = "`$app.url.script`/asphalt/img/$layoutName.png"}
+            <img src="{image src=$layoutIcon default=$defaultIcon transformation='resize' width=34 height=24}" alt="{$layoutTitle}">
         </a>
         {/if}
     {/foreach}
