@@ -46,6 +46,11 @@
     float: left;
     color: #fff;
     text-decoration: none;
+    img {
+      display: block;
+      width: 34px;
+      height: 24px;
+    }
     + .layout {
       margin-left: 6px;
     }
@@ -59,10 +64,6 @@
   width: 24px;
   text-align: center;
   cursor: move;
-}
-.section__layouts img {
-  vertical-align: middle;
-  background: #fff;
 }
 .section__actions {
   display: flex;
@@ -259,92 +260,6 @@
 #widgets .widget img {
 	position: absolute;
   left: 4px;
-}
-
-.layout {
-  &:before {
-    content: '';
-    display: block;
-    width: 34px;  //  Best for dividing with a 2px gutter
-    height: 24px;
-  }
-  &[data-layout="100-no-grid"]:before,
-  &[data-layout="100"]:before {
-    background: currentColor;
-  }
-  &[data-layout="50-50"]:before {
-    background: url('../img/layout/50-50.png');
-    background: linear-gradient(to right,
-      currentColor, currentColor 16px,
-      transparent 16px, transparent 18px,
-      currentColor 18px, currentColor);
-  }
-  &[data-layout="33-33-33"]:before {
-    background: url('../img/layout/33-33-33.png');
-    background: linear-gradient(to right,
-      currentColor, currentColor 10px,
-      transparent 10px, transparent 12px,
-      currentColor 12px, currentColor 22px,
-      transparent 22px, transparent 24px,
-      currentColor 24px, currentColor);
-  }
-  &[data-layout="25-25-25-25"]:before {
-    background: url('../img/layout/25-25-25-25.png');
-    background: linear-gradient(to right, 
-      currentColor, currentColor 7px,
-      transparent 7px, transparent 9px,
-      currentColor 9px, currentColor 16px,
-      transparent 16px, transparent 18px,
-      currentColor 18px, currentColor 25px,
-      transparent 25px, transparent 27px,
-      currentColor 27px, currentColor);
-  }
-  &[data-layout="25-75"]:before {
-    background: url('../img/layout/25-75.png');
-    background: linear-gradient(to right,
-      currentColor, currentColor 8px,
-      transparent 8px, transparent 10px,
-      currentColor 10px, currentColor);
-  }
-  &[data-layout="75-25"]:before {
-    background: url('../img/layout/75-25.png');
-    background: linear-gradient(to left,
-      currentColor, currentColor 8px,
-      transparent 8px, transparent 10px,
-      currentColor 10px, currentColor);
-  }
-  &[data-layout="33-66"]:before {
-    background: url('../img/layout/33-66.png');
-    background: linear-gradient(to right,
-      currentColor, currentColor 10px,
-      transparent 10px, transparent 12px,
-      currentColor 12px, currentColor);
-  }
-  &[data-layout="66-33"]:before {
-    background: url('../img/layout/66-33.png');
-    background: linear-gradient(to left,
-      currentColor, currentColor 10px,
-      transparent 10px, transparent 12px,
-      currentColor 12px, currentColor);
-  }
-  &[data-layout="25-50-25"]:before {
-    background: url('../img/layout/25-50-25.png');
-    background: linear-gradient(to left,
-      currentColor, currentColor 8px,
-      transparent 8px, transparent 10px,
-      currentColor 10px, currentColor 24px,
-      transparent 24px, transparent 26px,
-      currentColor 26px, currentColor);
-  }
-  &[data-layout="25-58-17"]:before {
-    background: url('../img/layout/25-58-17.png');
-    background: linear-gradient(to left,
-      currentColor, currentColor 8px,
-      transparent 8px, transparent 10px,
-      currentColor 10px, currentColor 27px,
-      transparent 27px, transparent 29px,
-      currentColor 29px, currentColor);
-  }
 }
 
 .panel {
