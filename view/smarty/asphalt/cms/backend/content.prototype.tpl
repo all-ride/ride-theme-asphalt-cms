@@ -24,8 +24,8 @@
         {$layoutName = $l->getName()}
         {if !$enabledLayouts || !array_key_exists($layoutName, $enabledLayouts) || $enabledLayouts[$layoutName] || $layoutName == $layout}
         {$layoutTitle = "layout.$layoutName"|translate|escape}
+        {$layoutIcon = "`$app.url.script`/img/cms/layout/$layoutName.png"}
         <a href="#" class="layout layout-{$layoutName}{if $layoutName == $layout} layout-active{/if}" title="{$layoutTitle}" data-layout="{$layoutName}">
-            {$layoutIcon = "`$app.url.script`/asphalt/img/$layoutName.png"}
             <img src="{image src=$layoutIcon default=$defaultIcon transformation='resize' width=34 height=24}" alt="{$layoutTitle}">
         </a>
         {/if}
