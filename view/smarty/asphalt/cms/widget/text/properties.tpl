@@ -3,7 +3,7 @@
 <form id="{$form->getId()}" class="form-horizontal" action="{$action}" method="POST" role="form" enctype="multipart/form-data">
     <div class="form__group">
         {if $form->hasRow("existing")}
-        <div class="form__item--existing clearfix superhidden" data-url-text="{url id="api.orm.detail" parameters=["model" => "Text", "id" => "%id%"]}">
+        <div class="form__item--existing clearfix superhidden" data-locale="{$locale|replace:"_":"-"}" data-url-text="{url id="api.orm.detail" parameters=["model" => "Text", "id" => "%id%"]}">
             <div class="form__item">
                 <label class="form__label" for="form-text-existing">{translate key="label.text.existing.select"}</label>
                 <div class="form__select-item">
