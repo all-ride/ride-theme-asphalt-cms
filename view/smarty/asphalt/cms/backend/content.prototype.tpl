@@ -19,7 +19,7 @@
     </div>
     <div class="section__layouts">
     {$enabledLayouts = $app.system->getConfig()->get('cms.layouts')}
-    {$defaultIcon = "`$app.url.script`/asphalt/img/default.png"}
+    {$defaultIcon = "`$app.url.script`/img/cms/layout/default.png"}
     {foreach $layouts as $l}
         {$layoutName = $l->getName()}
         {if !$enabledLayouts || !array_key_exists($layoutName, $enabledLayouts) || $enabledLayouts[$layoutName] || $layoutName == $layout}
