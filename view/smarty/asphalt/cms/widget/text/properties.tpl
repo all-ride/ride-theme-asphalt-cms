@@ -1,6 +1,6 @@
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$action}" method="POST" role="form" enctype="multipart/form-data">
+<form id="{$form->getId()}" class="form" action="{$action}" method="POST" role="form" enctype="multipart/form-data">
     <div class="form__group">
         {if $form->hasRow("existing")}
         <div class="form__item--existing clearfix superhidden" data-locale="{$locale|replace:"_":"-"}" data-url-text="{url id="api.orm.detail" parameters=["model" => "Text", "id" => "%id%"]}">
@@ -61,7 +61,7 @@
         </div>
 
         <div class="form__actions">
-            <input id="btn-submit" type="submit" name="action" class="btn btn--default" value="{translate key="button.save"}" />
+            <button id="btn-submit" type="submit" name="action" class="btn btn--default">{translate key="button.save"}</button>
             <a id="btn-cancel" class="btn btn--link" href="{url id="cms.node.content" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
         </div>
     </div>

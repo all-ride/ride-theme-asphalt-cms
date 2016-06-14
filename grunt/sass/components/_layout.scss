@@ -5,10 +5,7 @@
 }
 
 .section__content {
-  padding: 0 10px;
-  border: 1px solid #ccc;
-  // border-left: 0;
-  border-top: 0;
+  padding: 0 12px;
 }
 .section__content .grid {
   display: -webkit-flex;
@@ -25,42 +22,71 @@
   }
 }
 
-
 .panel-heading {
-  // position: absolute;
-  // top: 0;
-  // bottom: 0;
-  // left: 0;
-  // width: 35px;
-  padding: 3px;
-  border: 1px solid #aaa;
-  background: #c4c5c6;
+  padding: 6px;
+  background: #d7d7d7;
+}
+.panel-heading {
+  display: flex;
+  flex-flow: row nowrap;
   text-align: center;
 }
 .section__handle,
 .section__layouts {
   float: left;
-  margin-right: 10px;
+  margin-right: 6px;
+}
+.section__layouts {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  .layout {
+    display: block;
+    padding: 2px;
+    float: left;
+    color: #fff;
+    text-decoration: none;
+    img {
+      display: block;
+      width: 34px;
+      height: 24px;
+    }
+    + .layout {
+      margin-left: 6px;
+    }
+    &.layout-active {
+      background: #3498db;
+    }
+  }
 }
 .section__handle {
+  line-height: 24px;
+  width: 24px;
+  text-align: center;
   cursor: move;
-  padding-top: 2px;
-}
-.section__layouts a {
-  text-decoration: none;
-  display: inline-block;
-  border: 1px solid transparent;
-}
-.section__layouts a.layout-active {
-  border-color: #76B5ED;
-}
-.section__layouts img {
-  vertical-align: middle;
-  background: #fff;
 }
 .section__actions {
+  display: flex;
+  flex-flow: row nowrap;
   float: right;
+  margin-left: auto;
   padding-top: 2px;
+  .action {
+    line-height: 24px;
+    width: 24px;
+    text-align: center;
+    display: inline-block;
+    &, &:active {
+      color: #888;
+    }
+    &:hover,
+    &:focus {
+      color: #555;
+    }
+    + .action {
+      margin-left: 6px;
+    }
+  }
 }
 
 #region .droppable {
@@ -80,10 +106,10 @@
 }
 
 .widget {
-  background: transparent url(../img/cms/widget.background.png) repeat-y;
+  background: white;
   list-style: none;
   border: 1px solid #CCC;
-  padding: 7px 7px;
+  padding: 6px;
   label {
     cursor: pointer;
     display: block;
@@ -91,6 +117,7 @@
   }
   img {
     vertical-align: middle;
+    margin-right: 6px;
   }
   &.inherited {
     background-color: rgba(255, 215, 0, 0.125);
@@ -102,32 +129,39 @@
   &.locked {
     opacity: .6;
   }
-}
-.widget--button {
-  background: #fff;
-  display: block;
-  width: 100%;
-  border-style: dashed;
-  i {
-    margin-right: 7px;
+  &.ui-sortable-helper:first-child + .widget {
+    margin-top: 0 !important;
   }
 }
-.widget--button:hover {
-  background: #f5f6f7;
+.widget--button {
+  order: 2;
+  background: transparent;
+  border-style: dashed;
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  .icon {
+    margin-right: 6px;
+  }
+  &:hover,
+  &:focus {
+    border-style: solid;
+    background: #fff;
+  }
 }
 
 .widgets .widget ~ .widget {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .widget .radio {
   position: relative;
-  padding-left: 25px;
+  padding-left: 24px;
 }
 .widget .radio input {
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 3px;
 }
 
 .widget__header {
@@ -149,10 +183,6 @@
 .widget__title {
   margin: 0 30px;
   font-weight: bold;
-}
-.widget__title img {
-  vertical-align: middle;
-  margin-right: 5px;
 }
 
 .widget__content {
@@ -230,4 +260,20 @@
 #widgets .widget img {
 	position: absolute;
   left: 4px;
+}
+
+.panel {
+  background: #fafafa;
+  border: 1px solid #d7d7d7;
+}
+
+//  Drop target
+.ui-sortable-placeholder {
+  background: none;
+  border-style: dashed;
+}
+
+//  Show a shadow when dragging
+.ui-sortable-helper {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, .25);
 }

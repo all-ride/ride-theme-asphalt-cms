@@ -1,6 +1,6 @@
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
+<form id="{$form->getId()}" class="form" action="{$app.url.request}" method="POST" role="form">
     <div class="form__group">
         <div class="tab">
             <div class="tabbable">
@@ -13,6 +13,9 @@
             <div class="tabs__content">
                 <div id="tabWidget" class="tabs__pane active">
                     {call formRow form=$form row="subject"}
+                {if $form->hasRow('sender')}
+                    {call formRow form=$form row="sender"}
+                {/if}
                     {call formRow form=$form row="recipient"}
                     {call formRow form=$form row="bcc"}
                     {call formRow form=$form row="finishNode"}

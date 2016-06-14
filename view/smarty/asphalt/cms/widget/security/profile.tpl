@@ -2,7 +2,7 @@
 
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" enctype="multipart/form-data" role="form">
+<form id="{$form->getId()}" class="form" action="{$app.url.request}" method="POST" enctype="multipart/form-data" role="form">
     <div class="form__group">
         <div class="tabbable">
         <ul class="tabs">

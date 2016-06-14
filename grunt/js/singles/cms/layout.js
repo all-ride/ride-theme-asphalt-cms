@@ -324,10 +324,13 @@
 
 function initializeContent(baseUrl) {
     var $document = $(document);
+    var $body = $('body');
     var $formWidgetAdd = $('.form-widget-add');
     var $modalWidgetAdd = $('.modal-widget-add');
     var $buttonWidgetAdd = $('.widget-add-submit');
     var $buttonWidgetAddAndClose = $('.widget-add-submit-close');
+    var $modalSectionAction = $('.modal-section-action');
+    var $buttonSectionAction = $('.section-action-submit');
 
     // perform a widget add to the cms
     var widgetAdd = function() {
@@ -353,9 +356,10 @@ function initializeContent(baseUrl) {
 
         var jqxhr = $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
             $lockedWidget = $block.find('.widget--locked');
-            $lockedWidget.before(html);
+            var $section = $lockedWidget.before(html);
 
             initWidgetOrder(baseUrl, true);
+            initSectionActions();
 
             $buttonWidgetAdd.removeAttr('disabled');
             $buttonWidgetAddAndClose.removeAttr('disabled');
@@ -414,18 +418,42 @@ function initializeContent(baseUrl) {
         }
 
         $blocks.sortable({
-            handle: '.handle',
-            items: '> .widget:not(.widget--locked)',
-            connectWith: $blocks,
-            update: function (event, ui) {
-                if (this !== ui.item.parent()[0]) {
-                    // don't update twice
-                    return;
-                }
-
-                updateOrder(baseUrl);
-            },
+          handle: '.handle',
+          items: '> .widget:not(.widget--locked)',
+          connectWith: $blocks,
+          update: function (event, ui) {            // don't update twice
+            if (this !== ui.item.parent()[0]) {
+              return;
+            }
+            updateOrder(baseUrl);
+          },
+          over: function (event, ui) {
+            ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
+          },
+          activate: function (event, ui) {
+            $body.addClass('is-sorting');
+          },
+          deactivate: function (event, ui) {
+            $body.removeClass('is-sorting');
+          }
         });
+    };
+
+    //  Initialize section actions (style, properties) to open in modal
+    var initSectionActions = function () {
+      $('.section:not(.is-initialized)').addClass('is-initialized').find('.section__actions .action').on('click', function (e) {
+        e.preventDefault();
+        var $action = $(this);
+        var href = $action.attr('href');
+        if (href[0] == '#') {
+          return;
+        }
+        $modalSectionAction.find('.modal-body').load(href + ' form', function () {
+          $modalSectionAction.find('.modal-title').text($action.attr('title'));
+          $modalSectionAction.find('.form__actions').hide();
+          $modalSectionAction.modal('show');
+        });
+      });
     };
 
     // initialize sortable for the sections
@@ -434,7 +462,13 @@ function initializeContent(baseUrl) {
         handle: '.panel-heading .handle',
         items: '> .section',
         update: function(event, ui) {
-            updateOrder(baseUrl);
+          updateOrder(baseUrl);
+        },
+        activate: function (event, ui) {
+          $body.addClass('is-sorting');
+        },
+        deactivate: function (event, ui) {
+          $body.removeClass('is-sorting');
         }
     });
 
@@ -442,18 +476,20 @@ function initializeContent(baseUrl) {
     $document.on('click', '.section-add', function(e) {
         e.preventDefault();
         var method = $(this).data('method');
-
+        var $section;
         var jqxhr = $.post(baseUrl + '/sections', function(html) {
             switch(method) {
               case 'prepend':
-                $sections.prepend(html);
+                $section = $sections.prepend(html);
                 break;
               case 'append':
-                $sections.append(html);
+              default:
+                $section = $sections.append(html);
                 break;
             }
 
             initWidgetOrder(baseUrl, true);
+            initSectionActions();
 
             $('.section:last', $sections).scrollTop();
         });
@@ -492,9 +528,10 @@ function initializeContent(baseUrl) {
         var $section = $this.closest('.section');
 
         var jqxhr = $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
-            $section.replaceWith(html);
+            $section = $section.replaceWith(html);
 
             initWidgetOrder(baseUrl, true);
+            initSectionActions();
         });
         rideApp.common.handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
     });
@@ -584,5 +621,15 @@ function initializeContent(baseUrl) {
       }).parent().hide();
     });
 
+    $buttonSectionAction.on('click', function (e) {
+      e.preventDefault();
+      var $form = $modalSectionAction.find('form');
+      var jqxhr = $.post($form.attr('action'), $form.serialize(), function () {
+        $modalSectionAction.modal('hide');
+      });
+      rideApp.common.handleXHRCallback(jqxhr, 'Updated section properties', 'Could not update section properties');
+    });
+
     initWidgetOrder(baseUrl);
+    initSectionActions();
 }

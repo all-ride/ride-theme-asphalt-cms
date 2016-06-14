@@ -1,6 +1,6 @@
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
+<form id="{$form->getId()}" class="form" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
     <p>{translate key="label.login.authenticated"}</p>
     <div class="form__group">
         <div class="tab">
@@ -55,7 +55,7 @@
         {call formRows form=$form}
 
         <div class="form__actions">
-            <input id="btn-submit" type="submit" name="action" class="btn btn--default" value="{translate key="button.save"}" />
+            <button id="btn-submit" type="submit" name="action" class="btn btn--default">{translate key="button.save"}</button>
             <a id="btn-cancel" class="btn btn--link" href="{url id="cms.node.content" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
         </div>
     </div>
