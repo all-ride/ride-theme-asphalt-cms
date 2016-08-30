@@ -1,5 +1,5 @@
 function joppaInitializeNodeTree(nodeTreeAction, nodeToggleAction, nodeOrderAction, collapsedNodes, node) {
-    window.overlaySelector = '.site-tree .loading';
+    window.overlaySelector = '.site-tree .spinner';
     $('.site-tree').load(nodeTreeAction, function() {
         var $tree = $('#node-tree');
 

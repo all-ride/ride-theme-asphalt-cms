@@ -19,22 +19,28 @@ $existing
     .on('change', '.form__select', function() {
         var $this = $(this);
 
+        var locale = $existing.data('locale');
         var url = $existing.data('url-text');
         url = url.replace('%25id%25', $this.val());
 
-        $.get(url, function(data) {
-            var preview = '';
-            if (data.title) {
-                preview += '<h3>' + data.title + '</h3>';
-            }
-            if (data.subtitle) {
-                preview += '<h4>' + data.subtitle + '</h4>';
-            }
-            if (data.body) {
-                preview += data.body;
-            }
+        $.ajax({
+            url: url,
+            type: "GET",
+            beforeSend: function(xhr) { xhr.setRequestHeader('Accept-Language', locale);},
+            success: function(data) {
+                var preview = '';
+                if (data.title) {
+                    preview += '<h3>' + data.title + '</h3>';
+                }
+                if (data.subtitle) {
+                    preview += '<h4>' + data.subtitle + '</h4>';
+                }
+                if (data.body) {
+                    preview += data.body;
+                }
 
-            $('.preview', $existing).html(preview);
+                $('.preview', $existing).html(preview);
+            }
         });
     });
 

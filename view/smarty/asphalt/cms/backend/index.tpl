@@ -37,7 +37,7 @@
     {/if}
 
     <div class="site-tree">
-        <div class="loading tree-spinner"></div>
+        <div class="spinner spinner--sml"></div>
     </div>
 {/block}
 
