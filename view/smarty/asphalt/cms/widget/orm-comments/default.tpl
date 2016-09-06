@@ -8,8 +8,8 @@
 {if $comments}
     {foreach $comments as $comment}
     <div class="comment {cycle values="odd,even"}">
-        <div class="body">{$comment->body|escape}</div>
-        <div class="info">{$comment->name|escape} - {$comment->dateAdded|date_format:"Y-m-d H:i:s"}</div>
+        <div class="body">{$comment->body}</div>
+        <div class="info">{$comment->name} - {$comment->dateAdded|date_format:"Y-m-d H:i:s"}</div>
     </div>
     {/foreach}
 {else}

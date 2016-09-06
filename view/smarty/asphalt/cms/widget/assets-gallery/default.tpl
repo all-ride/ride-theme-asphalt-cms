@@ -9,7 +9,7 @@
     <div class="grid grid--bp-med-2-col">
     {foreach $children as $url => $child}
         <div class="grid__item">
-            <a href="{$url}" title="{$child->getName()|escape}">
+            <a href="{$url}" title="{$child->getName()}">
                 {$child->getName()}
                 {$child->getDescription()|text}
             </a>
@@ -22,7 +22,7 @@
     <div class="grid grid--bp-med-6-col">
     {foreach $assets as $asset}
         <div class="grid__item">
-            <a href="{url id="assets.value" parameters=["asset" => $asset->getId()]}" title="{$asset->getName()|escape}">
+            <a href="{url id="assets.value" parameters=["asset" => $asset->getId()]}" title="{$asset->getName()}">
         {if $asset->getThumbnail()}
                 <img src="{image src=$asset->getThumbnail() width=200 height=200 transformation="crop"}" class="img-responsive" />
         {/if}

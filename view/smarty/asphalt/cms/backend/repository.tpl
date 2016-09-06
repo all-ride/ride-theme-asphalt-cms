@@ -16,7 +16,7 @@
     {foreach $commits as $commit}
         <div class="commit">
             <p><strong>{$commit->getFriendlyRevision()}</strong>: {$commit->message}</p>
-            <p class="text-muted"><small>{translate key="label.repository.update" author=$commit->author|escape date=$commit->date}</small></p>
+            <p class="text-muted"><small>{translate key="label.repository.update" author=$commit->author date=$commit->date}</small></p>
         </div>
         {if !$commit@last}<hr />{/if}
     {/foreach}
