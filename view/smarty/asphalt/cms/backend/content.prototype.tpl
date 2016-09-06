@@ -149,7 +149,7 @@
         </div>
     </div>
     <div class="widget__content">
-        {$widget->getPropertiesPreview()}
+        {$widget->getPropertiesPreview() nofilter}
         {if !$widget->getProperties()->isPublished()}
             <span class="label label--warning">{translate key="widget.published.not"}</span>
         {/if}
