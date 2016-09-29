@@ -186,7 +186,7 @@ class AsphaltNodeTreeGenerator implements NodeTreeGenerator {
 
         $actionUrl = $this->web->getUrl($nodeType->getRouteEdit(), $urlVars) . $this->referer;
         if ($this->securityManager->isUrlAllowed($actionUrl)) {
-            $actions[] = $this->getAnchorHtml($actionUrl, 'button.edit', true, 'edit');
+            $actions[] = $this->getAnchorHtml($actionUrl, 'label.node.action.edit', true, 'edit');
         }
 
         $actionUrl = $this->web->getUrl($nodeType->getRouteClone(), $urlVars) . $this->referer;

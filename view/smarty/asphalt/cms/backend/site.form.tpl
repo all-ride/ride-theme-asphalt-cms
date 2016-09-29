@@ -26,6 +26,8 @@
     <div class="page-header">
         {if $node->getId()}
         <h1>{$node->getName($locale)} <small>{translate key="title.site.edit"}</small></h1>
+        {include 'cms/helper/node.actions'}
+        {renderNodeActions actions=$nodeActions current='settings'}
         {else}
         <h1>{translate key="title.site.add"}</h1>
         {/if}

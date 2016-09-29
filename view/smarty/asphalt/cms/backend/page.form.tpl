@@ -25,7 +25,7 @@
         {if $node->getId()}
         <h1>{$node->getName($locale)} <small>{translate key="title.page.edit"}</small></h1>
             {include 'cms/helper/node.actions'}
-    {renderNodeActions actions=$nodeActions current='settings'}
+            {renderNodeActions actions=$nodeActions current='settings'}
         {else}
         <h1>{translate key="title.page.add"}</h1>
         {/if}
