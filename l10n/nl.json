@@ -22,5 +22,6 @@
     "title.text": "Tekst",
     "widget.locales.available": "Beschikbaar in volgende talen",
     "widget.orm.entry.default": "Entry default",
-    "widget.published.not": "Niet gepubliceerd"
+    "widget.published.not": "Niet gepubliceerd",
+    "label.node.action.edit": "Instellingen"
 }
