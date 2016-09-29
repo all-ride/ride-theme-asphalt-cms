@@ -5,6 +5,10 @@
 {/if}
 
 {block name="head" append}
+{if isset($app.cms.context.canonical)}
+    <link rel="canonical" href="{$app.cms.context.canonical}"/>
+{/if}
+
 {if isset($app.cms.node)}
     {$meta = $app.cms.node->getMeta($app.locale)}
     {if $meta}
