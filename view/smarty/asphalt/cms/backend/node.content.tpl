@@ -19,7 +19,7 @@
         <h1>{$node->getName($locale)} <small>{translate key="title.node.layout"}</small></h1>
     </div>
     {include 'cms/helper/node.actions'}
-    {renderNodeActions actions=$nodeActions current='content'}
+    {call renderNodeActions actions=$nodeActions current='content'}
 {/block}
 
 {block name="content_body" append}

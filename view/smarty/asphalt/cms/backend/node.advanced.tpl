@@ -20,7 +20,7 @@
         {* <a href="{$node->getUrl($locale, $app.url.script)}">{$app.url.script}{$node->getRoute($locale)}</a> *}
     </div>
     {include 'cms/helper/node.actions'}
-    {renderNodeActions actions=$nodeActions current='advanced'}
+    {call renderNodeActions actions=$nodeActions current='advanced'}
 {/block}
 
 {block name="content_body" append}

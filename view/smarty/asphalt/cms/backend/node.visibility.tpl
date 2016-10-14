@@ -19,7 +19,7 @@
         <h1>{$node->getName($locale)} <small>{translate key="title.node.visibility"}</small></h1>
     </div>
     {include 'cms/helper/node.actions'}
-    {renderNodeActions actions=$nodeActions current='visibility'}
+    {call renderNodeActions actions=$nodeActions current='visibility'}
 {/block}
 
 {block name="content_body" append}
