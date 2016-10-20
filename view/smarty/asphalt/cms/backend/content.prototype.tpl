@@ -80,7 +80,7 @@
     {foreach $actions as $actionName => $action}
         {if $action->isAvailableForWidget($node, $widget)}
             {url var="actionUrl" id=$action->getRoute() parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}
-            {isGranted url=$actionUrl permission="cms.widget.`$widget->getName()`.`$actionName`" var="isGranted"}{/isGranted}
+            {isGranted url=$actionUrl permission="cms.widget.`$widget->getName()`.`$actionName`" strategy="AND" var="isGranted"}{/isGranted}
             {if $isGranted}
                 {$availableActionName = "label.widget.action.`$actionName`"|translate}
                 {$availableActionUrl = $app.url.request|urlencode}
@@ -90,7 +90,7 @@
         {/if}
     {/foreach}
     {url var="actionUrl" id="cms.node.content.widget.delete" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}
-    {isGranted url=$actionUrl permission="cms.widget.`$widget->getName()`.manage" var="isGranted"}{/isGranted}
+    {isGranted url=$actionUrl permission="cms.widget.`$widget->getName()`.manage" strategy="AND" var="isGranted"}{/isGranted}
     {if $isGranted}
         {if $availableActions}
             {$availableActions[] = '-'}
