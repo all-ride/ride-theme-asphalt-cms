@@ -5,6 +5,9 @@
         <div class="tabbable">
             <ul class="tabs">
                 <li class="tabs__tab active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
+                {if $form->hasRow('content-mapper')}
+                    <li class="tabs__tab"><a href="#tabMapper" data-toggle="tab">{translate key="title.content.mapper"}</a></li>
+                {/if}
                 {if $form->hasRow('model')}
                     <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 {/if}
@@ -20,6 +23,12 @@
                         {call formRow form=$form row="include-unlocalized"}
                     {/if}
                 </div>
+
+                {if $form->hasRow('content-mapper')}
+                    <div id="tabMapper" class="tabs__pane">
+                        {call formRow form=$form row="content-mapper"}
+                    </div>
+                {/if}
 
                 <div id="tabView" class="tabs__pane">
                     {if $form->hasRow('template')}
