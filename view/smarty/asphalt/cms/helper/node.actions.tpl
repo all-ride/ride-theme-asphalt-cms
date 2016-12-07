@@ -1,8 +1,18 @@
 {function renderNodeActions actions=null current=null}
     {if $actions}
         {if $actions['go']}
-            {$url = $node->getUrl($locale, $app.url.script)}
-            <p><a href="{$url}" target="_blank">{$url}</a></p>
+           {$url = $node->getUrl($locale, $app.url.script)}
+            <p>
+            <small>
+                {$url}
+                &nbsp;
+                <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
+                    {translate key="button.view.page"}
+
+                    <span class="icon icon--external-link"></span>
+                </a>
+            </small>
+            </p>
         {/if}
         <ul class="tabs">
             {foreach $actions as $action => $url}

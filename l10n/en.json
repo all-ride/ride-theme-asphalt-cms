@@ -4,6 +4,7 @@
     "button.names.alternate": "Alternate names",
     "button.search.results.more": "Show %total% more result(s)",
     "button.text.existing": "Use a existing text",
+    "button.view.page": "View this page",
     "label.comments.authenticated": "You need to be logged in to post comments.",
     "label.comments.none": "There are no comments.",
     "label.query.search": "Search query",
