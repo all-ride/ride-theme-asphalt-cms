@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.0] - 2016-12-07
+### Updated
+- moved view page tab in the backend to a button underneath the page title
+
 ## [1.3.0] - 2016-11-15
 ### Added
 - added content mapper field to the properties of a content entry widget
