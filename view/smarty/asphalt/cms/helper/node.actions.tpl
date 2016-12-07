@@ -1,7 +1,24 @@
 {function renderNodeActions actions=null current=null}
     {if $actions}
+        {if $actions['go']}
+           {$url = $node->getUrl($locale, $app.url.script)}
+            <p>
+            <small>
+                {$url}
+                &nbsp;
+                <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
+                    {translate key="button.view.page"}
+
+                    <span class="icon icon--external-link"></span>
+                </a>
+            </small>
+            </p>
+        {/if}
         <ul class="tabs">
             {foreach $actions as $action => $url}
+                {if $action == "go"}
+                    {continue}
+                {/if}
                 <li class="tabs__tab{if $action == $current} active{/if}"><a href="{$url}">{translate key="label.node.action.`$action`"}</a></li>
             {/foreach}
             {url id="cms.{$node->getType()}.edit" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()] var='url'}
