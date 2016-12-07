@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.1] - 2016-12-07
+### Updated
+- updated node.actions template to support cms.url parameters
+
 ## [1.4.0] - 2016-12-07
 ### Updated
 - moved view page tab in the backend to a button underneath the page title

@@ -1,7 +1,8 @@
 {function renderNodeActions actions=null current=null}
     {if $actions}
         {if $actions['go']}
-           {$url = $node->getUrl($locale, $app.url.script)}
+            {$baseUrl = $app.system->getConfig()->get("cms.url.`$site->getId()`.`$locale`", $app.url.script)}
+            {$url = "`$baseUrl``$node->getRoute($locale)`"}
             <p>
             <small>
                 {$url}
