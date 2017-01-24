@@ -100,7 +100,27 @@
         {$availableActions[(string) $actionUrl] = $deleteAction}
     {/if}
 
-<div class="widget{if isset($inheritedWidgets[$widgetId])} inherited{/if}{if !$availableActions} locked{/if} clearfix" data-widget="{$widgetId}">
+    {$widgetClasses = ""}
+    {$isPublished = $widget->getProperties()->isPublished()}
+    {$availableLocales = $widget->getProperties()->getAvailableLocales()}
+    {$hasAvailableLocales = $availableLocales|is_array}
+
+    {if $isPublished && $hasAvailableLocales}
+        {if !$locale|in_array:$availableLocales}
+            {$isPublished = false}
+        {/if}
+    {/if}
+    {if !$isPublished || !$availableActions}
+        {$widgetClasses = "`$widgetClasses` is-unavailable"}
+    {/if}
+    {if !$isPublished || !$availableActions}
+        {$widgetClasses = "`$widgetClasses` is-locked"}
+    {/if}
+    {if isset($inheritedWidgets[$widgetId])}
+        {$widgetClasses = "`$widgetClasses` is-inherited"}
+    {/if}
+
+<div class="widget {$widgetClasses} clearfix" data-widget="{$widgetId}">
     <div class="widget__header clearfix">
         <div class="widget__handle">
             <div class="handle"><i class="icon icon--arrows"></i></div>
@@ -150,11 +170,34 @@
     </div>
     <div class="widget__content">
         {$widget->getPropertiesPreview()}
+
         {if !$widget->getProperties()->isPublished()}
-            <span class="label label--warning">{translate key="widget.published.not"}</span>
+            <div>
+                <span class="label label--danger"><span class="icon icon--eye-slash"></span></span>
+                {* <span class="label label--info">{translate key="widget.published.not"}</span> *}
+            </div>
         {/if}
-        {if $widget->getProperties()->getAvailableLocales()|is_array}
-            <span class="label label--warning">{translate key="widget.locales.available"}: {', '|implode:$widget->getProperties()->getAvailableLocales()}</span>
+
+        <div>
+            {if $hasAvailableLocales}
+                {foreach $locales as $installedLocale}
+                    {if $installedLocale|in_array:$availableLocales}
+                        <span class="label label--success">{$installedLocale}</span>
+                    {else}
+                        <span class="label label--warning">
+                            <del>{$installedLocale}</del>
+                        </span>
+                    {/if}
+                {/foreach}
+            {else}
+                {foreach $locales as $installedLocale}
+                    <span class="label label--success">{$installedLocale}</span>
+                {/foreach}
+            {/if}
+        </div>
+
+        {if $hasAvailableLocales}
+            {* <span class="label label--info">{translate key="widget.locales.available"}: {', '|implode:$widget->getProperties()->getAvailableLocales()}</span> *}
         {/if}
     </div>
 </div>
