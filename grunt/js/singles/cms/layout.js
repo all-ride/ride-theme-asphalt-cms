@@ -410,32 +410,34 @@ function initializeContent(baseUrl) {
         if (reset != undefined && reset) {
             $blocks.each(function() {
                 try {
-                    $(this).sortable('destroy')
+                    $(this).sortable('destroy');
                 } catch (error) {
-
+                    console.log(error);
                 }
             });
+
+            return;
         }
 
         $blocks.sortable({
-          handle: '.handle',
-          items: '> .widget:not(.widget--locked)',
-          connectWith: $blocks,
-          update: function (event, ui) {            // don't update twice
-            if (this !== ui.item.parent()[0]) {
-              return;
+            handle: '.handle',
+            items: '> .widget:not(.widget--locked)',
+            connectWith: $blocks,
+            update: function (event, ui) {            // don't update twice
+                if (this !== ui.item.parent()[0]) {
+                    return;
+                }
+                updateOrder(baseUrl);
+            },
+            over: function (event, ui) {
+                ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
+            },
+            activate: function (event, ui) {
+                $body.addClass('is-sorting');
+            },
+            deactivate: function (event, ui) {
+                $body.removeClass('is-sorting');
             }
-            updateOrder(baseUrl);
-          },
-          over: function (event, ui) {
-            ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
-          },
-          activate: function (event, ui) {
-            $body.addClass('is-sorting');
-          },
-          deactivate: function (event, ui) {
-            $body.removeClass('is-sorting');
-          }
         });
     };
 
@@ -449,9 +451,9 @@ function initializeContent(baseUrl) {
           return;
         }
         $modalSectionAction.find('.modal-body').load(href + ' form', function () {
-          $modalSectionAction.find('.modal-title').text($action.attr('title'));
-          $modalSectionAction.find('.form__actions').hide();
-          $modalSectionAction.modal('show');
+            $modalSectionAction.find('.modal-title').text($action.attr('title'));
+            $modalSectionAction.find('.form__actions').hide();
+            $modalSectionAction.modal('show');
         });
       });
     };
@@ -462,13 +464,13 @@ function initializeContent(baseUrl) {
         handle: '.panel-heading .handle',
         items: '> .section',
         update: function(event, ui) {
-          updateOrder(baseUrl);
+            updateOrder(baseUrl);
         },
         activate: function (event, ui) {
-          $body.addClass('is-sorting');
+            $body.addClass('is-sorting');
         },
         deactivate: function (event, ui) {
-          $body.removeClass('is-sorting');
+            $body.removeClass('is-sorting');
         }
     });
 
@@ -613,8 +615,10 @@ function initializeContent(baseUrl) {
 
       if ($this.is(':checked')) {
         $unavailableWidgets.hide();
+        initWidgetOrder(baseUrl, true);
       } else {
         $unavailableWidgets.show();
+        initWidgetOrder(baseUrl);
       }
     });
 
