@@ -604,6 +604,20 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
+    // Toggle widgetes
+    var $availabilityToggle = $('.js-toggle-available');
+
+    $availabilityToggle.on('change', function(){
+      var $this = $(this);
+      var $unavailableWidgets = $('.widget.is-locked');
+
+      if ($this.is(':checked')) {
+        $unavailableWidgets.hide();
+      } else {
+        $unavailableWidgets.show();
+      }
+    });
+
     // filter widgets
     var $widgets = $('.widget--compact');
     $('#filter-widgets').on('keyup', function(e) {

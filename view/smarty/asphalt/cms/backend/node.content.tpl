@@ -20,6 +20,11 @@
     </div>
     {include 'cms/helper/node.actions'}
     {call renderNodeActions actions=$nodeActions current='content'}
+    <p>
+        <label for="toggle-available">
+            <input type="checkbox" id="toggle-available" class="js-toggle-available" /> Show only the widgets available in this locale
+        </label>
+    </p>
 {/block}
 
 {block name="content_body" append}
