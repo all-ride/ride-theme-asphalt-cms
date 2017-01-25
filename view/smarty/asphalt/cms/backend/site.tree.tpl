@@ -13,8 +13,9 @@
     {$nodeType = $node->getType()}
     {$children = $treeNode->getChildren()}
     {$actions = $treeNode->getActions()}
+    {$isLocalized = $treeNode->isLocalized($locale)}
 
-    <li class="node node-{$nodeType}{if !$treeNode->isLocalized($locale)} unlocalized{/if}{if $treeNode->isSelected()} selected{/if}" id="node-{$node->getId()}">
+    <li class="node node-{$nodeType}{if !$treeNode->isLocalized($locale)} is-unavailable{/if}{if $treeNode->isSelected()} selected{/if}" id="node-{$node->getId()}">
         {if $children}
         <a href="#" class="toggle"><i class="icon icon--minus-square-o"></i></a>
         {else}

@@ -7,6 +7,9 @@
 #node-tree li {
   padding: 4px 0;
   position: relative;
+  &.is-unavailable {
+    text-decoration: line-through;
+  }
 }
 #node-tree ul {
   clear: left;
