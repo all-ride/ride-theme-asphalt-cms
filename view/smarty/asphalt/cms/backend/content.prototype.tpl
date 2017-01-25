@@ -189,10 +189,11 @@
                         </span>
                     {/if}
                 {/foreach}
-            {else}
+            {* This is buggy *}
+            {* {else}
                 {foreach $locales as $installedLocale}
                     <span class="label label--success">{$installedLocale}</span>
-                {/foreach}
+                {/foreach} *}
             {/if}
         </div>
 
