@@ -415,8 +415,6 @@ function initializeContent(baseUrl) {
                     console.log(error);
                 }
             });
-
-            return;
         }
 
         $blocks.sortable({
@@ -607,20 +605,20 @@ function initializeContent(baseUrl) {
     });
 
     // Toggle widgetes
-    var $availabilityToggle = $('.js-toggle-available');
+    // var $availabilityToggle = $('.js-toggle-available');
 
-    $availabilityToggle.on('change', function(){
-      var $this = $(this);
-      var $unavailableWidgets = $('.widget.is-locked');
+    // $availabilityToggle.on('change', function(){
+    //     var $this = $(this);
+    //     var $unavailableWidgets = $('.widget.is-locked');
 
-      if ($this.is(':checked')) {
-        $unavailableWidgets.hide();
-        initWidgetOrder(baseUrl, true);
-      } else {
-        $unavailableWidgets.show();
-        initWidgetOrder(baseUrl);
-      }
-    });
+    //     if ($this.is(':checked')) {
+    //         $unavailableWidgets.hide();
+    //         initWidgetOrder(baseUrl, true);
+    //     } else {
+    //         $unavailableWidgets.show();
+    //         initWidgetOrder(baseUrl);
+    //     }
+    // });
 
     // filter widgets
     var $widgets = $('.widget--compact');
