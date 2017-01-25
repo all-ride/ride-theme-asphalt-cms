@@ -331,6 +331,10 @@ function initializeContent(baseUrl) {
     var $buttonWidgetAddAndClose = $('.widget-add-submit-close');
     var $modalSectionAction = $('.modal-section-action');
     var $buttonSectionAction = $('.section-action-submit');
+    var $blocks = $('.section .block');
+    var $sections = $('.sections');
+
+    var $availabilityToggle = $('.js-toggle-available');
 
     // perform a widget add to the cms
     var widgetAdd = function() {
@@ -343,8 +347,8 @@ function initializeContent(baseUrl) {
 
         var section = $('input[name=section]').val();
         var block = $('input[name=block]').val();
-
         var $block = $('.section[data-section=' + section + '] .block[data-block=' + block + ']', $sections);
+
         if ($block.length != 1) {
             alert('no block found');
 
@@ -405,8 +409,6 @@ function initializeContent(baseUrl) {
 
     // initialize the sortable for the widgets
     var initWidgetOrder = function (baseUrl, reset) {
-        var $blocks = $('.section .block');
-
         if (reset != undefined && reset) {
             $blocks.each(function() {
                 try {
@@ -439,6 +441,51 @@ function initializeContent(baseUrl) {
         });
     };
 
+    var lockOrder = function () {
+        var $itemsToLock = $blocks.add($sections);
+
+        $itemsToLock.each(function() {
+            try {
+                $(this).sortable('destroy');
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    };
+
+    var initSectionOrder = function () {
+        $sections.sortable({
+            handle: '.panel-heading .handle',
+            items: '> .section',
+            update: function(event, ui) {
+                updateOrder(baseUrl);
+            },
+            activate: function (event, ui) {
+                $body.addClass('is-sorting');
+            },
+            deactivate: function (event, ui) {
+                $body.removeClass('is-sorting');
+            }
+        });
+    };
+
+    // var sectionOrder = (function() {
+
+    //     var init = function() {
+
+    //     };
+
+    //     var destroy = function() {
+
+    //     };
+
+    //     return {
+    //         init: init,
+    //         destroy: destroy
+    //     };
+
+    // })();
+
     //  Initialize section actions (style, properties) to open in modal
     var initSectionActions = function () {
       $('.section:not(.is-initialized)').addClass('is-initialized').find('.section__actions .action').on('click', function (e) {
@@ -446,7 +493,7 @@ function initializeContent(baseUrl) {
         var $action = $(this);
         var href = $action.attr('href');
         if (href[0] == '#') {
-          return;
+            return;
         }
         $modalSectionAction.find('.modal-body').load(href + ' form', function () {
             $modalSectionAction.find('.modal-title').text($action.attr('title'));
@@ -457,20 +504,7 @@ function initializeContent(baseUrl) {
     };
 
     // initialize sortable for the sections
-    var $sections = $('.sections');
-    $sections.sortable({
-        handle: '.panel-heading .handle',
-        items: '> .section',
-        update: function(event, ui) {
-            updateOrder(baseUrl);
-        },
-        activate: function (event, ui) {
-            $body.addClass('is-sorting');
-        },
-        deactivate: function (event, ui) {
-            $body.removeClass('is-sorting');
-        }
-    });
+    initSectionOrder();
 
     // add a new section
     $document.on('click', '.section-add', function(e) {
@@ -604,21 +638,20 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
-    // Toggle widgetes
-    // var $availabilityToggle = $('.js-toggle-available');
+    // Toggle widgets
+    $availabilityToggle.on('change', function(){
+        var $this = $(this);
+        var $widgetsToToggle = $('.widget.is-locked');
 
-    // $availabilityToggle.on('change', function(){
-    //     var $this = $(this);
-    //     var $unavailableWidgets = $('.widget.is-locked');
-
-    //     if ($this.is(':checked')) {
-    //         $unavailableWidgets.hide();
-    //         initWidgetOrder(baseUrl, true);
-    //     } else {
-    //         $unavailableWidgets.show();
-    //         initWidgetOrder(baseUrl);
-    //     }
-    // });
+        if ($this.is(':checked')) {
+            $widgetsToToggle.hide();
+            lockOrder();
+        } else {
+            $widgetsToToggle.show();
+            initSectionOrder();
+            initWidgetOrder();
+        }
+    });
 
     // filter widgets
     var $widgets = $('.widget--compact');
