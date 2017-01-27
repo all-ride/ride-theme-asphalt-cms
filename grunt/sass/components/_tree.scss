@@ -7,9 +7,6 @@
 #node-tree li {
   padding: 4px 0;
   position: relative;
-  &.is-unavailable {
-    text-decoration: line-through;
-  }
 }
 #node-tree ul {
   clear: left;
@@ -84,6 +81,9 @@
 .node a {
   color: #494949;
   text-decoration: none;
+  &.is-unavailable {
+    text-decoration: line-through;
+  }
 }
 
 /*.node a.name {

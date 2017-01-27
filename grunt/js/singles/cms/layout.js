@@ -335,13 +335,13 @@ function initializeContent(baseUrl) {
     var $sections = $('.sections');
 
     var $availabilityToggle = $('.js-toggle-available');
+    var actionsDisabled = false;
 
     // perform a widget add to the cms
     var widgetAdd = function() {
         var widget = $('input[name=widget]:checked').val();
         if (!widget) {
             alert('no widget selected');
-
             return;
         }
 
@@ -351,7 +351,6 @@ function initializeContent(baseUrl) {
 
         if ($block.length != 1) {
             alert('no block found');
-
             return;
         }
 
@@ -453,6 +452,15 @@ function initializeContent(baseUrl) {
         });
     };
 
+    var disableActions = function () {
+        actionsDisabled = true;
+        console.log('disabled actions');
+    };
+    var enableActions = function () {
+        actionsDisabled = false;
+        console.log('enabled actions');
+    };
+
     var initSectionOrder = function () {
         $sections.sortable({
             handle: '.panel-heading .handle',
@@ -508,6 +516,8 @@ function initializeContent(baseUrl) {
 
     // add a new section
     $document.on('click', '.section-add', function(e) {
+        if (actionsDisabled) { return; }
+
         e.preventDefault();
         var method = $(this).data('method');
         var $section;
@@ -535,6 +545,8 @@ function initializeContent(baseUrl) {
     $document.on('click', '.section-delete', function(e) {
         e.preventDefault();
 
+        if (actionsDisabled) { return; }
+
         var $this = $(this);
         if (!confirm($this.data('confirm'))) {
             return;
@@ -558,6 +570,8 @@ function initializeContent(baseUrl) {
     $document.on('click', '.section__layouts > a', function(e) {
         e.preventDefault();
 
+        if (actionsDisabled) { return; }
+
         var $this = $(this);
         var $section = $this.closest('.section');
 
@@ -571,19 +585,21 @@ function initializeContent(baseUrl) {
     });
 
     // add widget with double click
-    $document.on('dblclick', '.section .block', function() {
-        var $this = $(this);
-        var block = $this.data('block');
-        var section = $this.parents('.section').data('section');
+    // $document.on('dblclick', '.section .block', function() {
+    //     var $this = $(this);
+    //     var block = $this.data('block');
+    //     var section = $this.parents('.section').data('section');
 
-        $('input[name=section]').val(section);
-        $('input[name=block]').val(block);
+    //     $('input[name=section]').val(section);
+    //     $('input[name=block]').val(block);
 
-        $modalWidgetAdd.modal('show');
-    });
+    //     $modalWidgetAdd.modal('show');
+    // });
 
     // add widget through link
     $document.on('click', '.widget-add', function(event) {
+        if (actionsDisabled) { return; }
+
         var $button = $(this);
         var $block = $button.parents('.block');
         var $section = $button.parents('.section');
@@ -618,6 +634,8 @@ function initializeContent(baseUrl) {
     $document.on('click', '.widget-delete', function(e) {
         e.preventDefault();
 
+        if (actionsDisabled) { return; }
+
         var $this = $(this);
         if (!confirm($this.data('confirm'))) {
             return;
@@ -639,18 +657,24 @@ function initializeContent(baseUrl) {
     });
 
     // Toggle widgets
-    $availabilityToggle.on('change', function(){
-        var $this = $(this);
+    var toggleAvailableWidgets = function($el) {
         var $widgetsToToggle = $('.widget.is-locked');
 
-        if ($this.is(':checked')) {
+        if ($el.is(':checked')) {
             $widgetsToToggle.hide();
+            disableActions();
             lockOrder();
         } else {
             $widgetsToToggle.show();
             initSectionOrder();
             initWidgetOrder();
+            enableActions();
         }
+    };
+
+    toggleAvailableWidgets($availabilityToggle);
+    $availabilityToggle.on('change', function(){
+        toggleAvailableWidgets($(this));
     });
 
     // filter widgets
