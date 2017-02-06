@@ -173,8 +173,7 @@
 
         {if !$widget->getProperties()->isPublished()}
             <div>
-                <span class="label label--danger"><span class="icon icon--eye-slash"></span></span>
-                {* <span class="label label--info">{translate key="widget.published.not"}</span> *}
+                <span class="label label--danger"><span class="icon icon--eye-slash"></span> {translate key="widget.published.not"}</span>
             </div>
         {/if}
 

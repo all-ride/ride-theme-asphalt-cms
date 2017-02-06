@@ -22,7 +22,7 @@
     {call renderNodeActions actions=$nodeActions current='content'}
     <p>
         <label for="toggle-available">
-            <input type="checkbox" id="toggle-available" class="js-toggle-available" /> Show only the widgets available in this locale
+            <input type="checkbox" id="toggle-available" class="js-toggle-available" /> {translate key="widget.locales.available.show"}
         </label>
     </p>
 {/block}
