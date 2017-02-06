@@ -454,11 +454,9 @@ function initializeContent(baseUrl) {
 
     var disableActions = function () {
         actionsDisabled = true;
-        console.log('disabled actions');
     };
     var enableActions = function () {
         actionsDisabled = false;
-        console.log('enabled actions');
     };
 
     var initSectionOrder = function () {
@@ -672,8 +670,21 @@ function initializeContent(baseUrl) {
         }
     };
 
+    var toggleAvailableSections = function($el) {
+        // hide the sections that have no available widgets
+        // Todo: move this logic to PHP
+        $('div.section').each(function(){
+            var $widgets = $(this).find('div.widget');
+            var $unavailableWidgets = $(this).find('div.is-unavailable');
+            if ($widgets.length === $unavailableWidgets.length) {
+              $(this).toggle();
+            }
+        });
+    }
+
     toggleAvailableWidgets($availabilityToggle);
     $availabilityToggle.on('change', function(){
+        toggleAvailableSections($(this));
         toggleAvailableWidgets($(this));
     });
 
