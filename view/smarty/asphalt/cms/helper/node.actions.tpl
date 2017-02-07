@@ -6,12 +6,12 @@
             <p>
             <small>
                 {$url}
-                &nbsp;
-                <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
-                    {translate key="button.view.page"}
-
-                    <span class="icon icon--external-link"></span>
-                </a>
+                {if $node->isAvailableInLocale($app.locale)}
+                    <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
+                        {translate key="button.view.page"}
+                        <span class="icon icon--external-link"></span>
+                    </a>
+                {/if}
             </small>
             </p>
         {/if}

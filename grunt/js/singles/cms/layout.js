@@ -331,23 +331,26 @@ function initializeContent(baseUrl) {
     var $buttonWidgetAddAndClose = $('.widget-add-submit-close');
     var $modalSectionAction = $('.modal-section-action');
     var $buttonSectionAction = $('.section-action-submit');
+    var $blocks = $('.section .block');
+    var $sections = $('.sections');
+
+    var $availabilityToggle = $('.js-toggle-available');
+    var actionsDisabled = false;
 
     // perform a widget add to the cms
     var widgetAdd = function() {
         var widget = $('input[name=widget]:checked').val();
         if (!widget) {
             alert('no widget selected');
-
             return;
         }
 
         var section = $('input[name=section]').val();
         var block = $('input[name=block]').val();
-
         var $block = $('.section[data-section=' + section + '] .block[data-block=' + block + ']', $sections);
+
         if ($block.length != 1) {
             alert('no block found');
-
             return;
         }
 
@@ -405,39 +408,89 @@ function initializeContent(baseUrl) {
 
     // initialize the sortable for the widgets
     var initWidgetOrder = function (baseUrl, reset) {
-        var $blocks = $('.section .block');
-
         if (reset != undefined && reset) {
             $blocks.each(function() {
                 try {
-                    $(this).sortable('destroy')
+                    $(this).sortable('destroy');
                 } catch (error) {
-
+                    console.log(error);
                 }
             });
         }
 
         $blocks.sortable({
-          handle: '.handle',
-          items: '> .widget:not(.widget--locked)',
-          connectWith: $blocks,
-          update: function (event, ui) {            // don't update twice
-            if (this !== ui.item.parent()[0]) {
-              return;
+            handle: '.handle',
+            items: '> .widget:not(.widget--locked)',
+            connectWith: $blocks,
+            update: function (event, ui) {            // don't update twice
+                if (this !== ui.item.parent()[0]) {
+                    return;
+                }
+                updateOrder(baseUrl);
+            },
+            over: function (event, ui) {
+                ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
+            },
+            activate: function (event, ui) {
+                $body.addClass('is-sorting');
+            },
+            deactivate: function (event, ui) {
+                $body.removeClass('is-sorting');
             }
-            updateOrder(baseUrl);
-          },
-          over: function (event, ui) {
-            ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
-          },
-          activate: function (event, ui) {
-            $body.addClass('is-sorting');
-          },
-          deactivate: function (event, ui) {
-            $body.removeClass('is-sorting');
-          }
         });
     };
+
+    var lockOrder = function () {
+        var $itemsToLock = $blocks.add($sections);
+
+        $itemsToLock.each(function() {
+            try {
+                $(this).sortable('destroy');
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    };
+
+    var disableActions = function () {
+        actionsDisabled = true;
+    };
+    var enableActions = function () {
+        actionsDisabled = false;
+    };
+
+    var initSectionOrder = function () {
+        $sections.sortable({
+            handle: '.panel-heading .handle',
+            items: '> .section',
+            update: function(event, ui) {
+                updateOrder(baseUrl);
+            },
+            activate: function (event, ui) {
+                $body.addClass('is-sorting');
+            },
+            deactivate: function (event, ui) {
+                $body.removeClass('is-sorting');
+            }
+        });
+    };
+
+    // var sectionOrder = (function() {
+
+    //     var init = function() {
+
+    //     };
+
+    //     var destroy = function() {
+
+    //     };
+
+    //     return {
+    //         init: init,
+    //         destroy: destroy
+    //     };
+
+    // })();
 
     //  Initialize section actions (style, properties) to open in modal
     var initSectionActions = function () {
@@ -446,34 +499,23 @@ function initializeContent(baseUrl) {
         var $action = $(this);
         var href = $action.attr('href');
         if (href[0] == '#') {
-          return;
+            return;
         }
         $modalSectionAction.find('.modal-body').load(href + ' form', function () {
-          $modalSectionAction.find('.modal-title').text($action.attr('title'));
-          $modalSectionAction.find('.form__actions').hide();
-          $modalSectionAction.modal('show');
+            $modalSectionAction.find('.modal-title').text($action.attr('title'));
+            $modalSectionAction.find('.form__actions').hide();
+            $modalSectionAction.modal('show');
         });
       });
     };
 
     // initialize sortable for the sections
-    var $sections = $('.sections');
-    $sections.sortable({
-        handle: '.panel-heading .handle',
-        items: '> .section',
-        update: function(event, ui) {
-          updateOrder(baseUrl);
-        },
-        activate: function (event, ui) {
-          $body.addClass('is-sorting');
-        },
-        deactivate: function (event, ui) {
-          $body.removeClass('is-sorting');
-        }
-    });
+    initSectionOrder();
 
     // add a new section
     $document.on('click', '.section-add', function(e) {
+        if (actionsDisabled) { return; }
+
         e.preventDefault();
         var method = $(this).data('method');
         var $section;
@@ -501,6 +543,8 @@ function initializeContent(baseUrl) {
     $document.on('click', '.section-delete', function(e) {
         e.preventDefault();
 
+        if (actionsDisabled) { return; }
+
         var $this = $(this);
         if (!confirm($this.data('confirm'))) {
             return;
@@ -524,6 +568,8 @@ function initializeContent(baseUrl) {
     $document.on('click', '.section__layouts > a', function(e) {
         e.preventDefault();
 
+        if (actionsDisabled) { return; }
+
         var $this = $(this);
         var $section = $this.closest('.section');
 
@@ -537,19 +583,21 @@ function initializeContent(baseUrl) {
     });
 
     // add widget with double click
-    $document.on('dblclick', '.section .block', function() {
-        var $this = $(this);
-        var block = $this.data('block');
-        var section = $this.parents('.section').data('section');
+    // $document.on('dblclick', '.section .block', function() {
+    //     var $this = $(this);
+    //     var block = $this.data('block');
+    //     var section = $this.parents('.section').data('section');
 
-        $('input[name=section]').val(section);
-        $('input[name=block]').val(block);
+    //     $('input[name=section]').val(section);
+    //     $('input[name=block]').val(block);
 
-        $modalWidgetAdd.modal('show');
-    });
+    //     $modalWidgetAdd.modal('show');
+    // });
 
     // add widget through link
     $document.on('click', '.widget-add', function(event) {
+        if (actionsDisabled) { return; }
+
         var $button = $(this);
         var $block = $button.parents('.block');
         var $section = $button.parents('.section');
@@ -584,6 +632,8 @@ function initializeContent(baseUrl) {
     $document.on('click', '.widget-delete', function(e) {
         e.preventDefault();
 
+        if (actionsDisabled) { return; }
+
         var $this = $(this);
         if (!confirm($this.data('confirm'))) {
             return;
@@ -602,6 +652,40 @@ function initializeContent(baseUrl) {
         });
 
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
+    });
+
+    // Toggle widgets
+    var toggleAvailableWidgets = function($el) {
+        var $widgetsToToggle = $('.widget.is-locked');
+
+        if ($el.is(':checked')) {
+            $widgetsToToggle.hide();
+            disableActions();
+            lockOrder();
+        } else {
+            $widgetsToToggle.show();
+            initSectionOrder();
+            initWidgetOrder();
+            enableActions();
+        }
+    };
+
+    var toggleAvailableSections = function($el) {
+        // hide the sections that have no available widgets
+        // Todo: move this logic to PHP
+        $('div.section').each(function(){
+            var $widgets = $(this).find('div.widget');
+            var $unavailableWidgets = $(this).find('div.is-unavailable');
+            if ($widgets.length === $unavailableWidgets.length) {
+              $(this).toggle();
+            }
+        });
+    }
+
+    toggleAvailableWidgets($availabilityToggle);
+    $availabilityToggle.on('change', function(){
+        toggleAvailableSections($(this));
+        toggleAvailableWidgets($(this));
     });
 
     // filter widgets

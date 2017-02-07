@@ -81,6 +81,9 @@
 .node a {
   color: #494949;
   text-decoration: none;
+  &.is-unavailable {
+    text-decoration: line-through;
+  }
 }
 
 /*.node a.name {
