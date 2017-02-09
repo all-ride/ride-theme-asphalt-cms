@@ -173,7 +173,7 @@
 
         {if !$widget->getProperties()->isPublished()}
             <div>
-                <span class="label label--danger"><span class="icon icon--eye-slash"></span> Not Published</span>
+                <span class="label label--danger"><span class="icon icon--eye-slash"></span> {translate key="widget.locales.available.show"}</span>
             </div>
         {/if}
 

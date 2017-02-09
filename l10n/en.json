@@ -21,6 +21,7 @@
     "title.entry.edit": "Edit Entry",
     "title.text": "Text",
     "widget.locales.available": "Available in following languages",
+    "widget.locales.available.show": "Only show the widgets available in current locale",
     "widget.orm.entry.default": "Entry default",
     "widget.published.not": "Not published",
     "label.node.action.edit": "Settings"
