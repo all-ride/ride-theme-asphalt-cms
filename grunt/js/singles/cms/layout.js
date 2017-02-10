@@ -659,11 +659,11 @@ function initializeContent(baseUrl) {
         var $widgetsToToggle = $('.widget.is-locked');
 
         if ($el.is(':checked')) {
-            $widgetsToToggle.hide();
+            $widgetsToToggle.stop().hide(400);
             disableActions();
             lockOrder();
         } else {
-            $widgetsToToggle.show();
+            $widgetsToToggle.stop().show(400);
             initSectionOrder();
             initWidgetOrder();
             enableActions();
@@ -676,7 +676,8 @@ function initializeContent(baseUrl) {
             var $widgets = $(this).find('div.widget');
             var $unavailableWidgets = $(this).find('div.is-unavailable');
             if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
-              $(this).toggle();
+              $(this).stop().toggle(400);
+              console.log('foobear');
             }
         });
     }
