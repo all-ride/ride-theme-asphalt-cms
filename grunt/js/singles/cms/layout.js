@@ -676,8 +676,9 @@ function initializeContent(baseUrl) {
         $('div.section').each(function(){
             var $widgets = $(this).find('div.widget');
             var $unavailableWidgets = $(this).find('div.is-unavailable');
-            if ($widgets.length === $unavailableWidgets.length) {
+            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
               $(this).toggle();
+              console.log('foobear');
             }
         });
     }
