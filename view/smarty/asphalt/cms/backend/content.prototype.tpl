@@ -173,12 +173,11 @@
 
         {if !$widget->getProperties()->isPublished()}
             <div>
-                <span class="label label--danger"><span class="icon icon--eye-slash"></span> Not Published</span>
+                <span class="label label--danger"><span class="icon icon--eye-slash"></span> {translate key="widget.published.not"}</span>
             </div>
         {/if}
-
-        <div>
-            {if $hasAvailableLocales}
+        {if $hasAvailableLocales}
+            <div>
                 {foreach $locales as $installedLocale}
                     {if $installedLocale|in_array:$availableLocales}
                         <span class="label label--success">{$installedLocale}</span>
@@ -188,16 +187,9 @@
                         </span>
                     {/if}
                 {/foreach}
-            {else}
-                {foreach $app.locales as $installedLocale}
-                    <span class="label label--success">{$installedLocale}</span>
-                {/foreach}
-            {/if}
-        </div>
-
-        {if $hasAvailableLocales}
-            {* <span class="label label--info">{translate key="widget.locales.available"}: {', '|implode:$widget->getProperties()->getAvailableLocales()}</span> *}
+            </div>
         {/if}
+
     </div>
 </div>
 {/function}

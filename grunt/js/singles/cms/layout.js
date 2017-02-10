@@ -670,13 +670,12 @@ function initializeContent(baseUrl) {
         }
     };
 
-    var toggleAvailableSections = function($el) {
+    var toggleAvailableSections = function() {
         // hide the sections that have no available widgets
-        // Todo: move this logic to PHP
         $('div.section').each(function(){
             var $widgets = $(this).find('div.widget');
             var $unavailableWidgets = $(this).find('div.is-unavailable');
-            if ($widgets.length === $unavailableWidgets.length) {
+            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
               $(this).toggle();
             }
         });
@@ -684,7 +683,7 @@ function initializeContent(baseUrl) {
 
     toggleAvailableWidgets($availabilityToggle);
     $availabilityToggle.on('change', function(){
-        toggleAvailableSections($(this));
+        toggleAvailableSections();
         toggleAvailableWidgets($(this));
     });
 

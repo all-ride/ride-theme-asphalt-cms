@@ -50,3 +50,12 @@ form .row-layout .help-block {
 .widget-row + .widget-row {
   margin-top: 10px;
 }
+
+.locale {
+    &__label {
+        display: inline-block;
+    }
+    &__url {
+        display: inline-block;
+    }
+}
