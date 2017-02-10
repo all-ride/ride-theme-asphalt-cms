@@ -3,18 +3,23 @@
         {if isset($actions['go'])}
             {$baseUrl = $app.system->getConfig()->get("cms.url.`$site->getId()`.`$locale`", $app.url.script)}
             {$url = "`$baseUrl``$node->getRoute($locale)`"}
-            <p>
-            <small>
-                {$url}
-                {if $node->isAvailableInLocale($app.locale)}
-                    <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
-                        {translate key="button.view.page"}
-                        <span class="icon icon--external-link"></span>
-                    </a>
-                {/if}
-            </small>
+            <p class="locale__url">
+                <small>
+                    {$url}
+                    {if $node->isAvailableInLocale($app.locale)}
+                        <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
+                            {translate key="button.view.page"}
+                            <span class="icon icon--external-link"></span>
+                        </a>
+                    {/if}
+                </small>
             </p>
+            <div class="locale__label">
+                {call showLocaleLabels}
+            </div>
+
         {/if}
+
         <ul class="tabs">
             {foreach $actions as $action => $url}
                 {if $action == "go"}
@@ -28,4 +33,16 @@
             {/isGranted}
         </ul>
     {/if}
+{/function}
+
+{function showLocaleLabels}
+    {foreach $locales as $locale}
+        {if $locale|in_array:$node->getAvailableLocales()}
+            <span class="label label--success">{$locale}</span>
+        {else}
+            <span class="label label--warning">
+                <del>{$locale}</del>
+            </span>
+        {/if}
+    {/foreach}
 {/function}
