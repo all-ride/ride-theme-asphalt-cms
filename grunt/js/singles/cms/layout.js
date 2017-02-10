@@ -683,9 +683,8 @@ function initializeContent(baseUrl) {
 
     toggleAvailableWidgets($availabilityToggle);
     $availabilityToggle.on('change', function(){
-        toggleAvailableSections($(this));
-        toggleAvailableWidgets($(this));
         toggleAvailableSections();
+        toggleAvailableWidgets($(this));
     });
 
     // filter widgets
