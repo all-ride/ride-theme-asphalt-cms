@@ -36,8 +36,9 @@
 {/function}
 
 {function showLocaleLabels}
+    {$availableLocales = $node->getAvailableLocales()}
     {foreach $locales as $locale}
-        {if $locale|in_array:$node->getAvailableLocales()}
+        {if $availableLocales == 'all' || $locale|in_array:$availableLocales}
             <span class="label label--success">{$locale}</span>
         {else}
             <span class="label label--warning">
