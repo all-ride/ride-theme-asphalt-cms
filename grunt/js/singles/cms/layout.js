@@ -454,11 +454,9 @@ function initializeContent(baseUrl) {
 
     var disableActions = function () {
         actionsDisabled = true;
-        console.log('disabled actions');
     };
     var enableActions = function () {
         actionsDisabled = false;
-        console.log('enabled actions');
     };
 
     var initSectionOrder = function () {
@@ -672,9 +670,22 @@ function initializeContent(baseUrl) {
         }
     };
 
+    var toggleAvailableSections = function() {
+        // hide the sections that have no available widgets
+        $('div.section').each(function(){
+            var $widgets = $(this).find('div.widget');
+            var $unavailableWidgets = $(this).find('div.is-unavailable');
+            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
+              $(this).toggle();
+            }
+        });
+    }
+
     toggleAvailableWidgets($availabilityToggle);
     $availabilityToggle.on('change', function(){
+        toggleAvailableSections($(this));
         toggleAvailableWidgets($(this));
+        toggleAvailableSections();
     });
 
     // filter widgets
