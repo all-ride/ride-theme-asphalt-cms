@@ -368,7 +368,7 @@ function initializeContent(baseUrl) {
             $lockedWidget = $block.find('.widget--locked');
             var $section = $lockedWidget.before(html);
 
-            initWidgetOrder(baseUrl, true);
+            initWidgetOrder();
             initSectionActions();
 
             $buttonWidgetAdd.removeAttr('disabled');
@@ -379,7 +379,7 @@ function initializeContent(baseUrl) {
     };
 
     // perform the order update to the cms
-    var updateOrder = function(baseUrl) {
+    var updateOrder = function() {
         // generate overview of the widgets in their blocks and sections
         var order = {};
         $('.section').each(function() {
@@ -414,16 +414,14 @@ function initializeContent(baseUrl) {
     }
 
     // initialize the sortable for the widgets
-    var initWidgetOrder = function (baseUrl, reset) {
-        if (reset != undefined && reset) {
-            $blocks.each(function() {
-                try {
-                    $(this).sortable('destroy');
-                } catch (error) {
-                    console.log(error);
-                }
-            });
-        }
+    var initWidgetOrder = function () {
+        $blocks.each(function() {
+            try {
+                $(this).sortable('destroy');
+            } catch (error) {
+                console.log(error);
+            }
+        });
 
         $blocks.sortable({
             handle: '.handle',
@@ -433,7 +431,7 @@ function initializeContent(baseUrl) {
                 if (this !== ui.item.parent()[0]) {
                     return;
                 }
-                updateOrder(baseUrl);
+                updateOrder();
             },
             over: function (event, ui) {
                 ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
@@ -464,7 +462,7 @@ function initializeContent(baseUrl) {
             handle: '.panel-heading .handle',
             items: '> .section',
             update: function(event, ui) {
-                updateOrder(baseUrl);
+                updateOrder();
             },
             activate: function (event, ui) {
                 $body.addClass('is-sorting');
@@ -554,7 +552,7 @@ function initializeContent(baseUrl) {
                 break;
             }
 
-            initWidgetOrder(baseUrl, true);
+            initWidgetOrder();
             initSectionActions();
 
             $('.section:last', $sections).scrollTop();
@@ -580,8 +578,7 @@ function initializeContent(baseUrl) {
             type: 'DELETE',
             success: function(result) {
                 $section.remove();
-
-                initWidgetOrder(baseUrl, true);
+                initWidgetOrder();
             }
         });
 
@@ -600,7 +597,7 @@ function initializeContent(baseUrl) {
         var jqxhr = $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
             $section = $section.replaceWith(html);
 
-            initWidgetOrder(baseUrl, true);
+            initWidgetOrder();
             initSectionActions();
         });
         rideApp.common.handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
@@ -701,7 +698,7 @@ function initializeContent(baseUrl) {
     // === init ====
     // initialize sortable for the sections
     initSectionOrder();
-    initWidgetOrder(baseUrl);
+    initWidgetOrder();
     initSectionActions();
     toggleAvailableWidgets($availabilityToggle);
 
