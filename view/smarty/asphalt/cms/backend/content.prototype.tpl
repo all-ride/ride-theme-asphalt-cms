@@ -175,18 +175,9 @@
             <div>
                 <span class="label label--danger"><span class="icon icon--eye-slash"></span> {translate key="widget.published.not"}</span>
             </div>
-        {/if}
-        {if $hasAvailableLocales}
+        {elseif $hasAvailableLocales}
             <div>
-                {foreach $locales as $installedLocale}
-                    {if $installedLocale|in_array:$availableLocales}
-                        <span class="label label--success">{$installedLocale}</span>
-                    {else}
-                        <span class="label label--warning">
-                            <del>{$installedLocale}</del>
-                        </span>
-                    {/if}
-                {/foreach}
+                {call showLocaleLabels availableLocales=$availableLocales}
             </div>
         {/if}
 
