@@ -1,4 +1,6 @@
 {function renderNodeActions actions=null current=null}
+    {$availableLocales = $node->getAvailableLocales()}
+    {$hasAvailableLocales = $availableLocales|is_array || $availableLocales == "all"}
     {if $actions}
         {if isset($actions['go'])}
             {$baseUrl = $app.system->getConfig()->get("cms.url.`$site->getId()`.`$locale`", $app.url.script)}
@@ -14,9 +16,11 @@
                     {/if}
                 </small>
             </p>
-            <div class="locale__label">
-                {call showLocaleLabels}
-            </div>
+            {if $hasAvailableLocales}
+                <div class="locale__label">
+                    {call showLocaleLabels availableLocales=$availableLocales}
+                </div>
+            {/if}
 
         {/if}
 
@@ -35,15 +39,20 @@
     {/if}
 {/function}
 
-{function showLocaleLabels}
-    {$availableLocales = $node->getAvailableLocales()}
-    {foreach $locales as $locale}
-        {if $availableLocales == 'all' || $locale|in_array:$availableLocales}
-            <span class="label label--success">{$locale}</span>
-        {else}
-            <span class="label label--warning">
-                <del>{$locale}</del>
-            </span>
-        {/if}
-    {/foreach}
+{function showLocaleLabels availableLocales=null}
+    {$hasSomeAvailableLocales = $availableLocales|is_array}
+    {if $hasSomeAvailableLocales}
+        {foreach $locales as $locale}
+            {if $locale|in_array:$availableLocales}
+                {* the available locales *}
+                <span class="label label--success">{$locale}</span>
+            {else}
+                {* the unavailable locales  *}
+                <span class="label label--warning">
+                    <del>{$locale}</del>
+                </span>
+            {/if}
+        {/foreach}
+    {/if}
+    {* don't show any labels when all the locales are available *}
 {/function}

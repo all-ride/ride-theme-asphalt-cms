@@ -333,8 +333,15 @@ function initializeContent(baseUrl) {
     var $buttonSectionAction = $('.section-action-submit');
     var $blocks = $('.section .block');
     var $sections = $('.sections');
-
+    var $widgets = $('.widget--compact');
     var $availabilityToggle = $('.js-toggle-available');
+    var $controlsToHideInLocaleMode = [
+        $('.section-delete'),
+        $('.section__handle'),
+        $('.widget__handle'),
+        $('.widget-add'),
+        $('.section-add')
+    ]
     var actionsDisabled = false;
 
     // perform a widget add to the cms
@@ -361,7 +368,7 @@ function initializeContent(baseUrl) {
             $lockedWidget = $block.find('.widget--locked');
             var $section = $lockedWidget.before(html);
 
-            initWidgetOrder(baseUrl, true);
+            initWidgetOrder();
             initSectionActions();
 
             $buttonWidgetAdd.removeAttr('disabled');
@@ -372,7 +379,7 @@ function initializeContent(baseUrl) {
     };
 
     // perform the order update to the cms
-    var updateOrder = function(baseUrl) {
+    var updateOrder = function() {
         // generate overview of the widgets in their blocks and sections
         var order = {};
         $('.section').each(function() {
@@ -407,16 +414,14 @@ function initializeContent(baseUrl) {
     }
 
     // initialize the sortable for the widgets
-    var initWidgetOrder = function (baseUrl, reset) {
-        if (reset != undefined && reset) {
-            $blocks.each(function() {
-                try {
-                    $(this).sortable('destroy');
-                } catch (error) {
-                    console.log(error);
-                }
-            });
-        }
+    var initWidgetOrder = function () {
+        $blocks.each(function() {
+            try {
+                $(this).sortable('destroy');
+            } catch (error) {
+                console.log(error);
+            }
+        });
 
         $blocks.sortable({
             handle: '.handle',
@@ -426,7 +431,7 @@ function initializeContent(baseUrl) {
                 if (this !== ui.item.parent()[0]) {
                     return;
                 }
-                updateOrder(baseUrl);
+                updateOrder();
             },
             over: function (event, ui) {
                 ui.placeholder.insertBefore($(this).children('.widget.widget--locked:first'));
@@ -452,19 +457,12 @@ function initializeContent(baseUrl) {
         });
     };
 
-    var disableActions = function () {
-        actionsDisabled = true;
-    };
-    var enableActions = function () {
-        actionsDisabled = false;
-    };
-
     var initSectionOrder = function () {
         $sections.sortable({
             handle: '.panel-heading .handle',
             items: '> .section',
             update: function(event, ui) {
-                updateOrder(baseUrl);
+                updateOrder();
             },
             activate: function (event, ui) {
                 $body.addClass('is-sorting');
@@ -474,23 +472,6 @@ function initializeContent(baseUrl) {
             }
         });
     };
-
-    // var sectionOrder = (function() {
-
-    //     var init = function() {
-
-    //     };
-
-    //     var destroy = function() {
-
-    //     };
-
-    //     return {
-    //         init: init,
-    //         destroy: destroy
-    //     };
-
-    // })();
 
     //  Initialize section actions (style, properties) to open in modal
     var initSectionActions = function () {
@@ -509,8 +490,49 @@ function initializeContent(baseUrl) {
       });
     };
 
-    // initialize sortable for the sections
-    initSectionOrder();
+    // === locale mode functions ===
+    var disableActions = function() {
+        $controlsToHideInLocaleMode.forEach(function(val){
+            val.hide();
+        });
+        actionsDisabled = true;
+    };
+
+    var enableActions = function() {
+        $controlsToHideInLocaleMode.forEach(function(val){
+            val.show();
+        });
+        actionsDisabled = false;
+    };
+
+    var toggleAvailableWidgets = function($el) {
+        // hide the widgets that are not available in current locale
+        var $widgetsToToggle = $('.widget.is-locked');
+
+        if ($el.is(':checked')) {
+            $widgetsToToggle.stop().hide("medium");
+            disableActions();
+            lockOrder();
+        } else {
+            $widgetsToToggle.stop().show("medium");
+            initSectionOrder();
+            initWidgetOrder();
+            enableActions();
+        }
+    };
+
+    var toggleAvailableSections = function() {
+        // hide the sections that have no available widgets for the current locale
+        $('div.section').each(function(){
+            var $widgets = $(this).find('div.widget');
+            var $unavailableWidgets = $(this).find('div.is-unavailable');
+            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
+              $(this).stop().toggle("medium");
+            }
+        });
+    }
+
+    // === watchers ====
 
     // add a new section
     $document.on('click', '.section-add', function(e) {
@@ -530,7 +552,7 @@ function initializeContent(baseUrl) {
                 break;
             }
 
-            initWidgetOrder(baseUrl, true);
+            initWidgetOrder();
             initSectionActions();
 
             $('.section:last', $sections).scrollTop();
@@ -556,8 +578,7 @@ function initializeContent(baseUrl) {
             type: 'DELETE',
             success: function(result) {
                 $section.remove();
-
-                initWidgetOrder(baseUrl, true);
+                initWidgetOrder();
             }
         });
 
@@ -576,23 +597,11 @@ function initializeContent(baseUrl) {
         var jqxhr = $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
             $section = $section.replaceWith(html);
 
-            initWidgetOrder(baseUrl, true);
+            initWidgetOrder();
             initSectionActions();
         });
         rideApp.common.handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
     });
-
-    // add widget with double click
-    // $document.on('dblclick', '.section .block', function() {
-    //     var $this = $(this);
-    //     var block = $this.data('block');
-    //     var section = $this.parents('.section').data('section');
-
-    //     $('input[name=section]').val(section);
-    //     $('input[name=block]').val(block);
-
-    //     $modalWidgetAdd.modal('show');
-    // });
 
     // add widget through link
     $document.on('click', '.widget-add', function(event) {
@@ -654,41 +663,13 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
-    // Toggle widgets
-    var toggleAvailableWidgets = function($el) {
-        var $widgetsToToggle = $('.widget.is-locked');
-
-        if ($el.is(':checked')) {
-            $widgetsToToggle.stop().hide(400);
-            disableActions();
-            lockOrder();
-        } else {
-            $widgetsToToggle.stop().show(400);
-            initSectionOrder();
-            initWidgetOrder();
-            enableActions();
-        }
-    };
-
-    var toggleAvailableSections = function() {
-        // hide the sections that have no available widgets
-        $('div.section').each(function(){
-            var $widgets = $(this).find('div.widget');
-            var $unavailableWidgets = $(this).find('div.is-unavailable');
-            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
-              $(this).stop().toggle(400);
-            }
-        });
-    }
-
-    toggleAvailableWidgets($availabilityToggle);
+    // activate locale mode
     $availabilityToggle.on('change', function(){
         toggleAvailableSections();
         toggleAvailableWidgets($(this));
     });
 
     // filter widgets
-    var $widgets = $('.widget--compact');
     $('#filter-widgets').on('keyup', function(e) {
       if(e.which == 13) {
         return false;
@@ -713,6 +694,12 @@ function initializeContent(baseUrl) {
       rideApp.common.handleXHRCallback(jqxhr, 'Updated section properties', 'Could not update section properties');
     });
 
-    initWidgetOrder(baseUrl);
+
+    // === init ====
+    // initialize sortable for the sections
+    initSectionOrder();
+    initWidgetOrder();
     initSectionActions();
+    toggleAvailableWidgets($availabilityToggle);
+
 }
