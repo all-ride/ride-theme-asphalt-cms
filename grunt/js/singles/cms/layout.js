@@ -493,14 +493,14 @@ function initializeContent(baseUrl) {
     // === locale mode functions ===
     var disableActions = function() {
         $controlsToHideInLocaleMode.forEach(function(val){
-            val.stop().hide("medium");
+            val.hide();
         });
         actionsDisabled = true;
     };
 
     var enableActions = function() {
         $controlsToHideInLocaleMode.forEach(function(val){
-            val.stop().show("medium");
+            val.show();
         });
         actionsDisabled = false;
     };
