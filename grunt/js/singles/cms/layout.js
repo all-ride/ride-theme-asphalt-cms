@@ -493,14 +493,14 @@ function initializeContent(baseUrl) {
     // === locale mode functions ===
     var disableActions = function() {
         $controlsToHideInLocaleMode.forEach(function(val){
-            val.hide("fast");
+            val.stop().hide("medium");
         });
         actionsDisabled = true;
     };
 
     var enableActions = function() {
         $controlsToHideInLocaleMode.forEach(function(val){
-            val.show("fast");
+            val.stop().show("medium");
         });
         actionsDisabled = false;
     };
@@ -510,11 +510,11 @@ function initializeContent(baseUrl) {
         var $widgetsToToggle = $('.widget.is-locked');
 
         if ($el.is(':checked')) {
-            $widgetsToToggle.stop().hide("fast");
+            $widgetsToToggle.stop().hide("medium");
             disableActions();
             lockOrder();
         } else {
-            $widgetsToToggle.stop().show("fast");
+            $widgetsToToggle.stop().show("medium");
             initSectionOrder();
             initWidgetOrder();
             enableActions();
@@ -527,7 +527,7 @@ function initializeContent(baseUrl) {
             var $widgets = $(this).find('div.widget');
             var $unavailableWidgets = $(this).find('div.is-unavailable');
             if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
-              $(this).stop().toggle("fast");
+              $(this).stop().toggle("medium");
             }
         });
     }
