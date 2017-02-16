@@ -333,8 +333,15 @@ function initializeContent(baseUrl) {
     var $buttonSectionAction = $('.section-action-submit');
     var $blocks = $('.section .block');
     var $sections = $('.sections');
-
+    var $widgets = $('.widget--compact');
     var $availabilityToggle = $('.js-toggle-available');
+    var $controlsToHideInLocaleMode = [
+        $('.section-delete'),
+        $('.section__handle'),
+        $('.widget__handle'),
+        $('.widget-add'),
+        $('.section-add')
+    ]
     var actionsDisabled = false;
 
     // perform a widget add to the cms
@@ -452,13 +459,6 @@ function initializeContent(baseUrl) {
         });
     };
 
-    var disableActions = function () {
-        actionsDisabled = true;
-    };
-    var enableActions = function () {
-        actionsDisabled = false;
-    };
-
     var initSectionOrder = function () {
         $sections.sortable({
             handle: '.panel-heading .handle',
@@ -474,23 +474,6 @@ function initializeContent(baseUrl) {
             }
         });
     };
-
-    // var sectionOrder = (function() {
-
-    //     var init = function() {
-
-    //     };
-
-    //     var destroy = function() {
-
-    //     };
-
-    //     return {
-    //         init: init,
-    //         destroy: destroy
-    //     };
-
-    // })();
 
     //  Initialize section actions (style, properties) to open in modal
     var initSectionActions = function () {
@@ -509,8 +492,49 @@ function initializeContent(baseUrl) {
       });
     };
 
-    // initialize sortable for the sections
-    initSectionOrder();
+    // === locale mode functions ===
+    var disableActions = function() {
+        $controlsToHideInLocaleMode.forEach(function(val){
+            val.hide("fast");
+        });
+        actionsDisabled = true;
+    };
+
+    var enableActions = function() {
+        $controlsToHideInLocaleMode.forEach(function(val){
+            val.show("fast");
+        });
+        actionsDisabled = false;
+    };
+
+    var toggleAvailableWidgets = function($el) {
+        // hide the widgets that are not available in current locale
+        var $widgetsToToggle = $('.widget.is-locked');
+
+        if ($el.is(':checked')) {
+            $widgetsToToggle.stop().hide("fast");
+            disableActions();
+            lockOrder();
+        } else {
+            $widgetsToToggle.stop().show("fast");
+            initSectionOrder();
+            initWidgetOrder();
+            enableActions();
+        }
+    };
+
+    var toggleAvailableSections = function() {
+        // hide the sections that have no available widgets for the current locale
+        $('div.section').each(function(){
+            var $widgets = $(this).find('div.widget');
+            var $unavailableWidgets = $(this).find('div.is-unavailable');
+            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
+              $(this).stop().toggle("fast");
+            }
+        });
+    }
+
+    // === watchers ====
 
     // add a new section
     $document.on('click', '.section-add', function(e) {
@@ -582,18 +606,6 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Section layout changed', 'Could not change section layout');
     });
 
-    // add widget with double click
-    // $document.on('dblclick', '.section .block', function() {
-    //     var $this = $(this);
-    //     var block = $this.data('block');
-    //     var section = $this.parents('.section').data('section');
-
-    //     $('input[name=section]').val(section);
-    //     $('input[name=block]').val(block);
-
-    //     $modalWidgetAdd.modal('show');
-    // });
-
     // add widget through link
     $document.on('click', '.widget-add', function(event) {
         if (actionsDisabled) { return; }
@@ -654,41 +666,13 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
-    // Toggle widgets
-    var toggleAvailableWidgets = function($el) {
-        var $widgetsToToggle = $('.widget.is-locked');
-
-        if ($el.is(':checked')) {
-            $widgetsToToggle.hide();
-            disableActions();
-            lockOrder();
-        } else {
-            $widgetsToToggle.show();
-            initSectionOrder();
-            initWidgetOrder();
-            enableActions();
-        }
-    };
-
-    var toggleAvailableSections = function() {
-        // hide the sections that have no available widgets
-        $('div.section').each(function(){
-            var $widgets = $(this).find('div.widget');
-            var $unavailableWidgets = $(this).find('div.is-unavailable');
-            if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
-              $(this).toggle();
-            }
-        });
-    }
-
-    toggleAvailableWidgets($availabilityToggle);
+    // activate locale mode
     $availabilityToggle.on('change', function(){
         toggleAvailableSections();
         toggleAvailableWidgets($(this));
     });
 
     // filter widgets
-    var $widgets = $('.widget--compact');
     $('#filter-widgets').on('keyup', function(e) {
       if(e.which == 13) {
         return false;
@@ -713,6 +697,12 @@ function initializeContent(baseUrl) {
       rideApp.common.handleXHRCallback(jqxhr, 'Updated section properties', 'Could not update section properties');
     });
 
+
+    // === init ====
+    // initialize sortable for the sections
+    initSectionOrder();
     initWidgetOrder(baseUrl);
     initSectionActions();
+    toggleAvailableWidgets($availabilityToggle);
+
 }
