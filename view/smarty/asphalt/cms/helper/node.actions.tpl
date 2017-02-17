@@ -8,7 +8,7 @@
             <p class="locale__url">
                 <small>
                     {$url}
-                    {if $node->isAvailableInLocale($app.locale)}
+                    {if $node->isAvailableInLocale($locale)}
                         <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
                             {translate key="button.view.page"}
                             <span class="icon icon--external-link"></span>
