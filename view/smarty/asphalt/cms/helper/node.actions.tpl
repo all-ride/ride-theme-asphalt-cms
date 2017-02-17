@@ -18,7 +18,7 @@
             </p>
             {if $hasAvailableLocales}
                 <div class="locale__label">
-                    {call showLocaleLabels availableLocales=$availableLocales}
+                    {call showLocaleLabels}
                 </div>
             {/if}
 
@@ -37,22 +37,4 @@
             {/isGranted}
         </ul>
     {/if}
-{/function}
-
-{function showLocaleLabels availableLocales=null}
-    {$hasSomeAvailableLocales = $availableLocales|is_array}
-    {if $hasSomeAvailableLocales}
-        {foreach $locales as $locale}
-            {if $locale|in_array:$availableLocales}
-                {* the available locales *}
-                <span class="label label--success">{$locale}</span>
-            {else}
-                {* the unavailable locales  *}
-                <span class="label label--warning">
-                    <del>{$locale}</del>
-                </span>
-            {/if}
-        {/foreach}
-    {/if}
-    {* don't show any labels when all the locales are available *}
 {/function}

@@ -177,10 +177,28 @@
             </div>
         {elseif $hasAvailableLocales}
             <div>
-                {call showLocaleLabels availableLocales=$availableLocales}
+                {call showLocaleLabels}
             </div>
         {/if}
 
     </div>
 </div>
+{/function}
+
+{function showLocaleLabels}
+    {$hasSomeAvailableLocales = $availableLocales|is_array}
+    {if $hasSomeAvailableLocales && $locales|is_array}
+        {foreach $locales as $locale}
+            {if $locale|in_array:$availableLocales}
+                {* the available locales *}
+                <span class="label label--success">{$locale}</span>
+            {else}
+                {* the unavailable locales  *}
+                <span class="label label--warning">
+                    <del>{$locale}</del>
+                </span>
+            {/if}
+        {/foreach}
+    {/if}
+    {* don't show any labels when all the locales are available *}
 {/function}
