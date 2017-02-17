@@ -1,3 +1,4 @@
+
 {function renderNodeActions actions=null current=null}
     {$availableLocales = $node->getAvailableLocales()}
     {$hasAvailableLocales = $availableLocales|is_array || $availableLocales == "all"}
@@ -16,12 +17,11 @@
                     {/if}
                 </small>
             </p>
-            {if $hasAvailableLocales}
+            {if $current == 'content'}
                 <div class="locale__label">
-                    {call showLocaleLabels}
+                    {call showLocaleLabels isPublished=$node->isPublished()}
                 </div>
             {/if}
-
         {/if}
 
         <ul class="tabs">
