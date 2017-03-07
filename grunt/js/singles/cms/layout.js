@@ -184,13 +184,17 @@ function initializeContent(baseUrl) {
         }
     };
 
-    var toggleAvailableSections = function() {
+    var toggleAvailableSections = function($el) {
         // hide the sections that have no available widgets for the current locale
         $('div.section').each(function(){
             var $widgets = $(this).find('div.widget');
             var $unavailableWidgets = $(this).find('div.is-unavailable');
             if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
-              $(this).stop().toggle("medium");
+                if ($el.is(':checked')){
+                    $(this).stop().hide("medium");
+                } else {
+                    $(this).stop().show("medium");
+                }
             }
         });
     }
@@ -319,7 +323,7 @@ function initializeContent(baseUrl) {
 
     // activate locale mode
     $availabilityToggle.on('change', function(){
-        toggleAvailableSections();
+        toggleAvailableSections($(this));
         toggleAvailableWidgets($(this));
     });
 
