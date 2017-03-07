@@ -101,7 +101,7 @@ function initializeContent(baseUrl) {
 
         $blocks.sortable({
             handle: '.handle',
-            items: '> .widget:not(.widget--locked)',
+            items: '.widget:not(.widget--locked)',
             connectWith: $blocks,
             update: function (event, ui) {            // don't update twice
                 if (this !== ui.item.parent()[0]) {
@@ -117,18 +117,6 @@ function initializeContent(baseUrl) {
             },
             deactivate: function (event, ui) {
                 $body.removeClass('is-sorting');
-            }
-        });
-    };
-
-    var lockOrder = function () {
-        var $itemsToLock = $blocks.add($sections);
-
-        $itemsToLock.each(function() {
-            try {
-                $(this).sortable('destroy');
-            } catch (error) {
-                console.log(error);
             }
         });
     };
@@ -188,7 +176,6 @@ function initializeContent(baseUrl) {
         if ($el.is(':checked')) {
             $widgetsToToggle.stop().hide("medium");
             disableActions();
-            lockOrder();
         } else {
             $widgetsToToggle.stop().show("medium");
             initSectionOrder();
@@ -215,22 +202,13 @@ function initializeContent(baseUrl) {
         if (actionsDisabled) { return; }
 
         e.preventDefault();
-        var method = $(this).data('method');
         var $section;
         var jqxhr = $.post(baseUrl + '/sections', function(html) {
-            switch(method) {
-              case 'prepend':
-                $section = $sections.prepend(html);
-                break;
-              case 'append':
-              default:
-                $section = $sections.append(html);
-                break;
-            }
+            $section = $sections.append(html);
+            $blocks = $('.section .block');
 
             initWidgetOrder();
             initSectionActions();
-
             $('.section:last', $sections).scrollTop();
         });
 
@@ -372,10 +350,8 @@ function initializeContent(baseUrl) {
 
 
     // === init ====
-    // initialize sortable for the sections
     initSectionOrder();
     initWidgetOrder();
     initSectionActions();
-    toggleAvailableWidgets($availabilityToggle);
 
 }
