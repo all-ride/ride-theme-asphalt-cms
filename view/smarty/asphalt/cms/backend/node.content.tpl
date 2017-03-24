@@ -20,6 +20,11 @@
     </div>
     {include 'cms/helper/node.actions'}
     {call renderNodeActions actions=$nodeActions current='content'}
+    <p>
+        <label for="toggle-available">
+            <input type="checkbox" id="toggle-available" class="js-toggle-available" /> {translate key="widget.locales.available.show"}
+        </label>
+    </p>
 {/block}
 
 {block name="content_body" append}
@@ -117,6 +122,7 @@
 
 {block name="scripts" append}
     <script src="{$app.url.base}/asphalt/js/cms/layout.js"></script>
+    <script src="{$app.url.base}/asphalt/js/cms/lib/modal.js"></script>
     <script type="text/javascript">
         $(function() {
             $('select[name=region]').change(function() {
