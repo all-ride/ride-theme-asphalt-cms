@@ -27,7 +27,8 @@
         'folder' => 'folder-open-o',
         'entry' => 'hdd-o',
         'reference' => 'share-square-o',
-        'redirect' => 'refresh'
+        'redirect' => 'refresh',
+        'home' => 'home'
     ]}
     <div class="btn-group clearfix">
         <a href="#" class="btn btn--brand" data-toggle="dropdown">{translate key="button.create"} <i class="icon icon--angle-down"></i></a>
