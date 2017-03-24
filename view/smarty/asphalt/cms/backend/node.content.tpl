@@ -18,7 +18,8 @@
     <div class="page-header">
         <h1>{$node->getName($locale)} <small>{translate key="title.node.layout"}</small></h1>
     </div>
-    {include 'cms/helper/node.actions'}
+    {include file="cms/backend/content.prototype"}
+    {include file="cms/helper/node.actions"}
     {call renderNodeActions actions=$nodeActions current='content'}
     <p>
         <label for="toggle-available">

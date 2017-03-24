@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.1] - 2017-03-24
+### Updated
+- added missing include to fix node header in backend
+
 ## [1.7.0] - 2017-03-24
 ### Added
 - support for home node
+- checkbox in node content to hide widgets in another locale
 
 ## [1.6.0] - 2017-01-17
 ### Added
