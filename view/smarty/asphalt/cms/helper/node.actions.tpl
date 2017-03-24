@@ -1,20 +1,29 @@
+
 {function renderNodeActions actions=null current=null}
+    {$availableLocales = $node->getAvailableLocales()}
+    {$hasAvailableLocales = $availableLocales|is_array || $availableLocales == "all"}
     {if $actions}
-        {if $actions['go']}
+        {if isset($actions['go'])}
             {$baseUrl = $app.system->getConfig()->get("cms.url.`$site->getId()`.`$locale`", $app.url.script)}
             {$url = "`$baseUrl``$node->getRoute($locale)`"}
-            <p>
-            <small>
-                {$url}
-                &nbsp;
-                <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
-                    {translate key="button.view.page"}
-
-                    <span class="icon icon--external-link"></span>
-                </a>
-            </small>
+            <p class="locale__url">
+                <small>
+                    {$url}
+                    {if $node->isAvailableInLocale($locale) && $node->isPublished()}
+                        <a class="" href="{if isset($actions.go)}{$actions.go}{else}{$url}{/if}" target="_blank">
+                            {translate key="button.view.page"}
+                            <span class="icon icon--external-link"></span>
+                        </a>
+                    {/if}
+                </small>
             </p>
+            {if $current == 'content'}
+                <div class="locale__label">
+                    {call showLocaleLabels isPublished=$node->isPublished()}
+                </div>
+            {/if}
         {/if}
+
         <ul class="tabs">
             {foreach $actions as $action => $url}
                 {if $action == "go"}

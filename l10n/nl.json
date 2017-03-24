@@ -22,6 +22,7 @@
     "title.entry.edit": "Entry bewerken",
     "title.text": "Tekst",
     "widget.locales.available": "Beschikbaar in volgende talen",
+    "widget.locales.available.show": "Toon enkel de widgets die beschikbaar zijn voor de huidige taalselectie",
     "widget.orm.entry.default": "Entry default",
     "widget.published.not": "Niet gepubliceerd",
     "label.node.action.edit": "Instellingen"

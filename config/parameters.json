@@ -9,6 +9,5 @@
     "cms.layouts.33-66": true,
     "cms.layouts.50-50": true,
     "cms.layouts.66-33": true,
-    "cms.layouts.75-25": true,
-    "template.smarty.plugin.cms": "%path%/src/ride/web/template/smarty/plugin"
+    "cms.layouts.75-25": true
 }

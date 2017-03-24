@@ -100,7 +100,27 @@
         {$availableActions[(string) $actionUrl] = $deleteAction}
     {/if}
 
-<div class="widget{if isset($inheritedWidgets[$widgetId])} inherited{/if}{if !$availableActions} locked{/if} clearfix" data-widget="{$widgetId}">
+    {$widgetClasses = ""}
+    {$isPublished = $widget->getProperties()->isPublished()}
+    {$availableLocales = $widget->getProperties()->getAvailableLocales()}
+    {$hasAvailableLocales = $availableLocales|is_array}
+
+    {if $isPublished && $hasAvailableLocales}
+        {if !$locale|in_array:$availableLocales}
+            {$isPublished = false}
+        {/if}
+    {/if}
+    {if !$isPublished || !$availableActions}
+        {$widgetClasses = "`$widgetClasses` is-unavailable"}
+    {/if}
+    {if !$isPublished || !$availableActions}
+        {$widgetClasses = "`$widgetClasses` is-locked"}
+    {/if}
+    {if isset($inheritedWidgets[$widgetId])}
+        {$widgetClasses = "`$widgetClasses` is-inherited"}
+    {/if}
+
+<div class="widget {$widgetClasses} clearfix" data-widget="{$widgetId}">
     <div class="widget__header clearfix">
         <div class="widget__handle">
             <div class="handle"><i class="icon icon--arrows"></i></div>
@@ -150,12 +170,31 @@
     </div>
     <div class="widget__content">
         {$widget->getPropertiesPreview()}
-        {if !$widget->getProperties()->isPublished()}
-            <span class="label label--warning">{translate key="widget.published.not"}</span>
-        {/if}
-        {if $widget->getProperties()->getAvailableLocales()|is_array}
-            <span class="label label--warning">{translate key="widget.locales.available"}: {', '|implode:$widget->getProperties()->getAvailableLocales()}</span>
-        {/if}
+
+
+        <div>
+            {call showLocaleLabels isPublished=$widget->getProperties()->isPublished()}
+        </div>
+
     </div>
 </div>
+{/function}
+
+{function showLocaleLabels isPublished=true}
+    {if !$isPublished}
+        {* When an item is not published, don't show the other labels *}
+        <span class="label label--danger"><span class="icon icon--eye-slash"></span> {translate key="widget.published.not"}</span>
+    {else if $locales|is_array}
+        {foreach $locales as $locale}
+            {if $availableLocales == 'all' || $locale|in_array:$availableLocales}
+                {* the available locales *}
+                <span class="label label--success">{$locale}</span>
+            {else}
+                {* the unavailable locales  *}
+                <span class="label label--warning">
+                    <del>{$locale}</del>
+                </span>
+            {/if}
+        {/foreach}
+    {/if}
 {/function}

@@ -13,22 +13,31 @@
     {$nodeType = $node->getType()}
     {$children = $treeNode->getChildren()}
     {$actions = $treeNode->getActions()}
+    {$nodeProperties = $node->getProperties()}
+    {$isAvailableInLocale = true}
 
-    <li class="node node-{$nodeType}{if !$treeNode->isLocalized($locale)} unlocalized{/if}{if $treeNode->isSelected()} selected{/if}" id="node-{$node->getId()}">
+    {if isset($nodeProperties.locales)}
+        {$nodeLocales = $nodeProperties.locales->getValue()}
+
+        {if !$nodeLocales|strstr:"all" && !$nodeLocales|strstr:$locale}
+            {$isAvailableInLocale = false}
+        {/if}
+    {/if}
+
+    <li class="node node-{$nodeType}{if $treeNode->isSelected()} selected{/if}" id="node-{$node->getId()}">
         {if $children}
         <a href="#" class="toggle"><i class="icon icon--minus-square-o"></i></a>
         {else}
         <span class="toggle"></span>
         {/if}
 
+        {$nodeName = $node->getName($locale)}
         {if $treeNode->isHomePage()}
             {$iconClass = 'home'}
-        {else if $treeNode->isHidden()}
-            {$iconClass = 'eye-slash'}
         {else}
             {$iconClass = $treeIcons.$nodeType}
         {/if}
-        {$nodeName = $node->getName($locale)}
+
 
         {$truncateLength = 20}
         {if $level > 3}
@@ -37,7 +46,14 @@
 
         <div class="handle"><span class="icon icon--{$iconClass}"></span></div>
         <div class="dropdown">
-            <a href="{$treeNode->getUrl()}" class="name" title="{$nodeName|escape}">{$nodeName|truncate:$truncateLength}</a>
+            <a href="{$treeNode->getUrl()}" class="name{if !$isAvailableInLocale} is-unavailable{/if}" title="{$nodeName|escape}">
+                {if $treeNode->isHidden()}
+                    <del>{$nodeName}</del>
+                {else}
+                    {$nodeName}
+                {/if}
+            </a>
+
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon icon--angle-down"></i></a>
             <ul class="dropdown__menu" role="menu">
             {$hasDivider = false}
