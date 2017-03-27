@@ -18,14 +18,15 @@
     <div class="page-header">
         <h1>{$node->getName($locale)} <small>{translate key="title.node.layout"}</small></h1>
     </div>
-    {include file="cms/backend/content.prototype"}
     {include file="cms/helper/node.actions"}
     {call renderNodeActions actions=$nodeActions current='content'}
-    <p>
-        <label for="toggle-available">
-            <input type="checkbox" id="toggle-available" class="js-toggle-available" /> {translate key="widget.locales.available.show"}
-        </label>
-    </p>
+    {if $locales|count > 1}
+        <p>
+            <label for="toggle-available">
+                <input type="checkbox" id="toggle-available" class="js-toggle-available" /> {translate key="widget.locales.available.show"}
+            </label>
+        </p>
+    {/if}
 {/block}
 
 {block name="content_body" append}

@@ -1,5 +1,6 @@
 
 {function renderNodeActions actions=null current=null}
+    {include file="cms/backend/content.prototype"}
     {$availableLocales = $node->getAvailableLocales()}
     {$hasAvailableLocales = $availableLocales|is_array || $availableLocales == "all"}
     {if $actions}
@@ -17,11 +18,9 @@
                     {/if}
                 </small>
             </p>
-            {if $current == 'content'}
-                <div class="locale__label">
-                    {call showLocaleLabels isPublished=$node->isPublished()}
-                </div>
-            {/if}
+            <div class="locale__label">
+                {call showLocaleLabels isPublished=$node->isPublished()}
+            </div>
         {/if}
 
         <ul class="tabs">

@@ -1,7 +1,6 @@
 function initializeContent(baseUrl) {
     var $document = $(document);
     var $body = $('body');
-    var $formWidgetAdd = $('.form-widget-add');
     var $modalWidgetAdd = $('.modal-widget-add');
     var $buttonWidgetAdd = $('.widget-add-submit');
     var $buttonWidgetAddAndClose = $('.widget-add-submit-close');
@@ -321,11 +320,13 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
-    // activate locale mode
-    $availabilityToggle.on('change', function(){
-        toggleAvailableSections($(this));
-        toggleAvailableWidgets($(this));
-    });
+    // watch the locale mode checkbox for changes when it's available
+    if ($availabilityToggle.length) {
+        $availabilityToggle.on('change', function(){
+            toggleAvailableSections($(this));
+            toggleAvailableWidgets($(this));
+        });
+    }
 
     // filter widgets
     $('#filter-widgets').on('keyup', function(e) {
