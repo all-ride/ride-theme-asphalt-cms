@@ -170,27 +170,24 @@
     </div>
     <div class="widget__content">
         {$widget->getPropertiesPreview()}
-
-
-        <div>
-            {call showLocaleLabels isPublished=$widget->getProperties()->isPublished()}
-        </div>
-
+        {call showLocaleLabels isPublished=$widget->getProperties()->isPublished()}
     </div>
 </div>
 {/function}
 
 {function showLocaleLabels isPublished=true}
+    {*
+        Only show the locale labels when:
+        - The object is published
+        - There is more than one locale available
+     *}
     {if !$isPublished}
-        {* When an item is not published, don't show the other labels *}
         <span class="label label--danger"><span class="icon icon--eye-slash"></span> {translate key="widget.published.not"}</span>
-    {else if $locales|is_array}
+    {else if $locales|is_array && $locales|count > 1}
         {foreach $locales as $locale}
             {if $availableLocales == 'all' || $locale|in_array:$availableLocales}
-                {* the available locales *}
                 <span class="label label--success">{$locale}</span>
             {else}
-                {* the unavailable locales  *}
                 <span class="label label--warning">
                     <del>{$locale}</del>
                 </span>

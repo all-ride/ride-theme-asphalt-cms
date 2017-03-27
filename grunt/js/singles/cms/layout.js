@@ -1,7 +1,8 @@
+'use strict';
+
 function initializeContent(baseUrl) {
     var $document = $(document);
     var $body = $('body');
-    var $formWidgetAdd = $('.form-widget-add');
     var $modalWidgetAdd = $('.modal-widget-add');
     var $buttonWidgetAdd = $('.widget-add-submit');
     var $buttonWidgetAddAndClose = $('.widget-add-submit-close');
@@ -17,8 +18,9 @@ function initializeContent(baseUrl) {
         $('.widget__handle'),
         $('.widget-add'),
         $('.section-add')
-    ]
+    ];
     var actionsDisabled = false;
+    var ANIMATION_SPEED = 'medium';
 
     // perform a widget add to the cms
     var widgetAdd = function() {
@@ -32,7 +34,7 @@ function initializeContent(baseUrl) {
         var block = $('input[name=block]').val();
         var $block = $('.section[data-section=' + section + '] .block[data-block=' + block + ']', $sections);
 
-        if ($block.length != 1) {
+        if ($block.length !== 1) {
             alert('no block found');
             return;
         }
@@ -41,7 +43,7 @@ function initializeContent(baseUrl) {
         $buttonWidgetAddAndClose.attr('disabled', 'disabled');
 
         var jqxhr = $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
-            $lockedWidget = $block.find('.widget--locked');
+            var $lockedWidget = $block.find('.widget--locked');
             var $section = $lockedWidget.before(html);
 
             initWidgetOrder();
@@ -62,7 +64,7 @@ function initializeContent(baseUrl) {
             var $section = $(this);
             var section = 'section' + $section.data('section');
 
-            if (order[section] == undefined) {
+            if (order[section] === undefined) {
                 order[section] = {};
             }
 
@@ -84,10 +86,9 @@ function initializeContent(baseUrl) {
         });
 
         // post the order the cms
-        var jqxhr = $.post(baseUrl + '/order', {order: order}, function(data) {
-        });
+        var jqxhr = $.post(baseUrl + '/order', {order: order});
         rideApp.common.handleXHRCallback(jqxhr, 'Order updated', 'Could not update order');
-    }
+    };
 
     // initialize the sortable for the widgets
     var initWidgetOrder = function () {
@@ -143,7 +144,7 @@ function initializeContent(baseUrl) {
         e.preventDefault();
         var $action = $(this);
         var href = $action.attr('href');
-        if (href[0] == '#') {
+        if (href[0] === '#') {
             return;
         }
         $modalSectionAction.find('.modal-body').load(href + ' form', function () {
@@ -174,10 +175,10 @@ function initializeContent(baseUrl) {
         var $widgetsToToggle = $('.widget.is-locked');
 
         if ($el.is(':checked')) {
-            $widgetsToToggle.stop().hide("medium");
+            $widgetsToToggle.stop().hide(ANIMATION_SPEED);
             disableActions();
         } else {
-            $widgetsToToggle.stop().show("medium");
+            $widgetsToToggle.stop().show(ANIMATION_SPEED);
             initSectionOrder();
             initWidgetOrder();
             enableActions();
@@ -191,9 +192,9 @@ function initializeContent(baseUrl) {
             var $unavailableWidgets = $(this).find('div.is-unavailable');
             if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
                 if ($el.is(':checked')){
-                    $(this).stop().hide("medium");
+                    $(this).stop().hide(ANIMATION_SPEED);
                 } else {
-                    $(this).stop().show("medium");
+                    $(this).stop().show(ANIMATION_SPEED);
                 }
             }
         });
@@ -321,15 +322,17 @@ function initializeContent(baseUrl) {
         rideApp.common.handleXHRCallback(jqxhr, 'Widget removed', 'Could not remove widget');
     });
 
-    // activate locale mode
-    $availabilityToggle.on('change', function(){
-        toggleAvailableSections($(this));
-        toggleAvailableWidgets($(this));
-    });
+    // watch the locale mode checkbox for changes when it's available
+    if ($availabilityToggle.length) {
+        $availabilityToggle.on('change', function(){
+            toggleAvailableSections($(this));
+            toggleAvailableWidgets($(this));
+        });
+    }
 
     // filter widgets
     $('#filter-widgets').on('keyup', function(e) {
-      if(e.which == 13) {
+      if(e.which === 13) {
         return false;
       }
       var value = $(this).val();
