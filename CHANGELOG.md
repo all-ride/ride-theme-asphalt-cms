@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.7.2] - 2017-03-28
+## [1.7.3] - 2017-04-04
 ### Updated
-- don't show the 'locale' checkbox and labels when there's only one language available
+- keep alternate names open when setup
+
+## [1.7.2] - 2017-03-27
+### Updated
+- disable locale mode when there's only one locale specified
+- fix some linting errors
 
 ## [1.7.1] - 2017-03-24
 ### Updated
