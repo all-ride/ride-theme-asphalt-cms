@@ -38,15 +38,12 @@
             {call formRow form=$form row="name"}
 
             <div class="form__group">
-                <a href="#" class="btn-alternate-names">{translate key="button.names.alternate"}</a>
+                <div class="col-lg-offset-2 col-lg-10">
+                    <a href="#" class="btn-alternate-names">{translate key="button.names.alternate"}</a>
+                </div>
             </div>
 
-            {$rows = $form->getRows()}
-            {$hasData = false}
-            {if $rows['name-title']->data || $rows['name-menu']->data || $rows['name-breadcrumb']->data}
-                {$hasData = true}
-            {/if}
-            <div class="form__item alternate-names{if !$hasData} superhidden{/if}">
+            <div class="alternate-names">
                 {call formRow form=$form row="name-title"}
                 {call formRow form=$form row="name-menu"}
                 {call formRow form=$form row="name-breadcrumb"}
@@ -63,10 +60,12 @@
     <script src="{$app.url.base}/asphalt/js/form.js"></script>
     <script>
         $(function() {
-            $('.btn-alternate-names').click(function(e) {
-                e.preventDefault();
-                $('.alternate-names').toggleClass('superhidden');
+            $('.btn-alternate-names').click(function() {
+                $('.alternate-names').toggle();
+
+                return false;
             });
         });
+        $('.alternate-names').hide();
     </script>
 {/block}
