@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.4] - 2017-04-12
+### Updated
+- fixed section layout icons
+
 ## [1.7.3] - 2017-04-04
 ### Updated
 - keep alternate names open when setup
