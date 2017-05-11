@@ -3,6 +3,7 @@
     'page' => 'file-o',
     'folder' => 'folder-open-o',
     'entry' => 'hdd-o',
+    'home' => 'home',
     'reference' => 'share-square-o',
     'redirect' => 'refresh'
 ]}
