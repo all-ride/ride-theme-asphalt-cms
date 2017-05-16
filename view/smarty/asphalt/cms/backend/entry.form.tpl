@@ -28,6 +28,8 @@
         <h1>{translate key="title.entry.add"}</h1>
         {/if}
     </div>
+    {include 'cms/helper/node.actions'}
+    {call renderNodeActions actions=$nodeActions current='settings'}
 {/block}
 
 {block name="content_body" append}
