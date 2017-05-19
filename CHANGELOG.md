@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.7] - 2017-05-19
+### Fixed
+- fix problem where a widget is not draggable right after changing column layout
+- added editorconfig file
+- added yarn lockfile
+
 ## [1.7.6] - 2017-05-16
 ### Updated
 - added tabs to entry page settings view
