@@ -92,6 +92,8 @@ function initializeContent(baseUrl) {
 
     // initialize the sortable for the widgets
     var initWidgetOrder = function () {
+        $blocks = $('.section .block');
+
         $blocks.each(function() {
             try {
                 $(this).sortable('destroy');
@@ -255,7 +257,6 @@ function initializeContent(baseUrl) {
 
         var jqxhr = $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
             $section = $section.replaceWith(html);
-
             initWidgetOrder();
             initSectionActions();
         });
