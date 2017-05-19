@@ -94,14 +94,6 @@ function initializeContent(baseUrl) {
     var initWidgetOrder = function () {
         $blocks = $('.section .block');
 
-        $blocks.each(function() {
-            try {
-                $(this).sortable('destroy');
-            } catch (error) {
-                console.log(error);
-            }
-        });
-
         $blocks.sortable({
             handle: '.handle',
             items: '.widget:not(.widget--locked)',
