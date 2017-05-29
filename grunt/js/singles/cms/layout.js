@@ -183,12 +183,12 @@ function initializeContent(baseUrl) {
         // hide the sections that have no available widgets for the current locale
         $('div.section').each(function(){
             var $widgets = $(this).find('div.widget');
-            var $unavailableWidgets = $(this).find('div.is-unavailable');
+            var $unavailableWidgets = $(this).find('div.js-unavailable');
             if ($widgets.length > 0 && $widgets.length === $unavailableWidgets.length) {
                 if ($el.is(':checked')){
-                    $(this).stop().hide(ANIMATION_SPEED);
+                    $(this).stop().fadeOut(ANIMATION_SPEED);
                 } else {
-                    $(this).stop().show(ANIMATION_SPEED);
+                    $(this).stop().fadeIn(ANIMATION_SPEED);
                 }
             }
         });

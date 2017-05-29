@@ -101,6 +101,8 @@
     {/if}
 
     {$widgetClasses = ""}
+    {$isUnavailableClass = ""}
+    {$widgetUnavailable = ""}
     {$isPublished = $widget->getProperties()->isPublished()}
     {$availableLocales = $widget->getProperties()->getAvailableLocales()}
     {$hasAvailableLocales = $availableLocales|is_array}
@@ -111,7 +113,9 @@
         {/if}
     {/if}
     {if !$isPublished || !$availableActions}
-        {$widgetClasses = "`$widgetClasses` is-unavailable"}
+        {* If the widget is unpublished or not available in current locale, we blur out the widget information (except the cog dropdown) *}
+        {$isUnavailableClass = 'is-unavailable'}
+        {$widgetClasses = "`$widgetClasses` js-unavailable"}
     {/if}
     {if !$isPublished || !$availableActions}
         {$widgetClasses = "`$widgetClasses` is-locked"}
@@ -122,7 +126,7 @@
 
 <div class="widget {$widgetClasses} clearfix" data-widget="{$widgetId}">
     <div class="widget__header clearfix">
-        <div class="widget__handle">
+        <div class="widget__handle {$isUnavailableClass}">
             <div class="handle"><i class="icon icon--arrows"></i></div>
         </div>
         <div class="widget__actions text-right dropdown">
@@ -151,7 +155,7 @@
             </ul>
             {/if}
         </div>
-        <div class="widget__title text-left">
+        <div class="widget__title text-left {$isUnavailableClass}">
             <img src="{image src=$widget->getIcon() default="asphalt/img/cms/widget.png"}" />
             {$name = $widget->getName()}
             {if $widget->getPropertiesCallback()}
@@ -168,7 +172,7 @@
             {/if}
         </div>
     </div>
-    <div class="widget__content">
+    <div class="widget__content {$isUnavailableClass}">
         {$widget->getPropertiesPreview()}
         {call showLocaleLabels isPublished=$widget->getProperties()->isPublished()}
     </div>
