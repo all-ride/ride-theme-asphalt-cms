@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.9] - 2017-05-29
+### Fixed
+- unavailable widgets (unpublished / not available in current locale) should be opaque. But it's dropdown menu should still be available.
+
 ## [1.7.8] - 2017-05-19
 ### Fixed
 - fix error logs being logged to FE console
