@@ -201,9 +201,16 @@ function initializeContent(baseUrl) {
         if (actionsDisabled) { return; }
 
         e.preventDefault();
+
+        var prepend = $(this).attr('data-method') == 'prepend';
         var $section;
-        var jqxhr = $.post(baseUrl + '/sections', function(html) {
-            $section = $sections.append(html);
+        var jqxhr = $.post(baseUrl + '/sections' + (prepend ? '?prepend=1' : ''), function(html) {
+            if (prepend) {
+                $section = $sections.prepend(html);
+            } else {
+                $section = $sections.append(html);
+            }
+            
             $blocks = $('.section .block');
 
             initWidgetOrder();
