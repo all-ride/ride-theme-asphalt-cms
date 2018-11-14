@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - fix "add section" buttons: append and prepend properly
 - implemented locale for js call to retrieve the entries
 
+## [1.7.9] - 2017-05-29
+### Fixed
+- unavailable widgets (unpublished / not available in current locale) should be opaque. But it's dropdown menu should still be available.
+
 ## [1.7.8] - 2017-05-19
 ### Fixed
 - fix error logs being logged to FE console
