@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.7.10] - 2017-07-11
 ### Fixed
 - fix "add section" buttons: append and prepend properly
+- implemented locale for js call to retrieve the entries
 
 ## [1.7.8] - 2017-05-19
 ### Fixed
