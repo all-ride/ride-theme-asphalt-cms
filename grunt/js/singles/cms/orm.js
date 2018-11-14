@@ -1,26 +1,44 @@
 var filterFields;
+// locale for json request
+var l;
 
-function initializeNodeEntryForm(entriesAction) {
+function initializeNodeEntryForm(entriesAction, locale) {
+    l = locale;
     $("#form-model").change(function() {
-        updateEntryOptions(entriesAction, $('#form-model'), $('#form-entry'));
+        updateEntryOptions(entriesAction, $('#form-model'), $('#form-entry'), locale);
     });
 }
 
-function updateEntryOptions(action, modelInput, entryInput) {
+function updateEntryOptions(action, modelInput, entryInput, locale) {
     var model = modelInput.val();
 
     entryInput.empty();
     entryInput.append('<option value="">---</option>');
 
     if (model) {
-        $.getJSON(action.replace('%25model%25', model), function(data) {
-            for (var key in data) {
-                entryInput.append('<option value="' + key + '">' + data[key] + '</option>');
-            }
+        $.ajax({
+            url: action.replace('%25model%25', model),
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                for (var key in data) {
+                    entryInput.append('<option value="' + key + '">' + data[key] + '</option>');
+                }
+            },
+            error: function() {
+                alert('Darn, can\'t retrieve the entries!');
+            },
+            beforeSend: setEntryOptionLocaleHeader
         });
     }
 
     entryInput.val('');
+}
+
+function setEntryOptionLocaleHeader(xhr) {
+    if (l) {
+        xhr.setRequestHeader('Accept-Language', l);
+    }
 }
 
 function joppaContentInitializeDetailProperties(uniqueFieldsAction) {
