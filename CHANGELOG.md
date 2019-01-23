@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.11] - 2019-01-23
+### Updated
+- added enctype to entry node form
+
 ## [1.7.10] - 2017-07-11
 ### Fixed
 - fix "add section" buttons: append and prepend properly
