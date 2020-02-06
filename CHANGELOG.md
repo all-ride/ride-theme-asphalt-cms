@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.12] - 2020-02-06
+### Updated
+- Changed breadcrumbs tpl to play well with structured data for Google Breadcrumbs
+
 ## [1.7.11] - 2019-01-23
 ### Updated
 - added enctype to entry node form
